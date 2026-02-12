@@ -1,15 +1,7 @@
-import {
-  Check,
-  EyeClosed,
-  Lock,
-  LogIn,
-  Mail,
-  UserRound,
-  UserRoundPlus
-} from 'lucide-react'
-import { Logo } from './components/logo'
+import { Check, EyeClosed, Lock, Mail, UserRoundPlus } from 'lucide-react'
+import { Logo } from '../components/logo'
 
-export function App() {
+export function SignIn() {
   return (
     <main className="min-h-dvh">
       <div className="pt-12 max-w-md mx-auto flex flex-col items-center gap-8">
@@ -18,38 +10,16 @@ export function App() {
         <div className="w-full bg-white border border-gray-200 p-8 rounded-xl flex flex-col gap-8">
           <div>
             <h1 className="text-gray-800 text-xl font-bold text-center mb-1">
-              Criar conta
+              Fazer login
             </h1>
 
             <p className="text-center text-gray-600">
-              Comece a controlar suas finanças ainda hoje
+              Entre na sua conta para continuar
             </p>
           </div>
 
           <form action="#" className="space-y-6">
             <div className="space-y-4">
-              <div className="flex flex-col gap-2">
-                <label
-                  htmlFor="name"
-                  className="text-gray-700 font-medium text-sm"
-                >
-                  Nome completo
-                </label>
-
-                <div className="border border-gray-300 bg-white rounded-lg px-3 flex items-center gap-3">
-                  <div>
-                    <UserRound className="size-4 text-gray-400" />
-                  </div>
-
-                  <input
-                    type="text"
-                    id="name"
-                    className="w-full py-3.5 focus:outline-none leading-2 text-gray-800"
-                    placeholder="Seu nome completo"
-                  />
-                </div>
-              </div>
-
               <div className="flex flex-col gap-2">
                 <label
                   htmlFor="email"
@@ -92,22 +62,53 @@ export function App() {
                     placeholder="Digite sua senha"
                   />
 
-                  <button type="button" className="hover:cursor-pointer">
+                  <button
+                    type="button"
+                    className="enabled:hover:cursor-pointer"
+                  >
                     <EyeClosed className="size-4 text-gray-700" />
                   </button>
                 </div>
+              </div>
 
-                <span className="text-xs text-gray-500 select-none">
-                  A senha deve ter no mínimo 8 caracteres.
-                </span>
+              <div className="flex justify-between items-center">
+                <div className="flex items-center gap-2">
+                  <label
+                    htmlFor="remember"
+                    className="relative size-4 border border-gray-300 rounded-sm flex items-center justify-center has-checked:bg-green-base has-checked:border-green-base"
+                  >
+                    <input
+                      type="checkbox"
+                      name="remember"
+                      id="remember"
+                      className="sr-only"
+                    />
+
+                    <Check className="size-3 text-white" />
+                  </label>
+
+                  <label
+                    htmlFor="remember"
+                    className="text-sm text-gray-700 select-none"
+                  >
+                    Lembrar-me
+                  </label>
+                </div>
+
+                <a
+                  href="#"
+                  className="text-sm text-brand-base font-medium hover:underline"
+                >
+                  Recuperar senha
+                </a>
               </div>
             </div>
 
             <button
               type="button"
-              className="bg-brand-base rounded-lg px-4 py-3 flex items-center justify-center gap-2 font-medium text-white w-full border border-brand-base hover:cursor-pointer hover:bg-brand-dark hover:border-brand-dark transition-colors"
+              className="bg-brand-base rounded-lg px-4 py-3 flex items-center justify-center gap-2 font-medium text-white w-full border border-brand-base enabled:hover:cursor-pointer enabled:hover:bg-brand-dark enabled:hover:border-brand-dark transition-colors"
             >
-              Cadastrar
+              Entrar
             </button>
 
             <div className="flex items-center gap-3 select-none">
@@ -120,13 +121,13 @@ export function App() {
               Ainda não tem uma conta?
             </p>
 
-            <a
-              href="#"
-              className="bg-white rounded-lg px-4 py-3 flex items-center justify-center gap-2 font-medium text-gray-700 w-full border border-gray-300 hover:cursor-pointer hover:bg-gray-200 transition-colors"
+            <button
+              type="button"
+              className="bg-white rounded-lg px-4 py-3 flex items-center justify-center gap-2 font-medium text-gray-700 w-full border border-gray-300 enabled:hover:cursor-pointer enabled:hover:bg-gray-200 transition-colors"
             >
-              <LogIn className="size-3.5" />
-              Já tem uma conta?
-            </a>
+              <UserRoundPlus className="size-3.5" />
+              Criar conta
+            </button>
           </form>
         </div>
       </div>
