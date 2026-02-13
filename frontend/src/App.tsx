@@ -28,7 +28,10 @@ export function App() {
           <nav>
             <ul className="flex items-center gap-5">
               <li>
-                <a href="#" className="font-semibold text-sm text-brand-base">
+                <a
+                  href="#"
+                  className="text-sm text-gray-600 hover:text-brand-base transition-colors"
+                >
                   Dashboard
                 </a>
               </li>
@@ -36,7 +39,7 @@ export function App() {
               <li>
                 <a
                   href="#"
-                  className="text-sm text-gray-600 hover:text-brand-base transition-colors"
+                  className="font-semibold text-sm text-brand-base hover:text-brand-base transition-colors"
                 >
                   Transações
                 </a>
