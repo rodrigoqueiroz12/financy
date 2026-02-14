@@ -32,6 +32,10 @@
       },
       "suspicious": {
         "noExplicitAny": "off"
+      },
+      "a11y": {
+        "useValidAnchor": "warn",
+        "useButtonType": "warn"
       }
     }
   },
@@ -51,6 +55,11 @@
       "source": {
         "organizeImports": "on"
       }
+    }
+  },
+  "css": {
+    "parser": {
+      "tailwindDirectives": true
     }
   }
 }

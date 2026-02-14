@@ -1,7 +1,14 @@
 import { Check, EyeClosed, Lock, Mail, UserRoundPlus } from 'lucide-react'
+import { useNavigate } from 'react-router'
 import { Logo } from '../components/logo'
 
 export function SignIn() {
+  const navigate = useNavigate()
+
+  function handleSignUp() {
+    navigate('/sign-up')
+  }
+
   return (
     <div className="pt-12 max-w-md mx-auto flex flex-col items-center gap-8">
       <Logo className="h-8" />
@@ -92,7 +99,7 @@ export function SignIn() {
               </div>
 
               <a
-                href="#"
+                href="#recuperar-senha"
                 className="text-sm text-brand-base font-medium hover:underline"
               >
                 Recuperar senha
@@ -119,6 +126,7 @@ export function SignIn() {
 
           <button
             type="button"
+            onClick={handleSignUp}
             className="bg-white rounded-lg px-4 py-3 flex items-center justify-center gap-2 font-medium text-gray-700 w-full border border-gray-300 enabled:hover:cursor-pointer enabled:hover:bg-gray-200 transition-colors"
           >
             <UserRoundPlus className="size-3.5" />

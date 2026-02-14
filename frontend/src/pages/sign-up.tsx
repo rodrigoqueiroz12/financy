@@ -1,7 +1,14 @@
 import { EyeClosed, Lock, LogIn, Mail, UserRound } from 'lucide-react'
+import { useNavigate } from 'react-router'
 import { Logo } from '../components/logo'
 
 export function SignUp() {
+  const navigate = useNavigate()
+
+  function handleSignIn() {
+    navigate('/')
+  }
+
   return (
     <main className="min-h-dvh">
       <div className="pt-12 max-w-md mx-auto flex flex-col items-center gap-8">
@@ -112,13 +119,14 @@ export function SignUp() {
               Ainda não tem uma conta?
             </p>
 
-            <a
-              href="#"
+            <button
+              type="button"
+              onClick={handleSignIn}
               className="bg-white rounded-lg px-4 py-3 flex items-center justify-center gap-2 font-medium text-gray-700 w-full border border-gray-300 hover:cursor-pointer hover:bg-gray-200 transition-colors"
             >
               <LogIn className="size-3.5" />
               Já tem uma conta?
-            </a>
+            </button>
           </form>
         </div>
       </div>

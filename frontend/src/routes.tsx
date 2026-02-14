@@ -1,13 +1,12 @@
 import { createBrowserRouter } from 'react-router'
-
+import { AuthLayout } from './layouts/auth'
+import { DashboardLayout } from './layouts/dashboard'
 import { Categories } from './pages/categories'
 import { Dashboard } from './pages/dashboard'
 import { Profile } from './pages/profile'
 import { SignIn } from './pages/sign-in'
 import { SignUp } from './pages/sign-up'
 import { Transactions } from './pages/transactions'
-import { AuthLayout } from './layouts/auth'
-import { DashboardLayout } from './layouts/dashboard'
 
 export const router = createBrowserRouter([
   {
