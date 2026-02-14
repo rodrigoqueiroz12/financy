@@ -1,4 +1,5 @@
 import { Link } from 'react-router'
+import { HeaderLink } from './header-link'
 import { Logo } from './logo'
 
 export function Header() {
@@ -12,30 +13,15 @@ export function Header() {
         <nav className="justify-self-center">
           <ul className="flex items-center gap-5">
             <li>
-              <Link
-                to="/dashboard"
-                className="font-semibold text-sm text-brand-base"
-              >
-                Dashboard
-              </Link>
+              <HeaderLink to="/dashboard">Dashboard</HeaderLink>
             </li>
 
             <li>
-              <Link
-                to="/transactions"
-                className="text-sm text-gray-600 hover:text-brand-base transition-colors"
-              >
-                Transações
-              </Link>
+              <HeaderLink to="/transactions">Transações</HeaderLink>
             </li>
 
             <li>
-              <Link
-                to="/categories"
-                className="text-sm text-gray-600 hover:text-brand-base transition-colors"
-              >
-                Categorias
-              </Link>
+              <HeaderLink to="/categories">Categorias</HeaderLink>
             </li>
           </ul>
         </nav>
