@@ -13,7 +13,7 @@ import {
   Utensils,
   Zap
 } from 'lucide-react'
-import { Logo } from './components/logo'
+import { Logo } from '../components/logo'
 
 export function Categories() {
   return (

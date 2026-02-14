@@ -18,7 +18,7 @@ import {
 } from 'lucide-react'
 import { Logo } from '../components/logo'
 
-export function Transaction() {
+export function Transactions() {
   return (
     <main className="min-h-dvh space-y-12">
       <header className="py-4 border-b border-gray-200 bg-white">
