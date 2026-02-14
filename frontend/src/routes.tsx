@@ -6,30 +6,43 @@ import { Profile } from './pages/profile'
 import { SignIn } from './pages/sign-in'
 import { SignUp } from './pages/sign-up'
 import { Transactions } from './pages/transactions'
+import { AuthLayout } from './layouts/auth'
+import { DashboardLayout } from './layouts/dashboard'
 
 export const router = createBrowserRouter([
   {
     path: '/',
-    element: <Dashboard />
+    element: <AuthLayout />,
+    children: [
+      {
+        index: true,
+        element: <SignIn />
+      },
+      {
+        path: 'sign-up',
+        element: <SignUp />
+      }
+    ]
   },
   {
-    path: '/sign-in',
-    element: <SignIn />
-  },
-  {
-    path: '/sign-up',
-    element: <SignUp />
-  },
-  {
-    path: '/transactions',
-    element: <Transactions />
-  },
-  {
-    path: '/categories',
-    element: <Categories />
-  },
-  {
-    path: '/profile',
-    element: <Profile />
+    element: <DashboardLayout />,
+    children: [
+      {
+        path: 'dashboard',
+        element: <Dashboard />
+      },
+      {
+        path: 'transactions',
+        element: <Transactions />
+      },
+      {
+        path: 'categories',
+        element: <Categories />
+      },
+      {
+        path: 'profile',
+        element: <Profile />
+      }
+    ]
   }
 ])
