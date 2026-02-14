@@ -192,9 +192,10 @@ export function App() {
                 </th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-gray-200">
+
+            <tbody>
               <tr className="hover:bg-gray-50/50 transition-colors">
-                <td className="px-6 py-4">
+                <td className="px-6 py-4 border-b border-gray-200">
                   <div className="flex items-center gap-4">
                     <div className="size-10 flex items-center justify-center bg-blue-light text-blue-base rounded-lg">
                       <Utensils className="size-4" />
@@ -204,15 +205,15 @@ export function App() {
                     </span>
                   </div>
                 </td>
-                <td className="px-6 py-4 text-sm text-gray-600 text-center">
+                <td className="px-6 py-4 border-b border-gray-200 text-sm text-gray-600 text-center">
                   30/11/25
                 </td>
-                <td className="px-6 py-4 text-center">
+                <td className="px-6 py-4 border-b border-gray-200 text-center">
                   <span className="px-3 py-1 rounded-full bg-blue-light text-sm font-medium text-blue-dark">
                     Alimentação
                   </span>
                 </td>
-                <td className="px-6 py-4">
+                <td className="px-6 py-4 border-b border-gray-200">
                   <div className="flex items-center justify-center gap-2">
                     <CircleArrowDown className="size-4 text-red-base" />
                     <span className="text-sm font-medium text-red-dark">
@@ -220,12 +221,12 @@ export function App() {
                     </span>
                   </div>
                 </td>
-                <td className="px-6 py-4 text-right">
+                <td className="px-6 py-4 border-b border-gray-200 text-right">
                   <span className="text-sm font-bold text-gray-800">
                     - R$ 89,50
                   </span>
                 </td>
-                <td className="px-6 py-4">
+                <td className="px-6 py-4 border-b border-gray-200">
                   <div className="flex items-center justify-end gap-2">
                     <button className="size-8 flex items-center justify-center border border-gray-200 rounded-lg text-danger hover:bg-gray-50 hover:text-danger/80 transition-colors">
                       <Trash className="size-4" />
@@ -238,7 +239,7 @@ export function App() {
               </tr>
 
               <tr className="hover:bg-gray-50/50 transition-colors">
-                <td className="px-6 py-4">
+                <td className="px-6 py-4 border-b border-gray-200">
                   <div className="flex items-center gap-4">
                     <div className="size-10 flex items-center justify-center bg-purple-light text-purple-base rounded-lg">
                       <Car className="size-4" />
@@ -248,15 +249,15 @@ export function App() {
                     </span>
                   </div>
                 </td>
-                <td className="px-6 py-4 text-sm text-gray-600 text-center">
+                <td className="px-6 py-4 border-b border-gray-200 text-sm text-gray-600 text-center">
                   29/11/25
                 </td>
-                <td className="px-6 py-4 text-center">
+                <td className="px-6 py-4 border-b border-gray-200 text-center">
                   <span className="px-3 py-1 rounded-full bg-purple-light text-sm font-medium text-purple-dark">
                     Transporte
                   </span>
                 </td>
-                <td className="px-6 py-4">
+                <td className="px-6 py-4 border-b border-gray-200">
                   <div className="flex items-center justify-center gap-2">
                     <CircleArrowDown className="size-4 text-red-base" />
                     <span className="text-sm font-medium text-red-dark">
@@ -264,12 +265,12 @@ export function App() {
                     </span>
                   </div>
                 </td>
-                <td className="px-6 py-4 text-right">
+                <td className="px-6 py-4 border-b border-gray-200 text-right">
                   <span className="text-sm font-bold text-gray-800">
                     - R$ 100,00
                   </span>
                 </td>
-                <td className="px-6 py-4">
+                <td className="px-6 py-4 border-b border-gray-200">
                   <div className="flex items-center justify-end gap-2">
                     <button className="size-8 flex items-center justify-center border border-gray-200 rounded-lg text-danger hover:bg-gray-50 hover:text-danger/80 transition-colors">
                       <Trash className="size-4" />
@@ -282,7 +283,7 @@ export function App() {
               </tr>
 
               <tr className="hover:bg-gray-50/50 transition-colors">
-                <td className="px-6 py-4">
+                <td className="px-6 py-4 border-b border-gray-200">
                   <div className="flex items-center gap-4">
                     <div className="size-10 flex items-center justify-center bg-orange-light text-orange-base rounded-lg">
                       <ShoppingCart className="size-4" />
@@ -292,15 +293,15 @@ export function App() {
                     </span>
                   </div>
                 </td>
-                <td className="px-6 py-4 text-sm text-gray-600 text-center">
+                <td className="px-6 py-4 border-b border-gray-200 text-sm text-gray-600 text-center">
                   28/11/25
                 </td>
-                <td className="px-6 py-4 text-center">
+                <td className="px-6 py-4 border-b border-gray-200 text-center">
                   <span className="px-3 py-1 rounded-full bg-orange-light text-sm font-medium text-orange-dark">
                     Mercado
                   </span>
                 </td>
-                <td className="px-6 py-4">
+                <td className="px-6 py-4 border-b border-gray-200">
                   <div className="flex items-center justify-center gap-2">
                     <CircleArrowDown className="size-4 text-red-base" />
                     <span className="text-sm font-medium text-red-dark">
@@ -308,12 +309,12 @@ export function App() {
                     </span>
                   </div>
                 </td>
-                <td className="px-6 py-4 text-right">
+                <td className="px-6 py-4 border-b border-gray-200 text-right">
                   <span className="text-sm font-bold text-gray-800">
                     - R$ 156,80
                   </span>
                 </td>
-                <td className="px-6 py-4">
+                <td className="px-6 py-4 border-b border-gray-200">
                   <div className="flex items-center justify-end gap-2">
                     <button className="size-8 flex items-center justify-center border border-gray-200 rounded-lg text-danger hover:bg-gray-50 hover:text-danger/80 transition-colors">
                       <Trash className="size-4" />
@@ -326,7 +327,7 @@ export function App() {
               </tr>
 
               <tr className="hover:bg-gray-50/50 transition-colors">
-                <td className="px-6 py-4">
+                <td className="px-6 py-4 border-b border-gray-200">
                   <div className="flex items-center gap-4">
                     <div className="size-10 flex items-center justify-center bg-green-light text-green-base rounded-lg">
                       <Landmark className="size-4" />
@@ -336,15 +337,15 @@ export function App() {
                     </span>
                   </div>
                 </td>
-                <td className="px-6 py-4 text-sm text-gray-600 text-center">
+                <td className="px-6 py-4 border-b border-gray-200 text-sm text-gray-600 text-center">
                   26/11/25
                 </td>
-                <td className="px-6 py-4 text-center">
+                <td className="px-6 py-4 border-b border-gray-200 text-center">
                   <span className="px-3 py-1 rounded-full bg-green-light text-sm font-medium text-green-dark">
                     Investimento
                   </span>
                 </td>
-                <td className="px-6 py-4">
+                <td className="px-6 py-4 border-b border-gray-200">
                   <div className="flex items-center justify-center gap-2">
                     <CircleArrowUp className="size-4 text-green-base" />
                     <span className="text-sm font-medium text-green-dark">
@@ -352,12 +353,12 @@ export function App() {
                     </span>
                   </div>
                 </td>
-                <td className="px-6 py-4 text-right">
+                <td className="px-6 py-4 border-b border-gray-200 text-right">
                   <span className="text-sm font-bold text-gray-800">
                     + R$ 340,25
                   </span>
                 </td>
-                <td className="px-6 py-4">
+                <td className="px-6 py-4 border-b border-gray-200">
                   <div className="flex items-center justify-end gap-2">
                     <button className="size-8 flex items-center justify-center border border-gray-200 rounded-lg text-danger hover:bg-gray-50 hover:text-danger/80 transition-colors">
                       <Trash className="size-4" />
@@ -370,7 +371,7 @@ export function App() {
               </tr>
 
               <tr className="hover:bg-gray-50/50 transition-colors">
-                <td className="px-6 py-4">
+                <td className="px-6 py-4 border-b border-gray-200">
                   <div className="flex items-center gap-4">
                     <div className="size-10 flex items-center justify-center bg-yellow-light text-yellow-base rounded-lg">
                       <House className="size-4" />
@@ -378,15 +379,15 @@ export function App() {
                     <span className="font-medium text-gray-800">Aluguel</span>
                   </div>
                 </td>
-                <td className="px-6 py-4 text-sm text-gray-600 text-center">
+                <td className="px-6 py-4 border-b border-gray-200 text-sm text-gray-600 text-center">
                   26/11/25
                 </td>
-                <td className="px-6 py-4 text-center">
+                <td className="px-6 py-4 border-b border-gray-200 text-center">
                   <span className="px-3 py-1 rounded-full bg-yellow-light text-sm font-medium text-yellow-dark">
                     Utilidades
                   </span>
                 </td>
-                <td className="px-6 py-4">
+                <td className="px-6 py-4 border-b border-gray-200">
                   <div className="flex items-center justify-center gap-2">
                     <CircleArrowDown className="size-4 text-red-base" />
                     <span className="text-sm font-medium text-red-dark">
@@ -394,12 +395,12 @@ export function App() {
                     </span>
                   </div>
                 </td>
-                <td className="px-6 py-4 text-right">
+                <td className="px-6 py-4 border-b border-gray-200 text-right">
                   <span className="text-sm font-bold text-gray-800">
                     - R$ 1.700,00
                   </span>
                 </td>
-                <td className="px-6 py-4">
+                <td className="px-6 py-4 border-b border-gray-200">
                   <div className="flex items-center justify-end gap-2">
                     <button className="size-8 flex items-center justify-center border border-gray-200 rounded-lg text-danger hover:bg-gray-50 hover:text-danger/80 transition-colors">
                       <Trash className="size-4" />
@@ -412,7 +413,7 @@ export function App() {
               </tr>
 
               <tr className="hover:bg-gray-50/50 transition-colors">
-                <td className="px-6 py-4">
+                <td className="px-6 py-4 border-b border-gray-200">
                   <div className="flex items-center gap-4">
                     <div className="size-10 flex items-center justify-center bg-green-light text-green-base rounded-lg">
                       <BriefcaseBusiness className="size-4" />
@@ -420,15 +421,15 @@ export function App() {
                     <span className="font-medium text-gray-800">Freelance</span>
                   </div>
                 </td>
-                <td className="px-6 py-4 text-sm text-gray-600 text-center">
+                <td className="px-6 py-4 border-b border-gray-200 text-sm text-gray-600 text-center">
                   24/11/25
                 </td>
-                <td className="px-6 py-4 text-center">
+                <td className="px-6 py-4 border-b border-gray-200 text-center">
                   <span className="px-3 py-1 rounded-full bg-green-light text-sm font-medium text-green-dark">
                     Salário
                   </span>
                 </td>
-                <td className="px-6 py-4">
+                <td className="px-6 py-4 border-b border-gray-200">
                   <div className="flex items-center justify-center gap-2">
                     <CircleArrowUp className="size-4 text-green-base" />
                     <span className="text-sm font-medium text-green-dark">
@@ -436,12 +437,12 @@ export function App() {
                     </span>
                   </div>
                 </td>
-                <td className="px-6 py-4 text-right">
+                <td className="px-6 py-4 border-b border-gray-200 text-right">
                   <span className="text-sm font-bold text-gray-800">
                     + R$ 2.500,00
                   </span>
                 </td>
-                <td className="px-6 py-4">
+                <td className="px-6 py-4 border-b border-gray-200">
                   <div className="flex items-center justify-end gap-2">
                     <button className="size-8 flex items-center justify-center border border-gray-200 rounded-lg text-danger hover:bg-gray-50 hover:text-danger/80 transition-colors">
                       <Trash className="size-4" />
@@ -454,7 +455,7 @@ export function App() {
               </tr>
 
               <tr className="hover:bg-gray-50/50 transition-colors">
-                <td className="px-6 py-4">
+                <td className="px-6 py-4 border-b border-gray-200">
                   <div className="flex items-center gap-4">
                     <div className="size-10 flex items-center justify-center bg-orange-light text-orange-base rounded-lg">
                       <ShoppingCart className="size-4" />
@@ -464,15 +465,15 @@ export function App() {
                     </span>
                   </div>
                 </td>
-                <td className="px-6 py-4 text-sm text-gray-600 text-center">
+                <td className="px-6 py-4 border-b border-gray-200 text-sm text-gray-600 text-center">
                   22/11/25
                 </td>
-                <td className="px-6 py-4 text-center">
+                <td className="px-6 py-4 border-b border-gray-200 text-center">
                   <span className="px-3 py-1 rounded-full bg-orange-light text-sm font-medium text-orange-dark">
                     Mercado
                   </span>
                 </td>
-                <td className="px-6 py-4">
+                <td className="px-6 py-4 border-b border-gray-200">
                   <div className="flex items-center justify-center gap-2">
                     <CircleArrowDown className="size-4 text-red-base" />
                     <span className="text-sm font-medium text-red-dark">
@@ -480,12 +481,12 @@ export function App() {
                     </span>
                   </div>
                 </td>
-                <td className="px-6 py-4 text-right">
+                <td className="px-6 py-4 border-b border-gray-200 text-right">
                   <span className="text-sm font-bold text-gray-800">
                     - R$ 150,00
                   </span>
                 </td>
-                <td className="px-6 py-4">
+                <td className="px-6 py-4 border-b border-gray-200">
                   <div className="flex items-center justify-end gap-2">
                     <button className="size-8 flex items-center justify-center border border-gray-200 rounded-lg text-danger hover:bg-gray-50 hover:text-danger/80 transition-colors">
                       <Trash className="size-4" />
@@ -498,7 +499,7 @@ export function App() {
               </tr>
 
               <tr className="hover:bg-gray-50/50 transition-colors">
-                <td className="px-6 py-4">
+                <td className="px-6 py-4 border-b border-gray-200">
                   <div className="flex items-center gap-4">
                     <div className="size-10 flex items-center justify-center bg-pink-light text-pink-base rounded-lg">
                       <Clapperboard className="size-4" />
@@ -506,15 +507,15 @@ export function App() {
                     <span className="font-medium text-gray-800">Cinema</span>
                   </div>
                 </td>
-                <td className="px-6 py-4 text-sm text-gray-600 text-center">
+                <td className="px-6 py-4 border-b border-gray-200 text-sm text-gray-600 text-center">
                   18/12/25
                 </td>
-                <td className="px-6 py-4 text-center">
+                <td className="px-6 py-4 border-b border-gray-200 text-center">
                   <span className="px-3 py-1 rounded-full bg-pink-light text-sm font-medium text-pink-dark">
                     Entretenimento
                   </span>
                 </td>
-                <td className="px-6 py-4">
+                <td className="px-6 py-4 border-b border-gray-200">
                   <div className="flex items-center justify-center gap-2">
                     <CircleArrowDown className="size-4 text-red-base" />
                     <span className="text-sm font-medium text-red-dark">
@@ -522,12 +523,12 @@ export function App() {
                     </span>
                   </div>
                 </td>
-                <td className="px-6 py-4 text-right">
+                <td className="px-6 py-4 border-b border-gray-200 text-right">
                   <span className="text-sm font-bold text-gray-800">
                     - R$ 88,00
                   </span>
                 </td>
-                <td className="px-6 py-4">
+                <td className="px-6 py-4 border-b border-gray-200">
                   <div className="flex items-center justify-end gap-2">
                     <button className="size-8 flex items-center justify-center border border-gray-200 rounded-lg text-danger hover:bg-gray-50 hover:text-danger/80 transition-colors">
                       <Trash className="size-4" />
@@ -540,9 +541,10 @@ export function App() {
                 </td>
               </tr>
             </tbody>
+
             <tfoot>
               <tr>
-                <td colSpan={6} className="px-6 py-4 border-t border-gray-200">
+                <td colSpan={6} className="px-6 py-4 border-b border-gray-200">
                   <div className="flex items-center justify-between">
                     <span className="text-sm text-gray-700">
                       1 a 10 | 27 resultados
