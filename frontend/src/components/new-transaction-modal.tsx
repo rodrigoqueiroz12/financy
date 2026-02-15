@@ -5,6 +5,7 @@ import { ChevronDown, CircleArrowDown, CircleArrowUp, X } from 'lucide-react'
 import type { ReactNode } from 'react'
 import { tv } from 'tailwind-variants/lite'
 import { IconButton } from './icon-button'
+import { Input } from './input'
 import { LabelButton } from './label-button'
 
 interface NewTransactionModalProps {
@@ -71,60 +72,41 @@ export function NewTransactionModal({ children }: NewTransactionModalProps) {
               </RadioGroup.Item>
             </RadioGroup.Root>
 
-            <div className="space-y-2">
-              <label
-                htmlFor="description"
-                className="text-sm font-medium text-gray-700 block"
-              >
-                Descrição
-              </label>
-
-              <input
-                id="description"
-                type="text"
-                placeholder="Ex. Almoço no restaurante"
-                className="w-full px-4 py-3.5 bg-white border border-gray-300 rounded-lg text-sm text-gray-800 placeholder:text-gray-400 focus:outline-none focus:border-brand-base focus:ring-1 focus:ring-brand-base transition-colors"
-                required
-              />
-            </div>
-
-            <div className="grid grid-cols-2 gap-4">
-              <div className="space-y-2">
-                <label
-                  htmlFor="date"
-                  className="text-sm font-medium text-gray-700 block"
-                >
-                  Data
-                </label>
-                <input
-                  id="date"
-                  type="date"
-                  className="w-full px-4 py-3.5 bg-white border border-gray-200 rounded-lg text-sm text-gray-800 placeholder:text-gray-400 focus:outline-none focus:border-brand-base focus:ring-1 focus:ring-brand-base transition-colors"
+            <Input.Root>
+              <Input.Label htmlFor="description">Descrição</Input.Label>
+              <Input.Control>
+                <Input.Field
+                  id="description"
+                  autoComplete="off"
+                  type="text"
+                  placeholder="Ex. Almoço no restaurante"
                   required
                 />
-              </div>
+              </Input.Control>
+            </Input.Root>
 
-              <div className="space-y-2">
-                <label
-                  htmlFor="amount"
-                  className="text-sm font-medium text-gray-700 block"
-                >
-                  Valor
-                </label>
-                <div className="relative">
-                  <span className="absolute left-4 top-1/2 -translate-y-1/2 text-sm text-gray-500 pointer-events-none">
-                    R$
-                  </span>
-                  <input
+            <div className="grid grid-cols-2 gap-4">
+              <Input.Root>
+                <Input.Label htmlFor="date">Data</Input.Label>
+                <Input.Control>
+                  <Input.Field id="date" type="date" required />
+                </Input.Control>
+              </Input.Root>
+
+              <Input.Root>
+                <Input.Label htmlFor="amount">Valor</Input.Label>
+                <Input.Control>
+                  <span className="text-gray-500 text-sm">R$</span>
+                  <Input.Field
                     id="amount"
                     type="number"
                     step="0.01"
                     placeholder="0,00"
-                    className="w-full pl-10 pr-4 py-3.5 bg-white border border-gray-200 rounded-lg text-sm text-gray-800 placeholder:text-gray-400 focus:outline-none focus:border-brand-base focus:ring-1 focus:ring-brand-base transition-colors"
+                    autoComplete="off"
                     required
                   />
-                </div>
-              </div>
+                </Input.Control>
+              </Input.Root>
             </div>
 
             <div className="space-y-2">

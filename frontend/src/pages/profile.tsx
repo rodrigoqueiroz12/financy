@@ -1,4 +1,5 @@
 import { LogOut, Mail, User } from 'lucide-react'
+import { Input } from '@/components/input'
 import { LabelButton } from '@/components/label-button'
 
 export function Profile() {
@@ -18,45 +19,34 @@ export function Profile() {
         <div className="w-full border-b border-gray-200 my-8" />
 
         <form className="w-full space-y-6">
-          <div className="space-y-2">
-            <label
-              htmlFor="name"
-              className="text-sm font-medium text-gray-700 block"
-            >
-              Nome completo
-            </label>
-            <div className="flex items-center gap-3 px-3 border border-gray-300 rounded-lg focus-within:border-brand-base focus-within:ring-1 focus-within:ring-brand-base transition-all bg-white">
+          <Input.Root>
+            <Input.Label htmlFor="name">Nome completo</Input.Label>
+            <Input.Control>
               <User className="size-4 text-gray-800" />
-              <input
+              <Input.Field
                 id="name"
                 type="text"
-                defaultValue="Conta teste"
-                className="flex-1 py-3.5 outline-none text-gray-800 text-sm leading-relaxed placeholder:text-gray-400"
+                placeholder="Digite seu nome completo"
+                className="text-gray-800"
+                autoComplete="name"
               />
-            </div>
-          </div>
+            </Input.Control>
+          </Input.Root>
 
-          <div className="space-y-2">
-            <label
-              htmlFor="email"
-              className="text-sm font-medium text-gray-700 block"
-            >
-              E-mail
-            </label>
-            <div className="flex items-center gap-3 px-3 border border-gray-300 rounded-lg bg-gray-50">
+          <Input.Root disabled>
+            <Input.Label htmlFor="email">E-mail</Input.Label>
+            <Input.Control>
               <Mail className="size-4 text-gray-500" />
-              <input
+              <Input.Field
                 id="email"
                 type="email"
                 defaultValue="conta@teste.com"
-                className="flex-1 py-3.5 outline-none text-gray-500 text-sm leading-relaxed bg-transparent cursor-not-allowed"
+                className="text-gray-500 cursor-not-allowed"
                 disabled
               />
-            </div>
-            <p className="text-xs text-gray-500">
-              O e-mail não pode ser alterado
-            </p>
-          </div>
+            </Input.Control>
+            <Input.Helper>O e-mail não pode ser alterado</Input.Helper>
+          </Input.Root>
 
           <div className="flex flex-col gap-4">
             <LabelButton type="button" className="w-full">

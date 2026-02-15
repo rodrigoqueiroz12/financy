@@ -21,6 +21,7 @@ import {
 } from 'lucide-react'
 import type { ReactNode } from 'react'
 import { IconButton } from './icon-button'
+import { Input } from './input'
 import { LabelButton } from './label-button'
 
 interface NewCategoryModalProps {
@@ -55,42 +56,31 @@ export function NewCategoryModal({ children }: NewCategoryModalProps) {
           </div>
 
           <form className="flex flex-col gap-4">
-            <div className="space-y-2">
-              <label
-                htmlFor="title"
-                className="text-sm font-medium text-gray-700 block w-fit"
-              >
-                Título
-              </label>
+            <Input.Root>
+              <Input.Label htmlFor="title">Título</Input.Label>
+              <Input.Control>
+                <Input.Field
+                  autoComplete="off"
+                  id="title"
+                  type="text"
+                  placeholder="Ex. Alimentação"
+                  required
+                />
+              </Input.Control>
+            </Input.Root>
 
-              <input
-                autoComplete="off"
-                id="title"
-                type="text"
-                placeholder="Ex. Alimentação"
-                className="w-full px-4 py-3.5 bg-white border border-gray-300 rounded-lg text-sm text-gray-800 placeholder:text-gray-400 focus:outline-none focus:border-brand-base focus:ring-1 focus:ring-brand-base transition-colors"
-                required
-              />
-            </div>
-
-            <div className="space-y-2">
-              <label
-                htmlFor="description"
-                className="text-sm font-medium text-gray-700 block w-fit"
-              >
-                Descrição
-              </label>
-
-              <input
-                autoComplete="off"
-                id="description"
-                type="text"
-                placeholder="Descrição da categoria"
-                className="w-full px-4 py-3.5 bg-white border border-gray-300 rounded-lg text-sm text-gray-800 placeholder:text-gray-400 focus:outline-none focus:border-brand-base focus:ring-1 focus:ring-brand-base transition-colors"
-              />
-
-              <span className="text-xs text-gray-500 leading-4">Opcional</span>
-            </div>
+            <Input.Root>
+              <Input.Label htmlFor="description">Descrição</Input.Label>
+              <Input.Control>
+                <Input.Field
+                  autoComplete="off"
+                  id="description"
+                  type="text"
+                  placeholder="Descrição da categoria"
+                />
+              </Input.Control>
+              <Input.Helper>Opcional</Input.Helper>
+            </Input.Root>
 
             <div className="space-y-2">
               <span className="text-sm font-medium text-gray-700 block">

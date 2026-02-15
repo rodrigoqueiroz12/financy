@@ -35,7 +35,8 @@
       },
       "a11y": {
         "useValidAnchor": "warn",
-        "useButtonType": "warn"
+        "useButtonType": "warn",
+        "noLabelWithoutControl": "off"
       }
     }
   },

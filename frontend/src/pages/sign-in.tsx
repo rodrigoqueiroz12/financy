@@ -1,5 +1,6 @@
 import { Check, EyeClosed, Lock, Mail, UserRoundPlus } from 'lucide-react'
 import { useNavigate } from 'react-router'
+import { Input } from '@/components/input'
 import { LabelButton } from '@/components/label-button'
 import { Logo } from '../components/logo'
 
@@ -27,53 +28,37 @@ export function SignIn() {
 
         <form action="#" className="space-y-6">
           <div className="space-y-4">
-            <div className="flex flex-col gap-2">
-              <label
-                htmlFor="email"
-                className="text-gray-700 font-medium text-sm"
-              >
-                E-mail
-              </label>
+            <Input.Root>
+              <Input.Label htmlFor="email">E-mail</Input.Label>
 
-              <div className="border border-gray-300 bg-white rounded-lg px-3 flex items-center gap-3">
-                <div>
-                  <Mail className="size-4 text-gray-400" />
-                </div>
+              <Input.Control>
+                <Mail className="size-4 text-gray-400" />
 
-                <input
+                <Input.Field
                   type="email"
                   id="email"
-                  className="w-full py-3.5 focus:outline-none leading-2 text-gray-800"
                   placeholder="mail@exemplo.com"
                 />
-              </div>
-            </div>
+              </Input.Control>
+            </Input.Root>
 
-            <div className="flex flex-col gap-2">
-              <label
-                htmlFor="password"
-                className="text-gray-700 font-medium text-sm"
-              >
-                Senha
-              </label>
+            <Input.Root>
+              <Input.Label htmlFor="password">Senha</Input.Label>
 
-              <div className="border border-gray-300 bg-white rounded-lg px-3 flex items-center gap-3">
-                <div>
-                  <Lock className="size-4 text-gray-400" />
-                </div>
+              <Input.Control>
+                <Lock className="size-4 text-gray-400" />
 
-                <input
+                <Input.Field
                   type="password"
                   id="password"
-                  className="w-full py-3.5 focus:outline-none leading-2 text-gray-800"
                   placeholder="Digite sua senha"
                 />
 
                 <button type="button" className="enabled:hover:cursor-pointer">
                   <EyeClosed className="size-4 text-gray-700" />
                 </button>
-              </div>
-            </div>
+              </Input.Control>
+            </Input.Root>
 
             <div className="flex justify-between items-center">
               <div className="flex items-center gap-2">
