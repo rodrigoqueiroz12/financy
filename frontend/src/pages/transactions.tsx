@@ -4,8 +4,6 @@ import {
   ChevronDown,
   ChevronLeft,
   ChevronRight,
-  CircleArrowDown,
-  CircleArrowUp,
   Clapperboard,
   House,
   Landmark,
@@ -18,6 +16,7 @@ import {
 } from 'lucide-react'
 import { LabelButton } from '@/components/label-button'
 import { Tag } from '@/components/tag'
+import { Type } from '@/components/type'
 import { NewTransactionModal } from '../components/new-transaction-modal'
 
 export function Transactions() {
@@ -174,12 +173,7 @@ export function Transactions() {
                 <Tag variant="blue">Alimentação</Tag>
               </td>
               <td className="px-6 py-4 border-b border-gray-200">
-                <div className="flex items-center justify-center gap-2">
-                  <CircleArrowDown className="size-4 text-red-base" />
-                  <span className="text-sm font-medium text-red-dark">
-                    Saída
-                  </span>
-                </div>
+                <Type variant="outcome">Saída</Type>
               </td>
               <td className="px-6 py-4 border-b border-gray-200 text-right">
                 <span className="text-sm font-bold text-gray-800">
@@ -222,12 +216,7 @@ export function Transactions() {
                 <Tag variant="purple">Transporte</Tag>
               </td>
               <td className="px-6 py-4 border-b border-gray-200">
-                <div className="flex items-center justify-center gap-2">
-                  <CircleArrowDown className="size-4 text-red-base" />
-                  <span className="text-sm font-medium text-red-dark">
-                    Saída
-                  </span>
-                </div>
+                <Type variant="outcome">Saída</Type>
               </td>
               <td className="px-6 py-4 border-b border-gray-200 text-right">
                 <span className="text-sm font-bold text-gray-800">
@@ -270,12 +259,7 @@ export function Transactions() {
                 <Tag variant="orange">Mercado</Tag>
               </td>
               <td className="px-6 py-4 border-b border-gray-200">
-                <div className="flex items-center justify-center gap-2">
-                  <CircleArrowDown className="size-4 text-red-base" />
-                  <span className="text-sm font-medium text-red-dark">
-                    Saída
-                  </span>
-                </div>
+                <Type variant="outcome">Saída</Type>
               </td>
               <td className="px-6 py-4 border-b border-gray-200 text-right">
                 <span className="text-sm font-bold text-gray-800">
@@ -318,12 +302,7 @@ export function Transactions() {
                 <Tag variant="green">Investimento</Tag>
               </td>
               <td className="px-6 py-4 border-b border-gray-200">
-                <div className="flex items-center justify-center gap-2">
-                  <CircleArrowUp className="size-4 text-green-base" />
-                  <span className="text-sm font-medium text-green-dark">
-                    Entrada
-                  </span>
-                </div>
+                <Type variant="income">Entrada</Type>
               </td>
               <td className="px-6 py-4 border-b border-gray-200 text-right">
                 <span className="text-sm font-bold text-gray-800">
@@ -364,12 +343,7 @@ export function Transactions() {
                 <Tag variant="yellow">Utilidades</Tag>
               </td>
               <td className="px-6 py-4 border-b border-gray-200">
-                <div className="flex items-center justify-center gap-2">
-                  <CircleArrowDown className="size-4 text-red-base" />
-                  <span className="text-sm font-medium text-red-dark">
-                    Saída
-                  </span>
-                </div>
+                <Type variant="outcome">Saída</Type>
               </td>
               <td className="px-6 py-4 border-b border-gray-200 text-right">
                 <span className="text-sm font-bold text-gray-800">
@@ -412,12 +386,7 @@ export function Transactions() {
                 </span>
               </td>
               <td className="px-6 py-4 border-b border-gray-200">
-                <div className="flex items-center justify-center gap-2">
-                  <CircleArrowUp className="size-4 text-green-base" />
-                  <span className="text-sm font-medium text-green-dark">
-                    Entrada
-                  </span>
-                </div>
+                <Type variant="income">Entrada</Type>
               </td>
               <td className="px-6 py-4 border-b border-gray-200 text-right">
                 <span className="text-sm font-bold text-gray-800">
@@ -460,12 +429,7 @@ export function Transactions() {
                 <Tag variant="orange">Mercado</Tag>
               </td>
               <td className="px-6 py-4 border-b border-gray-200">
-                <div className="flex items-center justify-center gap-2">
-                  <CircleArrowDown className="size-4 text-red-base" />
-                  <span className="text-sm font-medium text-red-dark">
-                    Saída
-                  </span>
-                </div>
+                <Type variant="outcome">Saída</Type>
               </td>
               <td className="px-6 py-4 border-b border-gray-200 text-right">
                 <span className="text-sm font-bold text-gray-800">
@@ -506,12 +470,7 @@ export function Transactions() {
                 <Tag variant="pink">Entretenimento</Tag>
               </td>
               <td className="px-6 py-4 border-b border-gray-200">
-                <div className="flex items-center justify-center gap-2">
-                  <CircleArrowDown className="size-4 text-red-base" />
-                  <span className="text-sm font-medium text-red-dark">
-                    Saída
-                  </span>
-                </div>
+                <Type variant="outcome">Saída</Type>
               </td>
               <td className="px-6 py-4 border-b border-gray-200 text-right">
                 <span className="text-sm font-bold text-gray-800">
