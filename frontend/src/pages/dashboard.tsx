@@ -63,7 +63,7 @@ export function Dashboard() {
                 <th className="text-right border-b border-gray-200 w-44">
                   <a
                     href="#"
-                    className="px-6 py-5 inline-flex items-center gap-1 text-sm text-medium text-brand-base hover:text-brand-dark transition-colors"
+                    className="px-6 py-5 inline-flex items-center gap-1 text-sm font-medium text-brand-base hover:text-brand-dark transition-colors"
                   >
                     Ver todas
                     <ChevronRight className="size-5" />
@@ -114,13 +114,13 @@ export function Dashboard() {
                   className="text-center px-6 border-t border-gray-200"
                 >
                   <div className="flex justify-center py-5">
-                    <a
-                      href="#"
-                      className="inline-flex items-center gap-1 text-sm font-medium text-brand-base hover:text-brand-dark transition-colors"
+                    <button
+                      type="button"
+                      className="inline-flex items-center gap-1 text-sm font-medium text-brand-base hover:text-brand-dark transition-colors cursor-pointer"
                     >
                       <Plus className="size-5" />
                       Nova transação
-                    </a>
+                    </button>
                   </div>
                 </td>
               </tr>
