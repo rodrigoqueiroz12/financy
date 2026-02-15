@@ -1,7 +1,6 @@
 import {
   BriefcaseBusiness,
   Car,
-  ChevronDown,
   ChevronLeft,
   ChevronRight,
   Clapperboard,
@@ -18,6 +17,7 @@ import { IconButton } from '@/components/icon-button'
 import { Input } from '@/components/input'
 import { LabelButton } from '@/components/label-button'
 import { PaginationButton } from '@/components/pagination-button'
+import { Select } from '@/components/select'
 import { Tag } from '@/components/tag'
 import { Type } from '@/components/type'
 import { NewTransactionModal } from '../components/new-transaction-modal'
@@ -59,70 +59,46 @@ export function Transactions() {
         </Input.Root>
 
         <div className="space-y-2">
-          <label
-            htmlFor="type"
-            className="text-sm font-medium text-gray-700 block"
-          >
-            Tipo
-          </label>
-
-          <div className="relative">
-            <select
-              id="type"
-              className="w-full appearance-none pl-3 pr-10 py-3.5 border border-gray-200 rounded-lg text-sm text-gray-800 bg-white focus:outline-none focus:border-brand-base focus:ring-1 focus:ring-brand-base"
-            >
-              <option>Todos</option>
-              <option>Entrada</option>
-              <option>Saída</option>
-            </select>
-
-            <ChevronDown className="size-4 text-gray-500 absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none" />
-          </div>
+          <Select.Root>
+            <Select.Label>Tipo</Select.Label>
+            <Select.Trigger id="type">
+              <Select.Value placeholder="Selecione" />
+            </Select.Trigger>
+            <Select.Content>
+              <Select.Item value="all">Todos</Select.Item>
+              <Select.Item value="income">Entrada</Select.Item>
+              <Select.Item value="outcome">Saída</Select.Item>
+            </Select.Content>
+          </Select.Root>
         </div>
 
         <div className="space-y-2">
-          <label
-            htmlFor="category"
-            className="text-sm font-medium text-gray-700 block"
-          >
-            Categoria
-          </label>
-
-          <div className="relative">
-            <select
-              id="category"
-              className="w-full appearance-none pl-3 pr-10 py-3.5 border border-gray-200 rounded-lg text-sm text-gray-800 bg-white focus:outline-none focus:border-brand-base focus:ring-1 focus:ring-brand-base"
-            >
-              <option>Todas</option>
-              <option>Alimentação</option>
-              <option>Transporte</option>
-              <option>Mercado</option>
-              <option>Salário</option>
-            </select>
-
-            <ChevronDown className="size-4 text-gray-500 absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none" />
-          </div>
+          <Select.Root>
+            <Select.Label>Categoria</Select.Label>
+            <Select.Trigger id="category">
+              <Select.Value placeholder="Selecione" />
+            </Select.Trigger>
+            <Select.Content>
+              <Select.Item value="all">Todas</Select.Item>
+              <Select.Item value="food">Alimentação</Select.Item>
+              <Select.Item value="transport">Transporte</Select.Item>
+              <Select.Item value="market">Mercado</Select.Item>
+              <Select.Item value="salary">Salário</Select.Item>
+            </Select.Content>
+          </Select.Root>
         </div>
 
         <div className="space-y-2">
-          <label
-            htmlFor="period"
-            className="text-sm font-medium text-gray-700 block"
-          >
-            Período
-          </label>
-
-          <div className="relative">
-            <select
-              id="period"
-              className="w-full appearance-none pl-3 pr-10 py-3.5 border border-gray-200 rounded-lg text-sm text-gray-800 bg-white focus:outline-none focus:border-brand-base focus:ring-1 focus:ring-brand-base"
-            >
-              <option>Novembro / 2025</option>
-              <option>Dezembro / 2025</option>
-            </select>
-
-            <ChevronDown className="size-4 text-gray-500 absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none" />
-          </div>
+          <Select.Root>
+            <Select.Label>Período</Select.Label>
+            <Select.Trigger id="period">
+              <Select.Value placeholder="Selecione" />
+            </Select.Trigger>
+            <Select.Content>
+              <Select.Item value="11-2025">Novembro / 2025</Select.Item>
+              <Select.Item value="12-2025">Dezembro / 2025</Select.Item>
+            </Select.Content>
+          </Select.Root>
         </div>
       </section>
 

@@ -1,12 +1,12 @@
 import * as Dialog from '@radix-ui/react-dialog'
 import * as RadioGroup from '@radix-ui/react-radio-group'
-import * as Select from '@radix-ui/react-select'
-import { ChevronDown, CircleArrowDown, CircleArrowUp, X } from 'lucide-react'
+import { CircleArrowDown, CircleArrowUp, X } from 'lucide-react'
 import type { ReactNode } from 'react'
 import { tv } from 'tailwind-variants/lite'
 import { IconButton } from './icon-button'
 import { Input } from './input'
 import { LabelButton } from './label-button'
+import { Select } from './select'
 
 interface NewTransactionModalProps {
   children: ReactNode
@@ -96,7 +96,8 @@ export function NewTransactionModal({ children }: NewTransactionModalProps) {
               <Input.Root>
                 <Input.Label htmlFor="amount">Valor</Input.Label>
                 <Input.Control>
-                  <span className="text-gray-500 text-sm">R$</span>
+                  <span className="text-black text-sm">R$</span>
+
                   <Input.Field
                     id="amount"
                     type="number"
@@ -110,60 +111,22 @@ export function NewTransactionModal({ children }: NewTransactionModalProps) {
             </div>
 
             <div className="space-y-2">
-              <label
-                htmlFor="category"
-                className="text-sm font-medium text-gray-700 block"
-              >
-                Categoria
-              </label>
-
               <Select.Root>
-                <Select.Trigger
-                  id="category"
-                  className="w-full flex items-center justify-between px-4 py-3.5 bg-white border border-gray-200 rounded-lg text-sm text-gray-800 placeholder:text-gray-400 focus:outline-none focus:border-brand-base focus:ring-1 focus:ring-brand-base transition-colors data-placeholder:text-gray-400"
-                >
+                <Select.Label>Categoria</Select.Label>
+
+                <Select.Trigger id="category">
                   <Select.Value placeholder="Selecione" />
-                  <Select.Icon className="text-gray-500">
-                    <ChevronDown className="size-4" />
-                  </Select.Icon>
                 </Select.Trigger>
 
-                <Select.Portal>
-                  <Select.Content className="overflow-hidden bg-white rounded-lg shadow-lg border border-gray-200 z-60">
-                    <Select.Viewport className="p-1">
-                      <Select.Item
-                        value="food"
-                        className="relative flex items-center h-10 px-8 py-2 text-sm text-gray-700 rounded select-none hover:bg-gray-100 hover:text-gray-900 focus:bg-gray-100 focus:text-gray-900 focus:outline-none cursor-pointer data-[state=checked]:font-medium data-[state=checked]:text-brand-base"
-                      >
-                        <Select.ItemText>Alimentação</Select.ItemText>
-                      </Select.Item>
-                      <Select.Item
-                        value="transport"
-                        className="relative flex items-center h-10 px-8 py-2 text-sm text-gray-700 rounded select-none hover:bg-gray-100 hover:text-gray-900 focus:bg-gray-100 focus:text-gray-900 focus:outline-none cursor-pointer data-[state=checked]:font-medium data-[state=checked]:text-brand-base"
-                      >
-                        <Select.ItemText>Transporte</Select.ItemText>
-                      </Select.Item>
-                      <Select.Item
-                        value="market"
-                        className="relative flex items-center h-10 px-8 py-2 text-sm text-gray-700 rounded select-none hover:bg-gray-100 hover:text-gray-900 focus:bg-gray-100 focus:text-gray-900 focus:outline-none cursor-pointer data-[state=checked]:font-medium data-[state=checked]:text-brand-base"
-                      >
-                        <Select.ItemText>Mercado</Select.ItemText>
-                      </Select.Item>
-                      <Select.Item
-                        value="entertainment"
-                        className="relative flex items-center h-10 px-8 py-2 text-sm text-gray-700 rounded select-none hover:bg-gray-100 hover:text-gray-900 focus:bg-gray-100 focus:text-gray-900 focus:outline-none cursor-pointer data-[state=checked]:font-medium data-[state=checked]:text-brand-base"
-                      >
-                        <Select.ItemText>Entretenimento</Select.ItemText>
-                      </Select.Item>
-                      <Select.Item
-                        value="utilities"
-                        className="relative flex items-center h-10 px-8 py-2 text-sm text-gray-700 rounded select-none hover:bg-gray-100 hover:text-gray-900 focus:bg-gray-100 focus:text-gray-900 focus:outline-none cursor-pointer data-[state=checked]:font-medium data-[state=checked]:text-brand-base"
-                      >
-                        <Select.ItemText>Utilidades</Select.ItemText>
-                      </Select.Item>
-                    </Select.Viewport>
-                  </Select.Content>
-                </Select.Portal>
+                <Select.Content>
+                  <Select.Item value="food">Alimentação</Select.Item>
+                  <Select.Item value="transport">Transporte</Select.Item>
+                  <Select.Item value="market">Mercado</Select.Item>
+                  <Select.Item value="entertainment">
+                    Entretenimento
+                  </Select.Item>
+                  <Select.Item value="utilities">Utilidades</Select.Item>
+                </Select.Content>
               </Select.Root>
             </div>
 
