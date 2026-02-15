@@ -17,6 +17,7 @@ import {
   Utensils
 } from 'lucide-react'
 import { LabelButton } from '@/components/label-button'
+import { Tag } from '@/components/tag'
 import { NewTransactionModal } from '../components/new-transaction-modal'
 
 export function Transactions() {
@@ -170,9 +171,7 @@ export function Transactions() {
                 30/11/25
               </td>
               <td className="px-6 py-4 border-b border-gray-200 text-center">
-                <span className="px-3 py-1 rounded-full bg-blue-light text-sm font-medium text-blue-dark">
-                  Alimentação
-                </span>
+                <Tag variant="blue">Alimentação</Tag>
               </td>
               <td className="px-6 py-4 border-b border-gray-200">
                 <div className="flex items-center justify-center gap-2">
@@ -220,9 +219,7 @@ export function Transactions() {
                 29/11/25
               </td>
               <td className="px-6 py-4 border-b border-gray-200 text-center">
-                <span className="px-3 py-1 rounded-full bg-purple-light text-sm font-medium text-purple-dark">
-                  Transporte
-                </span>
+                <Tag variant="purple">Transporte</Tag>
               </td>
               <td className="px-6 py-4 border-b border-gray-200">
                 <div className="flex items-center justify-center gap-2">
@@ -270,9 +267,7 @@ export function Transactions() {
                 28/11/25
               </td>
               <td className="px-6 py-4 border-b border-gray-200 text-center">
-                <span className="px-3 py-1 rounded-full bg-orange-light text-sm font-medium text-orange-dark">
-                  Mercado
-                </span>
+                <Tag variant="orange">Mercado</Tag>
               </td>
               <td className="px-6 py-4 border-b border-gray-200">
                 <div className="flex items-center justify-center gap-2">
@@ -320,9 +315,7 @@ export function Transactions() {
                 26/11/25
               </td>
               <td className="px-6 py-4 border-b border-gray-200 text-center">
-                <span className="px-3 py-1 rounded-full bg-green-light text-sm font-medium text-green-dark">
-                  Investimento
-                </span>
+                <Tag variant="green">Investimento</Tag>
               </td>
               <td className="px-6 py-4 border-b border-gray-200">
                 <div className="flex items-center justify-center gap-2">
@@ -368,9 +361,7 @@ export function Transactions() {
                 26/11/25
               </td>
               <td className="px-6 py-4 border-b border-gray-200 text-center">
-                <span className="px-3 py-1 rounded-full bg-yellow-light text-sm font-medium text-yellow-dark">
-                  Utilidades
-                </span>
+                <Tag variant="yellow">Utilidades</Tag>
               </td>
               <td className="px-6 py-4 border-b border-gray-200">
                 <div className="flex items-center justify-center gap-2">
@@ -466,9 +457,7 @@ export function Transactions() {
                 22/11/25
               </td>
               <td className="px-6 py-4 border-b border-gray-200 text-center">
-                <span className="px-3 py-1 rounded-full bg-orange-light text-sm font-medium text-orange-dark">
-                  Mercado
-                </span>
+                <Tag variant="orange">Mercado</Tag>
               </td>
               <td className="px-6 py-4 border-b border-gray-200">
                 <div className="flex items-center justify-center gap-2">
@@ -514,9 +503,7 @@ export function Transactions() {
                 18/12/25
               </td>
               <td className="px-6 py-4 border-b border-gray-200 text-center">
-                <span className="px-3 py-1 rounded-full bg-pink-light text-sm font-medium text-pink-dark">
-                  Entretenimento
-                </span>
+                <Tag variant="pink">Entretenimento</Tag>
               </td>
               <td className="px-6 py-4 border-b border-gray-200">
                 <div className="flex items-center justify-center gap-2">

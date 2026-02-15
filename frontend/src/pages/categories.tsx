@@ -14,6 +14,7 @@ import {
   Zap
 } from 'lucide-react'
 import { LabelButton } from '@/components/label-button'
+import { Tag } from '@/components/tag'
 import { NewCategoryModal } from '../components/new-category-modal'
 
 export function Categories() {
@@ -123,9 +124,7 @@ export function Categories() {
           </div>
 
           <div className="flex items-center justify-between">
-            <span className="px-3 py-1 rounded-full bg-blue-light text-sm font-medium text-blue-dark">
-              Alimentação
-            </span>
+            <Tag variant="blue">Alimentação</Tag>
 
             <span className="text-sm text-gray-600">12 itens</span>
           </div>
@@ -162,9 +161,7 @@ export function Categories() {
           </div>
 
           <div className="flex items-center justify-between">
-            <span className="px-3 py-1 rounded-full bg-pink-light text-sm font-medium text-pink-dark">
-              Entretenimento
-            </span>
+            <Tag variant="pink">Entretenimento</Tag>
             <span className="text-sm text-gray-600">2 itens</span>
           </div>
         </div>
@@ -200,9 +197,7 @@ export function Categories() {
           </div>
 
           <div className="flex items-center justify-between">
-            <span className="px-3 py-1 rounded-full bg-green-light text-sm font-medium text-green-dark">
-              Investimento
-            </span>
+            <Tag variant="green">Investimento</Tag>
             <span className="text-sm text-gray-600">1 item</span>
           </div>
         </div>
@@ -238,9 +233,7 @@ export function Categories() {
           </div>
 
           <div className="flex items-center justify-between">
-            <span className="px-3 py-1 rounded-full bg-orange-light text-sm font-medium text-orange-dark">
-              Mercado
-            </span>
+            <Tag variant="orange">Mercado</Tag>
             <span className="text-sm text-gray-600">3 itens</span>
           </div>
         </div>
@@ -276,9 +269,7 @@ export function Categories() {
           </div>
 
           <div className="flex items-center justify-between">
-            <span className="px-3 py-1 rounded-full bg-green-light text-sm font-medium text-green-dark">
-              Salário
-            </span>
+            <Tag variant="green">Salário</Tag>
             <span className="text-sm text-gray-600">3 itens</span>
           </div>
         </div>
@@ -312,9 +303,7 @@ export function Categories() {
           </div>
 
           <div className="flex items-center justify-between">
-            <span className="px-3 py-1 rounded-full bg-red-50 text-sm font-medium text-red-700">
-              Saúde
-            </span>
+            <Tag variant="red">Saúde</Tag>
             <span className="text-sm text-gray-600">0 itens</span>
           </div>
         </div>
@@ -350,9 +339,7 @@ export function Categories() {
           </div>
 
           <div className="flex items-center justify-between">
-            <span className="px-3 py-1 rounded-full bg-purple-light text-sm font-medium text-purple-dark">
-              Transporte
-            </span>
+            <Tag variant="purple">Transporte</Tag>
             <span className="text-sm text-gray-600">8 itens</span>
           </div>
         </div>
@@ -388,9 +375,7 @@ export function Categories() {
           </div>
 
           <div className="flex items-center justify-between">
-            <span className="px-3 py-1 rounded-full bg-yellow-light text-sm font-medium text-yellow-dark">
-              Utilidades
-            </span>
+            <Tag variant="yellow">Utilidades</Tag>
             <span className="text-sm text-gray-600">7 itens</span>
           </div>
         </div>

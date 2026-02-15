@@ -7,6 +7,7 @@ import {
   Wallet
 } from 'lucide-react'
 import { Link } from 'react-router'
+import { Tag } from '@/components/tag'
 import { NewTransactionModal } from '../components/new-transaction-modal'
 
 export function Dashboard() {
@@ -93,10 +94,9 @@ export function Dashboard() {
                 </td>
 
                 <td className="px-6 py-5 text-center">
-                  <span className="px-3 py-1 rounded-full bg-green-light text-sm font-medium text-green-dark">
-                    Receita
-                  </span>
+                  <Tag variant="green">Receita</Tag>
                 </td>
+
                 <td className="px-6 py-5">
                   <div className="flex items-center justify-end gap-2">
                     <span className="text-sm font-semibold text-gray-800">
@@ -158,9 +158,7 @@ export function Dashboard() {
             <tbody>
               <tr>
                 <td className="pl-6 py-5">
-                  <span className="px-3 py-1 rounded-full bg-blue-light text-sm font-medium text-blue-dark">
-                    Alimentação
-                  </span>
+                  <Tag variant="blue">Alimentação</Tag>
                 </td>
 
                 <td className="px-1 py-5 text-right text-gray-600 text-sm">
