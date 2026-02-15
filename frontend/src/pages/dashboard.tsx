@@ -7,6 +7,7 @@ import {
   Wallet
 } from 'lucide-react'
 import { Link } from 'react-router'
+import { CategoryIcon } from '@/components/category-icon'
 import { Tag } from '@/components/tag'
 import { NewTransactionModal } from '../components/new-transaction-modal'
 
@@ -79,9 +80,7 @@ export function Dashboard() {
               <tr>
                 <td className="px-6 py-5">
                   <div className="flex items-center gap-4">
-                    <div className="size-10 flex items-center justify-center bg-green-light text-green-base rounded-lg">
-                      <BriefcaseBusiness className="size-4" />
-                    </div>
+                    <CategoryIcon icon={BriefcaseBusiness} variant="green" />
 
                     <div className="flex flex-col gap-0.5">
                       <span className="font-medium text-gray-800">

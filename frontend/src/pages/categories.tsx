@@ -13,6 +13,7 @@ import {
   Utensils,
   Zap
 } from 'lucide-react'
+import { CategoryIcon } from '@/components/category-icon'
 import { IconButton } from '@/components/icon-button'
 import { LabelButton } from '@/components/label-button'
 import { Tag } from '@/components/tag'
@@ -93,9 +94,7 @@ export function Categories() {
       <section className="grid grid-cols-4 gap-4">
         <div className="bg-white border border-gray-200 rounded-xl p-6 flex flex-col gap-5">
           <div className="flex items-start justify-between">
-            <div className="size-10 flex items-center justify-center bg-blue-light text-blue-base rounded-lg">
-              <Utensils className="size-4" />
-            </div>
+            <CategoryIcon icon={Utensils} variant="blue" />
 
             <div className="flex gap-2">
               <IconButton variant="danger">
@@ -126,9 +125,7 @@ export function Categories() {
 
         <div className="bg-white border border-gray-200 rounded-xl p-6 flex flex-col gap-5">
           <div className="flex items-start justify-between">
-            <div className="size-10 flex items-center justify-center bg-pink-light text-pink-base rounded-lg">
-              <Ticket className="size-4" />
-            </div>
+            <CategoryIcon icon={Ticket} variant="pink" />
             <div className="flex gap-2">
               <IconButton variant="danger">
                 <Trash className="size-4" />
@@ -156,9 +153,7 @@ export function Categories() {
 
         <div className="bg-white border border-gray-200 rounded-xl p-6 flex flex-col gap-5">
           <div className="flex items-start justify-between">
-            <div className="size-10 flex items-center justify-center bg-green-light text-green-base rounded-lg">
-              <PiggyBank className="size-4" />
-            </div>
+            <CategoryIcon icon={PiggyBank} variant="green" />
             <div className="flex gap-2">
               <IconButton variant="danger">
                 <Trash className="size-4" />
@@ -186,9 +181,7 @@ export function Categories() {
 
         <div className="bg-white border border-gray-200 rounded-xl p-6 flex flex-col gap-5">
           <div className="flex items-start justify-between">
-            <div className="size-10 flex items-center justify-center bg-orange-light text-orange-base rounded-lg">
-              <ShoppingCart className="size-4" />
-            </div>
+            <CategoryIcon icon={ShoppingCart} variant="orange" />
             <div className="flex gap-2">
               <IconButton variant="danger">
                 <Trash className="size-4" />
@@ -216,9 +209,7 @@ export function Categories() {
 
         <div className="bg-white border border-gray-200 rounded-xl p-6 flex flex-col gap-5">
           <div className="flex items-start justify-between">
-            <div className="size-10 flex items-center justify-center bg-green-light text-green-base rounded-lg">
-              <BriefcaseBusiness className="size-4" />
-            </div>
+            <CategoryIcon icon={BriefcaseBusiness} variant="green" />
             <div className="flex gap-2">
               <IconButton variant="danger">
                 <Trash className="size-4" />
@@ -246,9 +237,7 @@ export function Categories() {
 
         <div className="bg-white border border-gray-200 rounded-xl p-6 flex flex-col gap-5">
           <div className="flex items-start justify-between">
-            <div className="size-10 flex items-center justify-center bg-red-50 text-red-500 rounded-lg">
-              <Heart className="size-4" />
-            </div>
+            <CategoryIcon icon={Heart} variant="red" />
             <div className="flex gap-2">
               <IconButton variant="danger">
                 <Trash className="size-4" />
@@ -274,9 +263,7 @@ export function Categories() {
 
         <div className="bg-white border border-gray-200 rounded-xl p-6 flex flex-col gap-5">
           <div className="flex items-start justify-between">
-            <div className="size-10 flex items-center justify-center bg-purple-light text-purple-base rounded-lg">
-              <Car className="size-4" />
-            </div>
+            <CategoryIcon icon={Car} variant="purple" />
             <div className="flex gap-2">
               <IconButton variant="danger">
                 <Trash className="size-4" />
@@ -304,9 +291,7 @@ export function Categories() {
 
         <div className="bg-white border border-gray-200 rounded-xl p-6 flex flex-col gap-5">
           <div className="flex items-start justify-between">
-            <div className="size-10 flex items-center justify-center bg-yellow-light text-yellow-base rounded-lg">
-              <Zap className="size-4" />
-            </div>
+            <CategoryIcon icon={Zap} variant="yellow" />
             <div className="flex gap-2">
               <IconButton variant="danger">
                 <Trash className="size-4" />

@@ -13,6 +13,7 @@ import {
   Trash,
   Utensils
 } from 'lucide-react'
+import { CategoryIcon } from '@/components/category-icon'
 import { IconButton } from '@/components/icon-button'
 import { Input } from '@/components/input'
 import { LabelButton } from '@/components/label-button'
@@ -131,9 +132,7 @@ export function Transactions() {
             <tr className="hover:bg-gray-50/50 transition-colors">
               <td className="px-6 py-4 border-b border-gray-200">
                 <div className="flex items-center gap-4">
-                  <div className="size-10 flex items-center justify-center bg-blue-light text-blue-base rounded-lg">
-                    <Utensils className="size-4" />
-                  </div>
+                  <CategoryIcon icon={Utensils} variant="blue" />
                   <span className="font-medium text-gray-800">
                     Jantar no Restaurante
                   </span>
@@ -168,9 +167,7 @@ export function Transactions() {
             <tr className="hover:bg-gray-50/50 transition-colors">
               <td className="px-6 py-4 border-b border-gray-200">
                 <div className="flex items-center gap-4">
-                  <div className="size-10 flex items-center justify-center bg-purple-light text-purple-base rounded-lg">
-                    <Car className="size-4" />
-                  </div>
+                  <CategoryIcon icon={Car} variant="purple" />
                   <span className="font-medium text-gray-800">
                     Posto de Gasolina
                   </span>
@@ -205,9 +202,7 @@ export function Transactions() {
             <tr className="hover:bg-gray-50/50 transition-colors">
               <td className="px-6 py-4 border-b border-gray-200">
                 <div className="flex items-center gap-4">
-                  <div className="size-10 flex items-center justify-center bg-orange-light text-orange-base rounded-lg">
-                    <ShoppingCart className="size-4" />
-                  </div>
+                  <CategoryIcon icon={ShoppingCart} variant="orange" />
                   <span className="font-medium text-gray-800">
                     Compras no Mercado
                   </span>
@@ -242,9 +237,7 @@ export function Transactions() {
             <tr className="hover:bg-gray-50/50 transition-colors">
               <td className="px-6 py-4 border-b border-gray-200">
                 <div className="flex items-center gap-4">
-                  <div className="size-10 flex items-center justify-center bg-green-light text-green-base rounded-lg">
-                    <Landmark className="size-4" />
-                  </div>
+                  <CategoryIcon icon={Landmark} variant="green" />
                   <span className="font-medium text-gray-800">
                     Retorno de Investimento
                   </span>
@@ -279,9 +272,7 @@ export function Transactions() {
             <tr className="hover:bg-gray-50/50 transition-colors">
               <td className="px-6 py-4 border-b border-gray-200">
                 <div className="flex items-center gap-4">
-                  <div className="size-10 flex items-center justify-center bg-yellow-light text-yellow-base rounded-lg">
-                    <House className="size-4" />
-                  </div>
+                  <CategoryIcon icon={House} variant="yellow" />
                   <span className="font-medium text-gray-800">Aluguel</span>
                 </div>
               </td>
@@ -314,9 +305,7 @@ export function Transactions() {
             <tr className="hover:bg-gray-50/50 transition-colors">
               <td className="px-6 py-4 border-b border-gray-200">
                 <div className="flex items-center gap-4">
-                  <div className="size-10 flex items-center justify-center bg-green-light text-green-base rounded-lg">
-                    <BriefcaseBusiness className="size-4" />
-                  </div>
+                  <CategoryIcon icon={BriefcaseBusiness} variant="green" />
                   <span className="font-medium text-gray-800">Freelance</span>
                 </div>
               </td>
@@ -351,9 +340,7 @@ export function Transactions() {
             <tr className="hover:bg-gray-50/50 transition-colors">
               <td className="px-6 py-4 border-b border-gray-200">
                 <div className="flex items-center gap-4">
-                  <div className="size-10 flex items-center justify-center bg-orange-light text-orange-base rounded-lg">
-                    <ShoppingCart className="size-4" />
-                  </div>
+                  <CategoryIcon icon={ShoppingCart} variant="orange" />
                   <span className="font-medium text-gray-800">
                     Compras Jantar
                   </span>
@@ -388,9 +375,7 @@ export function Transactions() {
             <tr className="hover:bg-gray-50/50 transition-colors">
               <td className="px-6 py-4 border-b border-gray-200">
                 <div className="flex items-center gap-4">
-                  <div className="size-10 flex items-center justify-center bg-pink-light text-pink-base rounded-lg">
-                    <Clapperboard className="size-4" />
-                  </div>
+                  <CategoryIcon icon={Clapperboard} variant="pink" />
                   <span className="font-medium text-gray-800">Cinema</span>
                 </div>
               </td>
