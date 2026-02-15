@@ -20,6 +20,7 @@ import {
   X
 } from 'lucide-react'
 import type { ReactNode } from 'react'
+import { LabelButton } from './label-button'
 
 interface NewCategoryModalProps {
   children: ReactNode
@@ -158,12 +159,9 @@ export function NewCategoryModal({ children }: NewCategoryModalProps) {
               </RadioGroup.Root>
             </div>
 
-            <button
-              type="submit"
-              className="w-full bg-brand-base hover:bg-brand-dark text-white font-medium py-3.5 rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-brand-base focus:ring-offset-2 cursor-pointer mt-2"
-            >
+            <LabelButton type="submit" className="mt-2">
               Salvar
-            </button>
+            </LabelButton>
           </form>
         </Dialog.Content>
       </Dialog.Portal>

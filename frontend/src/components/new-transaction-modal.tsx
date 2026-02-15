@@ -4,6 +4,7 @@ import * as Select from '@radix-ui/react-select'
 import { ChevronDown, CircleArrowDown, CircleArrowUp, X } from 'lucide-react'
 import type { ReactNode } from 'react'
 import { tv } from 'tailwind-variants/lite'
+import { LabelButton } from './label-button'
 
 interface NewTransactionModalProps {
   children: ReactNode
@@ -187,12 +188,7 @@ export function NewTransactionModal({ children }: NewTransactionModalProps) {
               </Select.Root>
             </div>
 
-            <button
-              type="submit"
-              className="w-full bg-brand-base hover:bg-brand-dark text-white font-medium py-3.5 rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-brand-base focus:ring-offset-2 cursor-pointer"
-            >
-              Salvar
-            </button>
+            <LabelButton type="submit">Salvar</LabelButton>
           </form>
         </Dialog.Content>
       </Dialog.Portal>

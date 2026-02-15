@@ -1,4 +1,5 @@
 import { LogOut, Mail, User } from 'lucide-react'
+import { LabelButton } from '@/components/label-button'
 
 export function Profile() {
   return (
@@ -58,20 +59,14 @@ export function Profile() {
           </div>
 
           <div className="flex flex-col gap-4">
-            <button
-              type="button"
-              className="w-full py-3 bg-[#1F7A4D] hover:bg-[#18633e] text-white font-medium rounded-lg transition-colors"
-            >
+            <LabelButton type="button" className="w-full">
               Salvar alterações
-            </button>
+            </LabelButton>
 
-            <button
-              type="button"
-              className="w-full py-3 border border-gray-200 text-[#E34949] hover:bg-red-50 font-medium rounded-lg flex items-center justify-center gap-2 transition-colors"
-            >
-              <LogOut className="size-4" />
+            <LabelButton type="button" variant="secondary" className="w-full">
+              <LogOut className="text-red-base" />
               Sair da conta
-            </button>
+            </LabelButton>
           </div>
         </form>
       </div>

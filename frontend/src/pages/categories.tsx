@@ -13,6 +13,7 @@ import {
   Utensils,
   Zap
 } from 'lucide-react'
+import { LabelButton } from '@/components/label-button'
 import { NewCategoryModal } from '../components/new-category-modal'
 
 export function Categories() {
@@ -30,13 +31,10 @@ export function Categories() {
         </div>
 
         <NewCategoryModal>
-          <button
-            type="button"
-            className="bg-brand-base text-white rounded-lg px-3 py-2 flex items-center gap-2 text-sm font-medium hover:bg-brand-dark transition-colors"
-          >
-            <Plus className="size-4" />
+          <LabelButton type="button" size="sm">
+            <Plus />
             Nova categoria
-          </button>
+          </LabelButton>
         </NewCategoryModal>
       </div>
 

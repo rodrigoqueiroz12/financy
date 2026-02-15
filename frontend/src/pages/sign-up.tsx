@@ -1,5 +1,6 @@
 import { EyeClosed, Lock, LogIn, Mail, UserRound } from 'lucide-react'
 import { useNavigate } from 'react-router'
+import { LabelButton } from '@/components/label-button'
 import { Logo } from '../components/logo'
 
 export function SignUp() {
@@ -102,12 +103,9 @@ export function SignUp() {
               </div>
             </div>
 
-            <button
-              type="button"
-              className="bg-brand-base rounded-lg px-4 py-3 flex items-center justify-center gap-2 font-medium text-white w-full border border-brand-base hover:cursor-pointer hover:bg-brand-dark hover:border-brand-dark transition-colors"
-            >
+            <LabelButton type="button" className="w-full">
               Cadastrar
-            </button>
+            </LabelButton>
 
             <div className="flex items-center gap-3 select-none">
               <hr className="flex-1 border-gray-300" />
@@ -119,14 +117,15 @@ export function SignUp() {
               Ainda não tem uma conta?
             </p>
 
-            <button
+            <LabelButton
               type="button"
               onClick={handleSignIn}
-              className="bg-white rounded-lg px-4 py-3 flex items-center justify-center gap-2 font-medium text-gray-700 w-full border border-gray-300 hover:cursor-pointer hover:bg-gray-200 transition-colors"
+              variant="secondary"
+              className="w-full"
             >
-              <LogIn className="size-3.5" />
+              <LogIn />
               Já tem uma conta?
-            </button>
+            </LabelButton>
           </form>
         </div>
       </div>
