@@ -7,6 +7,7 @@ import {
   Wallet
 } from 'lucide-react'
 import { Link } from 'react-router'
+import { NewTransactionModal } from '../components/new-transaction-modal'
 
 export function Dashboard() {
   return (
@@ -115,13 +116,15 @@ export function Dashboard() {
                   className="text-center px-6 border-t border-gray-200"
                 >
                   <div className="flex justify-center py-5">
-                    <button
-                      type="button"
-                      className="inline-flex items-center gap-1 text-sm font-medium text-brand-base hover:text-brand-dark transition-colors cursor-pointer"
-                    >
-                      <Plus className="size-5" />
-                      Nova transação
-                    </button>
+                    <NewTransactionModal>
+                      <button
+                        type="button"
+                        className="inline-flex items-center gap-1 text-sm font-medium text-brand-base hover:text-brand-dark transition-colors cursor-pointer"
+                      >
+                        <Plus className="size-5" />
+                        Nova transação
+                      </button>
+                    </NewTransactionModal>
                   </div>
                 </td>
               </tr>

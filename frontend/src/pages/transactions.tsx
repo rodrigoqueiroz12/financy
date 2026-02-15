@@ -16,6 +16,7 @@ import {
   Trash,
   Utensils
 } from 'lucide-react'
+import { NewTransactionModal } from '../components/new-transaction-modal'
 
 export function Transactions() {
   return (
@@ -31,13 +32,15 @@ export function Transactions() {
           </p>
         </div>
 
-        <button
-          type="button"
-          className="bg-brand-base text-white rounded-lg px-3 py-2 flex items-center gap-2 text-sm font-medium hover:bg-brand-dark transition-colors"
-        >
-          <Plus className="size-4" />
-          Nova transação
-        </button>
+        <NewTransactionModal>
+          <button
+            type="button"
+            className="bg-brand-base text-white rounded-lg px-3 py-2 flex items-center gap-2 text-sm font-medium hover:bg-brand-dark transition-colors"
+          >
+            <Plus className="size-4" />
+            Nova transação
+          </button>
+        </NewTransactionModal>
       </div>
 
       <section className="bg-white border border-gray-200 rounded-xl px-6 pt-5 pb-6 grid grid-cols-4 gap-4">
