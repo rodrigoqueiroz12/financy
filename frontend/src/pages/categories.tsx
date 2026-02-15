@@ -28,7 +28,10 @@ export function Categories() {
           </p>
         </div>
 
-        <button className="bg-brand-base text-white rounded-lg px-3 py-2 flex items-center gap-2 text-sm font-medium hover:bg-brand-dark transition-colors">
+        <button
+          type="button"
+          className="bg-brand-base text-white rounded-lg px-3 py-2 flex items-center gap-2 text-sm font-medium hover:bg-brand-dark transition-colors"
+        >
           <Plus className="size-4" />
           Nova categoria
         </button>
@@ -92,11 +95,17 @@ export function Categories() {
             </div>
 
             <div className="flex gap-2">
-              <button className="size-8 flex items-center justify-center border border-gray-200 rounded-lg text-danger hover:bg-gray-50 hover:text-danger/80 transition-colors">
+              <button
+                type="button"
+                className="size-8 flex items-center justify-center border border-gray-200 rounded-lg text-danger hover:bg-gray-50 hover:text-danger/80 transition-colors"
+              >
                 <Trash className="size-4" />
               </button>
 
-              <button className="size-8 flex items-center justify-center border border-gray-200 rounded-lg text-gray-500 hover:bg-gray-50 hover:text-gray-800 transition-colors">
+              <button
+                type="button"
+                className="size-8 flex items-center justify-center border border-gray-200 rounded-lg text-gray-500 hover:bg-gray-50 hover:text-gray-800 transition-colors"
+              >
                 <Pencil className="size-4" />
               </button>
             </div>
@@ -127,10 +136,16 @@ export function Categories() {
               <Ticket className="size-4" />
             </div>
             <div className="flex gap-2">
-              <button className="size-8 flex items-center justify-center border border-gray-200 rounded-lg text-danger hover:bg-gray-50 hover:text-danger/80 transition-colors">
+              <button
+                type="button"
+                className="size-8 flex items-center justify-center border border-gray-200 rounded-lg text-danger hover:bg-gray-50 hover:text-danger/80 transition-colors"
+              >
                 <Trash className="size-4" />
               </button>
-              <button className="size-8 flex items-center justify-center border border-gray-200 rounded-lg text-gray-500 hover:bg-gray-50 hover:text-gray-800 transition-colors">
+              <button
+                type="button"
+                className="size-8 flex items-center justify-center border border-gray-200 rounded-lg text-gray-500 hover:bg-gray-50 hover:text-gray-800 transition-colors"
+              >
                 <Pencil className="size-4" />
               </button>
             </div>
@@ -159,10 +174,16 @@ export function Categories() {
               <PiggyBank className="size-4" />
             </div>
             <div className="flex gap-2">
-              <button className="size-8 flex items-center justify-center border border-gray-200 rounded-lg text-danger hover:bg-gray-50 hover:text-danger/80 transition-colors">
+              <button
+                type="button"
+                className="size-8 flex items-center justify-center border border-gray-200 rounded-lg text-danger hover:bg-gray-50 hover:text-danger/80 transition-colors"
+              >
                 <Trash className="size-4" />
               </button>
-              <button className="size-8 flex items-center justify-center border border-gray-200 rounded-lg text-gray-500 hover:bg-gray-50 hover:text-gray-800 transition-colors">
+              <button
+                type="button"
+                className="size-8 flex items-center justify-center border border-gray-200 rounded-lg text-gray-500 hover:bg-gray-50 hover:text-gray-800 transition-colors"
+              >
                 <Pencil className="size-4" />
               </button>
             </div>
@@ -191,10 +212,16 @@ export function Categories() {
               <ShoppingCart className="size-4" />
             </div>
             <div className="flex gap-2">
-              <button className="size-8 flex items-center justify-center border border-gray-200 rounded-lg text-danger hover:bg-gray-50 hover:text-danger/80 transition-colors">
+              <button
+                type="button"
+                className="size-8 flex items-center justify-center border border-gray-200 rounded-lg text-danger hover:bg-gray-50 hover:text-danger/80 transition-colors"
+              >
                 <Trash className="size-4" />
               </button>
-              <button className="size-8 flex items-center justify-center border border-gray-200 rounded-lg text-gray-500 hover:bg-gray-50 hover:text-gray-800 transition-colors">
+              <button
+                type="button"
+                className="size-8 flex items-center justify-center border border-gray-200 rounded-lg text-gray-500 hover:bg-gray-50 hover:text-gray-800 transition-colors"
+              >
                 <Pencil className="size-4" />
               </button>
             </div>
@@ -223,10 +250,16 @@ export function Categories() {
               <BriefcaseBusiness className="size-4" />
             </div>
             <div className="flex gap-2">
-              <button className="size-8 flex items-center justify-center border border-gray-200 rounded-lg text-danger hover:bg-gray-50 hover:text-danger/80 transition-colors">
+              <button
+                type="button"
+                className="size-8 flex items-center justify-center border border-gray-200 rounded-lg text-danger hover:bg-gray-50 hover:text-danger/80 transition-colors"
+              >
                 <Trash className="size-4" />
               </button>
-              <button className="size-8 flex items-center justify-center border border-gray-200 rounded-lg text-gray-500 hover:bg-gray-50 hover:text-gray-800 transition-colors">
+              <button
+                type="button"
+                className="size-8 flex items-center justify-center border border-gray-200 rounded-lg text-gray-500 hover:bg-gray-50 hover:text-gray-800 transition-colors"
+              >
                 <Pencil className="size-4" />
               </button>
             </div>
@@ -255,10 +288,16 @@ export function Categories() {
               <Heart className="size-4" />
             </div>
             <div className="flex gap-2">
-              <button className="size-8 flex items-center justify-center border border-gray-200 rounded-lg text-danger hover:bg-gray-50 hover:text-danger/80 transition-colors">
+              <button
+                type="button"
+                className="size-8 flex items-center justify-center border border-gray-200 rounded-lg text-danger hover:bg-gray-50 hover:text-danger/80 transition-colors"
+              >
                 <Trash className="size-4" />
               </button>
-              <button className="size-8 flex items-center justify-center border border-gray-200 rounded-lg text-gray-500 hover:bg-gray-50 hover:text-gray-800 transition-colors">
+              <button
+                type="button"
+                className="size-8 flex items-center justify-center border border-gray-200 rounded-lg text-gray-500 hover:bg-gray-50 hover:text-gray-800 transition-colors"
+              >
                 <Pencil className="size-4" />
               </button>
             </div>
@@ -285,10 +324,16 @@ export function Categories() {
               <Car className="size-4" />
             </div>
             <div className="flex gap-2">
-              <button className="size-8 flex items-center justify-center border border-gray-200 rounded-lg text-danger hover:bg-gray-50 hover:text-danger/80 transition-colors">
+              <button
+                type="button"
+                className="size-8 flex items-center justify-center border border-gray-200 rounded-lg text-danger hover:bg-gray-50 hover:text-danger/80 transition-colors"
+              >
                 <Trash className="size-4" />
               </button>
-              <button className="size-8 flex items-center justify-center border border-gray-200 rounded-lg text-gray-500 hover:bg-gray-50 hover:text-gray-800 transition-colors">
+              <button
+                type="button"
+                className="size-8 flex items-center justify-center border border-gray-200 rounded-lg text-gray-500 hover:bg-gray-50 hover:text-gray-800 transition-colors"
+              >
                 <Pencil className="size-4" />
               </button>
             </div>
@@ -317,10 +362,16 @@ export function Categories() {
               <Zap className="size-4" />
             </div>
             <div className="flex gap-2">
-              <button className="size-8 flex items-center justify-center border border-gray-200 rounded-lg text-danger hover:bg-gray-50 hover:text-danger/80 transition-colors">
+              <button
+                type="button"
+                className="size-8 flex items-center justify-center border border-gray-200 rounded-lg text-danger hover:bg-gray-50 hover:text-danger/80 transition-colors"
+              >
                 <Trash className="size-4" />
               </button>
-              <button className="size-8 flex items-center justify-center border border-gray-200 rounded-lg text-gray-500 hover:bg-gray-50 hover:text-gray-800 transition-colors">
+              <button
+                type="button"
+                className="size-8 flex items-center justify-center border border-gray-200 rounded-lg text-gray-500 hover:bg-gray-50 hover:text-gray-800 transition-colors"
+              >
                 <Pencil className="size-4" />
               </button>
             </div>

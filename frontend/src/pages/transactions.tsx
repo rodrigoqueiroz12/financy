@@ -31,7 +31,10 @@ export function Transactions() {
           </p>
         </div>
 
-        <button className="bg-brand-base text-white rounded-lg px-3 py-2 flex items-center gap-2 text-sm font-medium hover:bg-brand-dark transition-colors">
+        <button
+          type="button"
+          className="bg-brand-base text-white rounded-lg px-3 py-2 flex items-center gap-2 text-sm font-medium hover:bg-brand-dark transition-colors"
+        >
           <Plus className="size-4" />
           Nova transação
         </button>
@@ -185,10 +188,16 @@ export function Transactions() {
               </td>
               <td className="px-6 py-4 border-b border-gray-200">
                 <div className="flex items-center justify-end gap-2">
-                  <button className="size-8 flex items-center justify-center border border-gray-200 rounded-lg text-danger hover:bg-gray-50 hover:text-danger/80 transition-colors">
+                  <button
+                    type="button"
+                    className="size-8 flex items-center justify-center border border-gray-200 rounded-lg text-danger hover:bg-gray-50 hover:text-danger/80 transition-colors"
+                  >
                     <Trash className="size-4" />
                   </button>
-                  <button className="size-8 flex items-center justify-center border border-gray-200 rounded-lg text-gray-500 hover:bg-gray-50 hover:text-gray-800 transition-colors">
+                  <button
+                    type="button"
+                    className="size-8 flex items-center justify-center border border-gray-200 rounded-lg text-gray-500 hover:bg-gray-50 hover:text-gray-800 transition-colors"
+                  >
                     <Pencil className="size-4" />
                   </button>
                 </div>
@@ -229,10 +238,16 @@ export function Transactions() {
               </td>
               <td className="px-6 py-4 border-b border-gray-200">
                 <div className="flex items-center justify-end gap-2">
-                  <button className="size-8 flex items-center justify-center border border-gray-200 rounded-lg text-danger hover:bg-gray-50 hover:text-danger/80 transition-colors">
+                  <button
+                    type="button"
+                    className="size-8 flex items-center justify-center border border-gray-200 rounded-lg text-danger hover:bg-gray-50 hover:text-danger/80 transition-colors"
+                  >
                     <Trash className="size-4" />
                   </button>
-                  <button className="size-8 flex items-center justify-center border border-gray-200 rounded-lg text-gray-500 hover:bg-gray-50 hover:text-gray-800 transition-colors">
+                  <button
+                    type="button"
+                    className="size-8 flex items-center justify-center border border-gray-200 rounded-lg text-gray-500 hover:bg-gray-50 hover:text-gray-800 transition-colors"
+                  >
                     <Pencil className="size-4" />
                   </button>
                 </div>
@@ -273,10 +288,16 @@ export function Transactions() {
               </td>
               <td className="px-6 py-4 border-b border-gray-200">
                 <div className="flex items-center justify-end gap-2">
-                  <button className="size-8 flex items-center justify-center border border-gray-200 rounded-lg text-danger hover:bg-gray-50 hover:text-danger/80 transition-colors">
+                  <button
+                    type="button"
+                    className="size-8 flex items-center justify-center border border-gray-200 rounded-lg text-danger hover:bg-gray-50 hover:text-danger/80 transition-colors"
+                  >
                     <Trash className="size-4" />
                   </button>
-                  <button className="size-8 flex items-center justify-center border border-gray-200 rounded-lg text-gray-500 hover:bg-gray-50 hover:text-gray-800 transition-colors">
+                  <button
+                    type="button"
+                    className="size-8 flex items-center justify-center border border-gray-200 rounded-lg text-gray-500 hover:bg-gray-50 hover:text-gray-800 transition-colors"
+                  >
                     <Pencil className="size-4" />
                   </button>
                 </div>
@@ -317,10 +338,16 @@ export function Transactions() {
               </td>
               <td className="px-6 py-4 border-b border-gray-200">
                 <div className="flex items-center justify-end gap-2">
-                  <button className="size-8 flex items-center justify-center border border-gray-200 rounded-lg text-danger hover:bg-gray-50 hover:text-danger/80 transition-colors">
+                  <button
+                    type="button"
+                    className="size-8 flex items-center justify-center border border-gray-200 rounded-lg text-danger hover:bg-gray-50 hover:text-danger/80 transition-colors"
+                  >
                     <Trash className="size-4" />
                   </button>
-                  <button className="size-8 flex items-center justify-center border border-gray-200 rounded-lg text-gray-500 hover:bg-gray-50 hover:text-gray-800 transition-colors">
+                  <button
+                    type="button"
+                    className="size-8 flex items-center justify-center border border-gray-200 rounded-lg text-gray-500 hover:bg-gray-50 hover:text-gray-800 transition-colors"
+                  >
                     <Pencil className="size-4" />
                   </button>
                 </div>
@@ -359,10 +386,16 @@ export function Transactions() {
               </td>
               <td className="px-6 py-4 border-b border-gray-200">
                 <div className="flex items-center justify-end gap-2">
-                  <button className="size-8 flex items-center justify-center border border-gray-200 rounded-lg text-danger hover:bg-gray-50 hover:text-danger/80 transition-colors">
+                  <button
+                    type="button"
+                    className="size-8 flex items-center justify-center border border-gray-200 rounded-lg text-danger hover:bg-gray-50 hover:text-danger/80 transition-colors"
+                  >
                     <Trash className="size-4" />
                   </button>
-                  <button className="size-8 flex items-center justify-center border border-gray-200 rounded-lg text-gray-500 hover:bg-gray-50 hover:text-gray-800 transition-colors">
+                  <button
+                    type="button"
+                    className="size-8 flex items-center justify-center border border-gray-200 rounded-lg text-gray-500 hover:bg-gray-50 hover:text-gray-800 transition-colors"
+                  >
                     <Pencil className="size-4" />
                   </button>
                 </div>
@@ -401,10 +434,16 @@ export function Transactions() {
               </td>
               <td className="px-6 py-4 border-b border-gray-200">
                 <div className="flex items-center justify-end gap-2">
-                  <button className="size-8 flex items-center justify-center border border-gray-200 rounded-lg text-danger hover:bg-gray-50 hover:text-danger/80 transition-colors">
+                  <button
+                    type="button"
+                    className="size-8 flex items-center justify-center border border-gray-200 rounded-lg text-danger hover:bg-gray-50 hover:text-danger/80 transition-colors"
+                  >
                     <Trash className="size-4" />
                   </button>
-                  <button className="size-8 flex items-center justify-center border border-gray-200 rounded-lg text-gray-500 hover:bg-gray-50 hover:text-gray-800 transition-colors">
+                  <button
+                    type="button"
+                    className="size-8 flex items-center justify-center border border-gray-200 rounded-lg text-gray-500 hover:bg-gray-50 hover:text-gray-800 transition-colors"
+                  >
                     <Pencil className="size-4" />
                   </button>
                 </div>
@@ -445,10 +484,16 @@ export function Transactions() {
               </td>
               <td className="px-6 py-4 border-b border-gray-200">
                 <div className="flex items-center justify-end gap-2">
-                  <button className="size-8 flex items-center justify-center border border-gray-200 rounded-lg text-danger hover:bg-gray-50 hover:text-danger/80 transition-colors">
+                  <button
+                    type="button"
+                    className="size-8 flex items-center justify-center border border-gray-200 rounded-lg text-danger hover:bg-gray-50 hover:text-danger/80 transition-colors"
+                  >
                     <Trash className="size-4" />
                   </button>
-                  <button className="size-8 flex items-center justify-center border border-gray-200 rounded-lg text-gray-500 hover:bg-gray-50 hover:text-gray-800 transition-colors">
+                  <button
+                    type="button"
+                    className="size-8 flex items-center justify-center border border-gray-200 rounded-lg text-gray-500 hover:bg-gray-50 hover:text-gray-800 transition-colors"
+                  >
                     <Pencil className="size-4" />
                   </button>
                 </div>
@@ -487,11 +532,17 @@ export function Transactions() {
               </td>
               <td className="px-6 py-4 border-b border-gray-200">
                 <div className="flex items-center justify-end gap-2">
-                  <button className="size-8 flex items-center justify-center border border-gray-200 rounded-lg text-danger hover:bg-gray-50 hover:text-danger/80 transition-colors">
+                  <button
+                    type="button"
+                    className="size-8 flex items-center justify-center border border-gray-200 rounded-lg text-danger hover:bg-gray-50 hover:text-danger/80 transition-colors"
+                  >
                     <Trash className="size-4" />
                   </button>
 
-                  <button className="size-8 flex items-center justify-center border border-gray-200 rounded-lg text-gray-500 hover:bg-gray-50 hover:text-gray-800 transition-colors">
+                  <button
+                    type="button"
+                    className="size-8 flex items-center justify-center border border-gray-200 rounded-lg text-gray-500 hover:bg-gray-50 hover:text-gray-800 transition-colors"
+                  >
                     <Pencil className="size-4" />
                   </button>
                 </div>
@@ -509,21 +560,34 @@ export function Transactions() {
 
                   <div className="flex items-center gap-2">
                     <button
+                      type="button"
                       className="size-8 flex items-center justify-center border border-gray-200 rounded-lg text-gray-500 hover:bg-gray-50 hover:text-gray-800 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
                       disabled
                     >
                       <ChevronLeft className="size-4" />
                     </button>
-                    <button className="size-8 flex items-center justify-center bg-brand-base text-white rounded-lg text-sm font-medium hover:bg-brand-dark transition-colors">
+                    <button
+                      type="button"
+                      className="size-8 flex items-center justify-center bg-brand-base text-white rounded-lg text-sm font-medium hover:bg-brand-dark transition-colors"
+                    >
                       1
                     </button>
-                    <button className="size-8 flex items-center justify-center border border-gray-300 rounded-lg text-gray-700 text-sm font-medium hover:bg-gray-50 hover:text-gray-800 transition-colors">
+                    <button
+                      type="button"
+                      className="size-8 flex items-center justify-center border border-gray-300 rounded-lg text-gray-700 text-sm font-medium hover:bg-gray-50 hover:text-gray-800 transition-colors"
+                    >
                       2
                     </button>
-                    <button className="size-8 flex items-center justify-center border border-gray-300 rounded-lg text-gray-700 text-sm font-medium hover:bg-gray-50 hover:text-gray-800 transition-colors">
+                    <button
+                      type="button"
+                      className="size-8 flex items-center justify-center border border-gray-300 rounded-lg text-gray-700 text-sm font-medium hover:bg-gray-50 hover:text-gray-800 transition-colors"
+                    >
                       3
                     </button>
-                    <button className="size-8 flex items-center justify-center border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50 hover:text-gray-800 transition-colors">
+                    <button
+                      type="button"
+                      className="size-8 flex items-center justify-center border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50 hover:text-gray-800 transition-colors"
+                    >
                       <ChevronRight className="size-4" />
                     </button>
                   </div>

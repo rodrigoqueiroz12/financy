@@ -6,6 +6,7 @@ import {
   Plus,
   Wallet
 } from 'lucide-react'
+import { Link } from 'react-router'
 
 export function Dashboard() {
   return (
@@ -61,13 +62,13 @@ export function Dashboard() {
                 <th className="border-b border-gray-200 w-40"></th>
 
                 <th className="text-right border-b border-gray-200 w-44">
-                  <a
-                    href="#"
+                  <Link
+                    to="/transactions"
                     className="px-6 py-5 inline-flex items-center gap-1 text-sm font-medium text-brand-base hover:text-brand-dark transition-colors"
                   >
                     Ver todas
                     <ChevronRight className="size-5" />
-                  </a>
+                  </Link>
                 </th>
               </tr>
             </thead>
@@ -140,13 +141,13 @@ export function Dashboard() {
                 </th>
 
                 <th className="text-right border-b border-gray-200 w-22.5">
-                  <a
-                    href="#"
+                  <Link
+                    to="/categories"
                     className="px-6 py-5 inline-flex items-center gap-1 text-sm font-medium text-brand-base hover:text-brand-dark transition-colors"
                   >
                     Gerenciar
                     <ChevronRight className="size-5" />
-                  </a>
+                  </Link>
                 </th>
               </tr>
             </thead>
