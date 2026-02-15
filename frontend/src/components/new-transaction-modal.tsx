@@ -52,7 +52,7 @@ export function NewTransactionModal({ children }: NewTransactionModalProps) {
           <form className="flex flex-col gap-6">
             <RadioGroup.Root
               defaultValue="outcome"
-              className="grid grid-cols-2 gap-4"
+              className="grid grid-cols-2 border border-gray-200 p-2 rounded-xl"
               aria-label="Tipo de transação"
             >
               <RadioGroup.Item
