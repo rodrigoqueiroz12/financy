@@ -15,6 +15,7 @@ import {
   Utensils
 } from 'lucide-react'
 import { LabelButton } from '@/components/label-button'
+import { PaginationButton } from '@/components/pagination-button'
 import { Tag } from '@/components/tag'
 import { Type } from '@/components/type'
 import { NewTransactionModal } from '../components/new-transaction-modal'
@@ -506,37 +507,17 @@ export function Transactions() {
                   </span>
 
                   <div className="flex items-center gap-2">
-                    <button
-                      type="button"
-                      className="size-8 flex items-center justify-center border border-gray-200 rounded-lg text-gray-500 hover:bg-gray-50 hover:text-gray-800 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
-                      disabled
-                    >
+                    <PaginationButton disabled>
                       <ChevronLeft className="size-4" />
-                    </button>
-                    <button
-                      type="button"
-                      className="size-8 flex items-center justify-center bg-brand-base text-white rounded-lg text-sm font-medium hover:bg-brand-dark transition-colors"
-                    >
-                      1
-                    </button>
-                    <button
-                      type="button"
-                      className="size-8 flex items-center justify-center border border-gray-300 rounded-lg text-gray-700 text-sm font-medium hover:bg-gray-50 hover:text-gray-800 transition-colors"
-                    >
-                      2
-                    </button>
-                    <button
-                      type="button"
-                      className="size-8 flex items-center justify-center border border-gray-300 rounded-lg text-gray-700 text-sm font-medium hover:bg-gray-50 hover:text-gray-800 transition-colors"
-                    >
-                      3
-                    </button>
-                    <button
-                      type="button"
-                      className="size-8 flex items-center justify-center border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50 hover:text-gray-800 transition-colors"
-                    >
+                    </PaginationButton>
+
+                    <PaginationButton active>1</PaginationButton>
+                    <PaginationButton>2</PaginationButton>
+                    <PaginationButton>3</PaginationButton>
+
+                    <PaginationButton>
                       <ChevronRight className="size-4" />
-                    </button>
+                    </PaginationButton>
                   </div>
                 </div>
               </td>
