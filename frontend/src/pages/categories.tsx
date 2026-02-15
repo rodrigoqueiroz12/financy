@@ -13,6 +13,7 @@ import {
   Utensils,
   Zap
 } from 'lucide-react'
+import { IconButton } from '@/components/icon-button'
 import { LabelButton } from '@/components/label-button'
 import { Tag } from '@/components/tag'
 import { NewCategoryModal } from '../components/new-category-modal'
@@ -97,19 +98,12 @@ export function Categories() {
             </div>
 
             <div className="flex gap-2">
-              <button
-                type="button"
-                className="size-8 flex items-center justify-center border border-gray-200 rounded-lg text-danger hover:bg-gray-50 hover:text-danger/80 transition-colors"
-              >
+              <IconButton variant="danger">
                 <Trash className="size-4" />
-              </button>
-
-              <button
-                type="button"
-                className="size-8 flex items-center justify-center border border-gray-200 rounded-lg text-gray-500 hover:bg-gray-50 hover:text-gray-800 transition-colors"
-              >
+              </IconButton>
+              <IconButton>
                 <Pencil className="size-4" />
-              </button>
+              </IconButton>
             </div>
           </div>
 
@@ -136,18 +130,12 @@ export function Categories() {
               <Ticket className="size-4" />
             </div>
             <div className="flex gap-2">
-              <button
-                type="button"
-                className="size-8 flex items-center justify-center border border-gray-200 rounded-lg text-danger hover:bg-gray-50 hover:text-danger/80 transition-colors"
-              >
+              <IconButton variant="danger">
                 <Trash className="size-4" />
-              </button>
-              <button
-                type="button"
-                className="size-8 flex items-center justify-center border border-gray-200 rounded-lg text-gray-500 hover:bg-gray-50 hover:text-gray-800 transition-colors"
-              >
+              </IconButton>
+              <IconButton>
                 <Pencil className="size-4" />
-              </button>
+              </IconButton>
             </div>
           </div>
 
@@ -172,18 +160,12 @@ export function Categories() {
               <PiggyBank className="size-4" />
             </div>
             <div className="flex gap-2">
-              <button
-                type="button"
-                className="size-8 flex items-center justify-center border border-gray-200 rounded-lg text-danger hover:bg-gray-50 hover:text-danger/80 transition-colors"
-              >
+              <IconButton variant="danger">
                 <Trash className="size-4" />
-              </button>
-              <button
-                type="button"
-                className="size-8 flex items-center justify-center border border-gray-200 rounded-lg text-gray-500 hover:bg-gray-50 hover:text-gray-800 transition-colors"
-              >
+              </IconButton>
+              <IconButton>
                 <Pencil className="size-4" />
-              </button>
+              </IconButton>
             </div>
           </div>
 
@@ -208,18 +190,12 @@ export function Categories() {
               <ShoppingCart className="size-4" />
             </div>
             <div className="flex gap-2">
-              <button
-                type="button"
-                className="size-8 flex items-center justify-center border border-gray-200 rounded-lg text-danger hover:bg-gray-50 hover:text-danger/80 transition-colors"
-              >
+              <IconButton variant="danger">
                 <Trash className="size-4" />
-              </button>
-              <button
-                type="button"
-                className="size-8 flex items-center justify-center border border-gray-200 rounded-lg text-gray-500 hover:bg-gray-50 hover:text-gray-800 transition-colors"
-              >
+              </IconButton>
+              <IconButton>
                 <Pencil className="size-4" />
-              </button>
+              </IconButton>
             </div>
           </div>
 
@@ -244,18 +220,12 @@ export function Categories() {
               <BriefcaseBusiness className="size-4" />
             </div>
             <div className="flex gap-2">
-              <button
-                type="button"
-                className="size-8 flex items-center justify-center border border-gray-200 rounded-lg text-danger hover:bg-gray-50 hover:text-danger/80 transition-colors"
-              >
+              <IconButton variant="danger">
                 <Trash className="size-4" />
-              </button>
-              <button
-                type="button"
-                className="size-8 flex items-center justify-center border border-gray-200 rounded-lg text-gray-500 hover:bg-gray-50 hover:text-gray-800 transition-colors"
-              >
+              </IconButton>
+              <IconButton>
                 <Pencil className="size-4" />
-              </button>
+              </IconButton>
             </div>
           </div>
 
@@ -280,18 +250,12 @@ export function Categories() {
               <Heart className="size-4" />
             </div>
             <div className="flex gap-2">
-              <button
-                type="button"
-                className="size-8 flex items-center justify-center border border-gray-200 rounded-lg text-danger hover:bg-gray-50 hover:text-danger/80 transition-colors"
-              >
+              <IconButton variant="danger">
                 <Trash className="size-4" />
-              </button>
-              <button
-                type="button"
-                className="size-8 flex items-center justify-center border border-gray-200 rounded-lg text-gray-500 hover:bg-gray-50 hover:text-gray-800 transition-colors"
-              >
+              </IconButton>
+              <IconButton>
                 <Pencil className="size-4" />
-              </button>
+              </IconButton>
             </div>
           </div>
 
@@ -314,18 +278,12 @@ export function Categories() {
               <Car className="size-4" />
             </div>
             <div className="flex gap-2">
-              <button
-                type="button"
-                className="size-8 flex items-center justify-center border border-gray-200 rounded-lg text-danger hover:bg-gray-50 hover:text-danger/80 transition-colors"
-              >
+              <IconButton variant="danger">
                 <Trash className="size-4" />
-              </button>
-              <button
-                type="button"
-                className="size-8 flex items-center justify-center border border-gray-200 rounded-lg text-gray-500 hover:bg-gray-50 hover:text-gray-800 transition-colors"
-              >
+              </IconButton>
+              <IconButton>
                 <Pencil className="size-4" />
-              </button>
+              </IconButton>
             </div>
           </div>
 
@@ -350,18 +308,12 @@ export function Categories() {
               <Zap className="size-4" />
             </div>
             <div className="flex gap-2">
-              <button
-                type="button"
-                className="size-8 flex items-center justify-center border border-gray-200 rounded-lg text-danger hover:bg-gray-50 hover:text-danger/80 transition-colors"
-              >
+              <IconButton variant="danger">
                 <Trash className="size-4" />
-              </button>
-              <button
-                type="button"
-                className="size-8 flex items-center justify-center border border-gray-200 rounded-lg text-gray-500 hover:bg-gray-50 hover:text-gray-800 transition-colors"
-              >
+              </IconButton>
+              <IconButton>
                 <Pencil className="size-4" />
-              </button>
+              </IconButton>
             </div>
           </div>
 

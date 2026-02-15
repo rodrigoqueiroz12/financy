@@ -14,6 +14,7 @@ import {
   Trash,
   Utensils
 } from 'lucide-react'
+import { IconButton } from '@/components/icon-button'
 import { LabelButton } from '@/components/label-button'
 import { PaginationButton } from '@/components/pagination-button'
 import { Tag } from '@/components/tag'
@@ -183,18 +184,12 @@ export function Transactions() {
               </td>
               <td className="px-6 py-4 border-b border-gray-200">
                 <div className="flex items-center justify-end gap-2">
-                  <button
-                    type="button"
-                    className="size-8 flex items-center justify-center border border-gray-200 rounded-lg text-danger hover:bg-gray-50 hover:text-danger/80 transition-colors"
-                  >
+                  <IconButton variant="danger">
                     <Trash className="size-4" />
-                  </button>
-                  <button
-                    type="button"
-                    className="size-8 flex items-center justify-center border border-gray-200 rounded-lg text-gray-500 hover:bg-gray-50 hover:text-gray-800 transition-colors"
-                  >
+                  </IconButton>
+                  <IconButton>
                     <Pencil className="size-4" />
-                  </button>
+                  </IconButton>
                 </div>
               </td>
             </tr>
@@ -226,18 +221,12 @@ export function Transactions() {
               </td>
               <td className="px-6 py-4 border-b border-gray-200">
                 <div className="flex items-center justify-end gap-2">
-                  <button
-                    type="button"
-                    className="size-8 flex items-center justify-center border border-gray-200 rounded-lg text-danger hover:bg-gray-50 hover:text-danger/80 transition-colors"
-                  >
+                  <IconButton variant="danger">
                     <Trash className="size-4" />
-                  </button>
-                  <button
-                    type="button"
-                    className="size-8 flex items-center justify-center border border-gray-200 rounded-lg text-gray-500 hover:bg-gray-50 hover:text-gray-800 transition-colors"
-                  >
+                  </IconButton>
+                  <IconButton>
                     <Pencil className="size-4" />
-                  </button>
+                  </IconButton>
                 </div>
               </td>
             </tr>
@@ -269,18 +258,12 @@ export function Transactions() {
               </td>
               <td className="px-6 py-4 border-b border-gray-200">
                 <div className="flex items-center justify-end gap-2">
-                  <button
-                    type="button"
-                    className="size-8 flex items-center justify-center border border-gray-200 rounded-lg text-danger hover:bg-gray-50 hover:text-danger/80 transition-colors"
-                  >
+                  <IconButton variant="danger">
                     <Trash className="size-4" />
-                  </button>
-                  <button
-                    type="button"
-                    className="size-8 flex items-center justify-center border border-gray-200 rounded-lg text-gray-500 hover:bg-gray-50 hover:text-gray-800 transition-colors"
-                  >
+                  </IconButton>
+                  <IconButton>
                     <Pencil className="size-4" />
-                  </button>
+                  </IconButton>
                 </div>
               </td>
             </tr>
@@ -312,18 +295,12 @@ export function Transactions() {
               </td>
               <td className="px-6 py-4 border-b border-gray-200">
                 <div className="flex items-center justify-end gap-2">
-                  <button
-                    type="button"
-                    className="size-8 flex items-center justify-center border border-gray-200 rounded-lg text-danger hover:bg-gray-50 hover:text-danger/80 transition-colors"
-                  >
+                  <IconButton variant="danger">
                     <Trash className="size-4" />
-                  </button>
-                  <button
-                    type="button"
-                    className="size-8 flex items-center justify-center border border-gray-200 rounded-lg text-gray-500 hover:bg-gray-50 hover:text-gray-800 transition-colors"
-                  >
+                  </IconButton>
+                  <IconButton>
                     <Pencil className="size-4" />
-                  </button>
+                  </IconButton>
                 </div>
               </td>
             </tr>
@@ -353,18 +330,12 @@ export function Transactions() {
               </td>
               <td className="px-6 py-4 border-b border-gray-200">
                 <div className="flex items-center justify-end gap-2">
-                  <button
-                    type="button"
-                    className="size-8 flex items-center justify-center border border-gray-200 rounded-lg text-danger hover:bg-gray-50 hover:text-danger/80 transition-colors"
-                  >
+                  <IconButton variant="danger">
                     <Trash className="size-4" />
-                  </button>
-                  <button
-                    type="button"
-                    className="size-8 flex items-center justify-center border border-gray-200 rounded-lg text-gray-500 hover:bg-gray-50 hover:text-gray-800 transition-colors"
-                  >
+                  </IconButton>
+                  <IconButton>
                     <Pencil className="size-4" />
-                  </button>
+                  </IconButton>
                 </div>
               </td>
             </tr>
@@ -396,18 +367,12 @@ export function Transactions() {
               </td>
               <td className="px-6 py-4 border-b border-gray-200">
                 <div className="flex items-center justify-end gap-2">
-                  <button
-                    type="button"
-                    className="size-8 flex items-center justify-center border border-gray-200 rounded-lg text-danger hover:bg-gray-50 hover:text-danger/80 transition-colors"
-                  >
+                  <IconButton variant="danger">
                     <Trash className="size-4" />
-                  </button>
-                  <button
-                    type="button"
-                    className="size-8 flex items-center justify-center border border-gray-200 rounded-lg text-gray-500 hover:bg-gray-50 hover:text-gray-800 transition-colors"
-                  >
+                  </IconButton>
+                  <IconButton>
                     <Pencil className="size-4" />
-                  </button>
+                  </IconButton>
                 </div>
               </td>
             </tr>
@@ -439,18 +404,12 @@ export function Transactions() {
               </td>
               <td className="px-6 py-4 border-b border-gray-200">
                 <div className="flex items-center justify-end gap-2">
-                  <button
-                    type="button"
-                    className="size-8 flex items-center justify-center border border-gray-200 rounded-lg text-danger hover:bg-gray-50 hover:text-danger/80 transition-colors"
-                  >
+                  <IconButton variant="danger">
                     <Trash className="size-4" />
-                  </button>
-                  <button
-                    type="button"
-                    className="size-8 flex items-center justify-center border border-gray-200 rounded-lg text-gray-500 hover:bg-gray-50 hover:text-gray-800 transition-colors"
-                  >
+                  </IconButton>
+                  <IconButton>
                     <Pencil className="size-4" />
-                  </button>
+                  </IconButton>
                 </div>
               </td>
             </tr>
@@ -480,19 +439,13 @@ export function Transactions() {
               </td>
               <td className="px-6 py-4 border-b border-gray-200">
                 <div className="flex items-center justify-end gap-2">
-                  <button
-                    type="button"
-                    className="size-8 flex items-center justify-center border border-gray-200 rounded-lg text-danger hover:bg-gray-50 hover:text-danger/80 transition-colors"
-                  >
-                    <Trash className="size-4" />
-                  </button>
+                  <IconButton variant="danger">
+                    <Trash />
+                  </IconButton>
 
-                  <button
-                    type="button"
-                    className="size-8 flex items-center justify-center border border-gray-200 rounded-lg text-gray-500 hover:bg-gray-50 hover:text-gray-800 transition-colors"
-                  >
-                    <Pencil className="size-4" />
-                  </button>
+                  <IconButton>
+                    <Pencil />
+                  </IconButton>
                 </div>
               </td>
             </tr>
