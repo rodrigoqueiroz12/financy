@@ -20,6 +20,7 @@ import {
   X
 } from 'lucide-react'
 import type { ReactNode } from 'react'
+import { IconButton } from './icon-button'
 import { LabelButton } from './label-button'
 
 interface NewCategoryModalProps {
@@ -47,13 +48,9 @@ export function NewCategoryModal({ children }: NewCategoryModalProps) {
             </div>
 
             <Dialog.Close asChild>
-              <button
-                type="button"
-                className="size-8 text-gray-700 hover:text-gray-800 focus:outline-none rounded-lg flex items-center justify-center border border-gray-300 bg-white transition-colors hover:bg-gray-100 cursor-pointer"
-                aria-label="Fechar"
-              >
-                <X className="size-4" />
-              </button>
+              <IconButton type="button" aria-label="Fechar">
+                <X />
+              </IconButton>
             </Dialog.Close>
           </div>
 
