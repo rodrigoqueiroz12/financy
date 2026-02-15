@@ -52,6 +52,7 @@ export function Transactions() {
               id="search"
               type="text"
               placeholder="Buscar por descrição"
+              autoComplete="off"
             />
             <Search className="size-4 text-gray-400" />
           </Input.Control>
