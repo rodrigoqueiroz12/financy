@@ -5,10 +5,10 @@ export class TransactionModel {
 	@Field(() => ID)
 	id!: string
 
-	@Field(() => String)
+	@Field(() => ID)
 	userId!: string
 
-	@Field(() => String)
+	@Field(() => ID)
 	categoryId!: string
 
 	@Field(() => String)

@@ -5,7 +5,7 @@ export class CategoryModel {
 	@Field(() => ID)
 	id!: string
 
-	@Field(() => String)
+	@Field(() => ID)
 	userId!: string
 
 	@Field(() => String)
@@ -14,11 +14,11 @@ export class CategoryModel {
 	@Field(() => String, { nullable: true })
 	description?: string
 
-	@Field(() => GraphQLISODateTime)
-	icon!: Date
+	@Field(() => String)
+	icon!: string
 
-	@Field(() => GraphQLISODateTime)
-	color!: Date
+	@Field(() => String)
+	color!: string
 
 	@Field(() => GraphQLISODateTime)
 	createdAt!: Date
