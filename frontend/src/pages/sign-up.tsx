@@ -1,6 +1,7 @@
 import { EyeClosed, EyeIcon, Lock, LogIn, Mail, UserRound } from 'lucide-react'
 import { useState } from 'react'
 import { useNavigate } from 'react-router'
+import { toast } from 'sonner'
 import { Input } from '@/components/input'
 import { LabelButton } from '@/components/label-button'
 import { useAuthStore } from '@/stores/auth.store'
@@ -34,10 +35,14 @@ export function SignUp() {
       })
 
       if (registered) {
-        alert('Cadastro realizado com sucesso!')
+        toast.success('Cadastro realizado com sucesso!')
+
+        setTimeout(() => {
+          navigate('/', { replace: true })
+        }, 1500)
       }
     } catch (_error: any) {
-      alert('Erro ao realizar o cadastro')
+      toast.error('Erro ao realizar o cadastro')
     } finally {
       setLoading(false)
     }
@@ -71,6 +76,9 @@ export function SignUp() {
                     placeholder="Seu nome completo"
                     value={name}
                     onChange={e => setName(e.target.value)}
+                    minLength={3}
+                    maxLength={100}
+                    required
                   />
                 </Input.Control>
               </Input.Root>
@@ -85,6 +93,8 @@ export function SignUp() {
                     placeholder="mail@exemplo.com"
                     value={email}
                     onChange={e => setEmail(e.target.value)}
+                    maxLength={254}
+                    required
                   />
                 </Input.Control>
               </Input.Root>
