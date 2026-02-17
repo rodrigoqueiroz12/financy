@@ -11,6 +11,9 @@ importers:
       '@apollo/server':
         specifier: ^5.4.0
         version: 5.4.0(graphql@16.12.0)
+      '@as-integrations/fastify':
+        specifier: ^3.1.0
+        version: 3.1.0(@apollo/server@5.4.0(graphql@16.12.0))(fastify@5.7.4)
       '@fastify/cors':
         specifier: ^11.2.0
         version: 11.2.0
@@ -151,6 +154,13 @@ packages:
   '@apollo/utils.withrequired@3.0.0':
     resolution: {integrity: sha512-aaxeavfJ+RHboh7c2ofO5HHtQobGX4AgUujXP4CXpREHp9fQ9jPi6K9T1jrAKe7HIipoP0OJ1gd6JamSkFIpvA==}
     engines: {node: '>=16'}
+
+  '@as-integrations/fastify@3.1.0':
+    resolution: {integrity: sha512-hfK5adsybNj0qRc+5BiCOy50SqqOhPIctvaaGsjqq7ui8lO/TZkLtz6IvDhWC70vOcMXJuMJCTTEb4hex8RVgw==}
+    engines: {node: '>=20'}
+    peerDependencies:
+      '@apollo/server': ^4.0.0 || ^5.0.0
+      fastify: ^5.3.0
 
   '@biomejs/biome@2.4.0':
     resolution: {integrity: sha512-iluT61cORUDIC5i/y42ljyQraCemmmcgbMLLCnYO+yh+2hjTmcMFcwY8G0zTzWCsPb3t3AyKc+0t/VuhPZULUg==}
@@ -1602,6 +1612,12 @@ snapshots:
       graphql: 16.12.0
 
   '@apollo/utils.withrequired@3.0.0': {}
+
+  '@as-integrations/fastify@3.1.0(@apollo/server@5.4.0(graphql@16.12.0))(fastify@5.7.4)':
+    dependencies:
+      '@apollo/server': 5.4.0(graphql@16.12.0)
+      fastify: 5.7.4
+      fastify-plugin: 5.1.0
 
   '@biomejs/biome@2.4.0':
     optionalDependencies:
