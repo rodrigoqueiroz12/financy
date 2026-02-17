@@ -16,7 +16,7 @@ export class UserResolver {
 	}
 
 	@Mutation(() => UserModel)
-	async updateUser(
+	async update(
 		@Arg('id', () => String) id: string,
 		@Arg('data', () => UpdateUserDTO) data: UpdateUserDTO
 	): Promise<UserModel> {
@@ -24,7 +24,7 @@ export class UserResolver {
 	}
 
 	@Query(() => UserModel)
-	async getUser(@Arg('id', () => String) id: string): Promise<UserModel> {
+	async get(@Arg('id', () => String) id: string): Promise<UserModel> {
 		return this.userService.findById(id)
 	}
 }
