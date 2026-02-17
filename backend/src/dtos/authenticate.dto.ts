@@ -1,7 +1,7 @@
 import { Field, InputType } from 'type-graphql'
 
 @InputType()
-export class RegisterDTO {
+export class Register {
 	@Field(() => String)
 	name!: string
 
@@ -13,7 +13,7 @@ export class RegisterDTO {
 }
 
 @InputType()
-export class AuthenticateDTO {
+export class Authenticate {
 	@Field(() => String)
 	email!: string
 

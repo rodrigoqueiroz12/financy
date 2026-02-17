@@ -1,11 +1,11 @@
-import type { AuthenticateDTO, RegisterDTO } from '@/dtos/authenticate.dto'
+import type { Authenticate, Register } from '@/dtos/authenticate.dto'
 import { prisma } from '@/lib/prisma'
 import type { UserModel } from '@/models/user.model'
 import { compare, hash } from '@/utils/hash'
 import { sign } from '@/utils/jwt'
 
 export class AuthService {
-	async authenticate(data: AuthenticateDTO) {
+	async authenticate(data: Authenticate) {
 		const existingUser = await prisma.user.findUnique({
 			where: {
 				email: data.email
@@ -21,7 +21,7 @@ export class AuthService {
 		return this.gerenerateTokens(existingUser)
 	}
 
-	async register(data: RegisterDTO) {
+	async register(data: Register) {
 		const existingUser = await prisma.user.findUnique({
 			where: {
 				email: data.email

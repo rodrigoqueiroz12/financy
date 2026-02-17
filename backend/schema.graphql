@@ -3,7 +3,7 @@
 # !!!   DO NOT MODIFY THIS FILE BY YOURSELF   !!!
 # -----------------------------------------------
 
-input AuthenticateDTO {
+input Authenticate {
   email: String!
   password: String!
 }
@@ -26,10 +26,10 @@ A date-time string at UTC, such as 2007-12-03T10:15:30Z, compliant with the `dat
 scalar DateTimeISO
 
 type Mutation {
-  authenticate(data: AuthenticateDTO!): AuthenticateOutput!
+  authenticate(data: Authenticate!): AuthenticateOutput!
   create(data: CreateUserDTO!): UserModel!
   delete(id: String!): Boolean!
-  register(data: RegisterDTO!): RegisterOutput!
+  register(data: Register!): RegisterOutput!
   update(data: UpdateUserDTO!, id: String!): UserModel!
 }
 
@@ -38,7 +38,7 @@ type Query {
   list: [TransactionModel!]!
 }
 
-input RegisterDTO {
+input Register {
   email: String!
   name: String!
   password: String!
