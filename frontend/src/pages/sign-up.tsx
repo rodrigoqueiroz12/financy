@@ -1,14 +1,46 @@
-import { EyeClosed, Lock, LogIn, Mail, UserRound } from 'lucide-react'
+import { EyeClosed, EyeIcon, Lock, LogIn, Mail, UserRound } from 'lucide-react'
+import { useState } from 'react'
 import { useNavigate } from 'react-router'
 import { Input } from '@/components/input'
 import { LabelButton } from '@/components/label-button'
+import { useAuthStore } from '@/stores/auth.store'
 import { Logo } from '../components/logo'
 
 export function SignUp() {
+  const [name, setName] = useState<string>('')
+  const [email, setEmail] = useState<string>('')
+  const [password, setPassword] = useState<string>('')
+  const [showPassword, setShowPassword] = useState<boolean>(false)
+  const [loading, setLoading] = useState<boolean>(false)
+
+  const signup = useAuthStore(state => state.signup)
+
   const navigate = useNavigate()
 
   function handleSignIn() {
     navigate('/')
+  }
+
+  const handleSubmit = async (e: React.SubmitEvent) => {
+    e.preventDefault()
+
+    setLoading(true)
+
+    try {
+      const registered = await signup({
+        name,
+        email,
+        password
+      })
+
+      if (registered) {
+        alert('Cadastro realizado com sucesso!')
+      }
+    } catch (_error: any) {
+      alert('Erro ao realizar o cadastro')
+    } finally {
+      setLoading(false)
+    }
   }
 
   return (
@@ -27,7 +59,7 @@ export function SignUp() {
             </p>
           </div>
 
-          <form action="#" className="space-y-6">
+          <form onSubmit={handleSubmit} className="space-y-6">
             <div className="space-y-4">
               <Input.Root>
                 <Input.Label htmlFor="name">Nome completo</Input.Label>
@@ -37,6 +69,8 @@ export function SignUp() {
                     type="text"
                     id="name"
                     placeholder="Seu nome completo"
+                    value={name}
+                    onChange={e => setName(e.target.value)}
                   />
                 </Input.Control>
               </Input.Root>
@@ -49,6 +83,8 @@ export function SignUp() {
                     type="email"
                     id="email"
                     placeholder="mail@exemplo.com"
+                    value={email}
+                    onChange={e => setEmail(e.target.value)}
                   />
                 </Input.Control>
               </Input.Root>
@@ -58,25 +94,35 @@ export function SignUp() {
                 <Input.Control>
                   <Lock className="size-4 text-gray-400" />
                   <Input.Field
-                    type="password"
+                    type={showPassword ? 'text' : 'password'}
                     id="password"
                     placeholder="Digite sua senha"
+                    value={password}
+                    onChange={e => setPassword(e.target.value)}
+                    minLength={8}
+                    maxLength={64}
                   />
                   <button
                     type="button"
                     className="enabled:hover:cursor-pointer"
+                    onClick={() => setShowPassword(!showPassword)}
                   >
-                    <EyeClosed className="size-4 text-gray-700" />
+                    {showPassword ? (
+                      <EyeIcon className="size-4 text-gray-700" />
+                    ) : (
+                      <EyeClosed className="size-4 text-gray-700" />
+                    )}
                   </button>
                 </Input.Control>
+
                 <Input.Helper>
                   A senha deve ter no mínimo 8 caracteres.
                 </Input.Helper>
               </Input.Root>
             </div>
 
-            <LabelButton type="button" className="w-full">
-              Cadastrar
+            <LabelButton type="submit" className="w-full" disabled={loading}>
+              {loading ? 'Cadastrando...' : 'Cadastrar'}
             </LabelButton>
 
             <div className="flex items-center gap-3 select-none">
