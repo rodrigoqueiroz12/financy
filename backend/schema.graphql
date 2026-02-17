@@ -4,9 +4,9 @@
 # -----------------------------------------------
 
 input CreateUserDTO {
-	email: String!
-	name: String!
-	password: String!
+  email: String!
+  name: String!
+  password: String!
 }
 
 """
@@ -15,37 +15,37 @@ A date-time string at UTC, such as 2007-12-03T10:15:30Z, compliant with the `dat
 scalar DateTimeISO
 
 type Mutation {
-	create(data: CreateUserDTO!): UserModel!
-	delete(id: String!): Boolean!
-	update(data: UpdateUserDTO!, id: String!): UserModel!
+  create(data: CreateUserDTO!): UserModel!
+  delete(id: String!): Boolean!
+  update(data: UpdateUserDTO!, id: String!): UserModel!
 }
 
 type Query {
-	get(id: String!): UserModel!
-	list: [TransactionModel!]!
+  get(id: String!): UserModel!
+  list: [TransactionModel!]!
 }
 
 type TransactionModel {
-	amount: Int!
-	categoryId: ID!
-	createdAt: DateTimeISO!
-	description: String!
-	id: ID!
-	transactedAt: DateTimeISO!
-	type: String!
-	updatedAt: DateTimeISO!
-	userId: ID!
+  amount: Int!
+  categoryId: ID!
+  createdAt: DateTimeISO!
+  description: String!
+  id: ID!
+  transactedAt: DateTimeISO!
+  type: String!
+  updatedAt: DateTimeISO!
+  userId: ID!
 }
 
 input UpdateUserDTO {
-	name: String!
+  name: String!
 }
 
 type UserModel {
-	createdAt: DateTimeISO!
-	email: String!
-	id: ID!
-	name: String!
-	password: String!
-	updatedAt: DateTimeISO!
+  createdAt: DateTimeISO!
+  email: String!
+  id: ID!
+  name: String!
+  password: String!
+  updatedAt: DateTimeISO!
 }
