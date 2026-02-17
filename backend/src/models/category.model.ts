@@ -12,7 +12,7 @@ export class CategoryModel {
 	title!: string
 
 	@Field(() => String, { nullable: true })
-	description?: string
+	description!: string | null
 
 	@Field(() => String)
 	icon!: string

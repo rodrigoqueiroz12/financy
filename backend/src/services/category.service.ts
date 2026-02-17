@@ -3,6 +3,14 @@ import type { UpdateCategoryDTO } from '@/dtos/update-category.dto'
 import { prisma } from '@/lib/prisma'
 
 export class CategoryService {
+	async findManyByUserId(userId: string) {
+		return await prisma.category.findMany({
+			where: {
+				userId
+			}
+		})
+	}
+
 	async findById(userId: string, id: string) {
 		const category = await prisma.category.findUnique({
 			where: {

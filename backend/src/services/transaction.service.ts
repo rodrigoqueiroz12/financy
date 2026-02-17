@@ -3,6 +3,14 @@ import type { UpdateTransactionDTO } from '@/dtos/update-transaction.dto'
 import { prisma } from '@/lib/prisma'
 
 export class TransactionService {
+	async findManyByUserId(userId: string) {
+		return await prisma.transaction.findMany({
+			where: {
+				userId
+			}
+		})
+	}
+
 	async findById(userId: string, id: string) {
 		const transaction = await prisma.transaction.findUnique({
 			where: {
@@ -68,6 +76,15 @@ export class TransactionService {
 			where: {
 				id,
 				userId
+			}
+		})
+	}
+
+	async countByCategoryId(userId: string, categoryId: string) {
+		return await prisma.transaction.count({
+			where: {
+				userId,
+				categoryId
 			}
 		})
 	}
