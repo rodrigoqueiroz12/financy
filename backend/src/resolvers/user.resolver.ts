@@ -1,10 +1,12 @@
-import { Arg, Mutation, Query, Resolver } from 'type-graphql'
+import { Arg, Mutation, Query, Resolver, UseMiddleware } from 'type-graphql'
 import { CreateUserDTO } from '@/dtos/create-user.dto'
 import { UpdateUserDTO } from '@/dtos/update-user.dto'
+import { auth } from '@/middlewares/auth.middleware'
 import { UserModel } from '@/models/user.model'
 import { UserService } from '@/services/user.service'
 
 @Resolver(() => UserModel)
+@UseMiddleware(auth)
 export class UserResolver {
 	private readonly userService = new UserService()
 

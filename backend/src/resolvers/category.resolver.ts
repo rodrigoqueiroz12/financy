@@ -5,16 +5,19 @@ import {
 	Mutation,
 	Query,
 	Resolver,
-	Root
+	Root,
+	UseMiddleware
 } from 'type-graphql'
 import { CreateCategoryDTO } from '@/dtos/create-category.dto'
 import { UpdateCategoryDTO } from '@/dtos/update-category.dto'
 import { GraphqlUser } from '@/graphql/decorators/user.decorator'
+import { auth } from '@/middlewares/auth.middleware'
 import { CategoryModel } from '@/models/category.model'
 import { CategoryService } from '@/services/category.service'
 import { TransactionService } from '@/services/transaction.service'
 
 @Resolver(() => CategoryModel)
+@UseMiddleware(auth)
 export class CategoryResolver {
 	private categoryService = new CategoryService()
 	private transactionService = new TransactionService()

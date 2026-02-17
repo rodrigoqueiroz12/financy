@@ -1,12 +1,14 @@
 import type { UserModel } from 'generated/prisma/models'
-import { Arg, Mutation, Query, Resolver } from 'type-graphql'
+import { Arg, Mutation, Query, Resolver, UseMiddleware } from 'type-graphql'
 import { CreateTransactionDTO } from '@/dtos/create-transaction.dto'
 import { UpdateTransactionDTO } from '@/dtos/update-transaction.dto'
 import { GraphqlUser } from '@/graphql/decorators/user.decorator'
+import { auth } from '@/middlewares/auth.middleware'
 import { TransactionModel } from '@/models/transaction.model'
 import { TransactionService } from '@/services/transaction.service'
 
 @Resolver(() => TransactionModel)
+@UseMiddleware(auth)
 export class TransactionResolver {
 	private transactionService = new TransactionService()
 
