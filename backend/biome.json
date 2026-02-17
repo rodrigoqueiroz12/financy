@@ -42,6 +42,9 @@
       "trailingCommas": "none",
       "arrowParentheses": "asNeeded",
       "lineEnding": "lf"
+    },
+    "parser": {
+      "unsafeParameterDecoratorsEnabled": true
     }
   },
   "json": {
