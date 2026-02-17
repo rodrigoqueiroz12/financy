@@ -56,7 +56,7 @@ export class TransactionService {
 				id,
 				userId
 			},
-			data
+			data: { ...data, updatedAt: new Date() }
 		})
 	}
 

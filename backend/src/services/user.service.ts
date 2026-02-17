@@ -53,7 +53,7 @@ export class UserService {
 			where: {
 				id
 			},
-			data
+			data: { ...data, updatedAt: new Date() }
 		})
 	}
 }

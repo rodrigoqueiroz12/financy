@@ -55,7 +55,7 @@ export class CategoryService {
 				id,
 				userId
 			},
-			data
+			data: { ...data, updatedAt: new Date() }
 		})
 	}
 
