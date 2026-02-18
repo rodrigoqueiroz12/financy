@@ -7,6 +7,7 @@ import { useAuthStore } from '@/stores/auth.store'
 export function Profile() {
   const [loggingOut, setLoggingOut] = useState(false)
   const logout = useAuthStore(state => state.logout)
+  const user = useAuthStore(state => state.user)
 
   const handleLogout = () => {
     setLoggingOut(true)
@@ -21,10 +22,10 @@ export function Profile() {
         </div>
 
         <h1 className="text-xl font-semibold text-gray-800 mb-0.5">
-          Conta teste
+          {user?.name}
         </h1>
 
-        <p className="text-gray-500">conta@teste.com</p>
+        <p className="text-gray-500">{user?.email}</p>
 
         <div className="w-full border-b border-gray-200 my-8" />
 
@@ -39,6 +40,9 @@ export function Profile() {
                 placeholder="Digite seu nome completo"
                 className="text-gray-800"
                 autoComplete="name"
+                defaultValue={user?.name}
+                minLength={3}
+                maxLength={100}
               />
             </Input.Control>
           </Input.Root>
@@ -50,7 +54,7 @@ export function Profile() {
               <Input.Field
                 id="email"
                 type="email"
-                defaultValue="conta@teste.com"
+                defaultValue={user?.email}
                 className="text-gray-500 cursor-not-allowed"
                 disabled
               />
