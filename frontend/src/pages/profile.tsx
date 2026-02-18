@@ -1,17 +1,44 @@
+import { useMutation } from '@apollo/client/react'
 import { LogOut, Mail, User } from 'lucide-react'
 import { useState } from 'react'
+import { toast } from 'sonner'
 import { Input } from '@/components/input'
 import { LabelButton } from '@/components/label-button'
+import { updateUser } from '@/lib/graphql/mutations/update-user'
 import { useAuthStore } from '@/stores/auth.store'
 
 export function Profile() {
+  const user = useAuthStore(state => state.user)
+  const updateUserNameStore = useAuthStore(state => state.updateUserName)
+  const [name, setName] = useState(user?.name || '')
+  const [updateUserFn, { loading }] = useMutation(updateUser, {
+    onCompleted() {
+      toast.success('Perfil atualizado com sucesso')
+      updateUserNameStore(name)
+    },
+    onError() {
+      toast.error('Falha ao atualizar o perfil')
+    }
+  })
   const [loggingOut, setLoggingOut] = useState(false)
   const logout = useAuthStore(state => state.logout)
-  const user = useAuthStore(state => state.user)
 
   const handleLogout = () => {
     setLoggingOut(true)
     logout()
+  }
+
+  const handleSubmit = (e: React.SubmitEvent) => {
+    e.preventDefault()
+
+    updateUserFn({
+      variables: {
+        id: user?.id,
+        data: {
+          name
+        }
+      }
+    })
   }
 
   return (
@@ -29,7 +56,7 @@ export function Profile() {
 
         <div className="w-full border-b border-gray-200 my-8" />
 
-        <form className="w-full space-y-6">
+        <form className="w-full space-y-6" onSubmit={handleSubmit}>
           <Input.Root>
             <Input.Label htmlFor="name">Nome completo</Input.Label>
             <Input.Control>
@@ -40,7 +67,8 @@ export function Profile() {
                 placeholder="Digite seu nome completo"
                 className="text-gray-800"
                 autoComplete="name"
-                defaultValue={user?.name}
+                value={name}
+                onChange={e => setName(e.target.value)}
                 minLength={3}
                 maxLength={100}
               />
@@ -63,7 +91,7 @@ export function Profile() {
           </Input.Root>
 
           <div className="flex flex-col gap-4">
-            <LabelButton type="button" className="w-full">
+            <LabelButton type="submit" className="w-full" disabled={loading}>
               Salvar alterações
             </LabelButton>
 

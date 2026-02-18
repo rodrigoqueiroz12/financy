@@ -28,6 +28,7 @@ interface AuthState {
   signup: (data: RegisterInput) => Promise<boolean>
   login: (data: AuthenticateInput) => Promise<boolean>
   logout: () => void
+  updateUserName: (name: string) => void
 }
 
 export const useAuthStore = create<AuthState>()(
@@ -125,6 +126,18 @@ export const useAuthStore = create<AuthState>()(
         })
 
         apolloClient.clearStore()
+      },
+      updateUserName: (name: string) => {
+        set(state => {
+          if (!state.user) return state
+
+          return {
+            user: {
+              ...state.user,
+              name
+            }
+          }
+        })
       }
     }),
     {
