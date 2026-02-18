@@ -1,8 +1,18 @@
 import { LogOut, Mail, User } from 'lucide-react'
+import { useState } from 'react'
 import { Input } from '@/components/input'
 import { LabelButton } from '@/components/label-button'
+import { useAuthStore } from '@/stores/auth.store'
 
 export function Profile() {
+  const [loggingOut, setLoggingOut] = useState(false)
+  const logout = useAuthStore(state => state.logout)
+
+  const handleLogout = () => {
+    setLoggingOut(true)
+    logout()
+  }
+
   return (
     <div className="max-w-md mx-auto">
       <div className="bg-white border border-gray-200 rounded-xl p-8 flex flex-col items-center">
@@ -53,7 +63,13 @@ export function Profile() {
               Salvar alterações
             </LabelButton>
 
-            <LabelButton type="button" variant="secondary" className="w-full">
+            <LabelButton
+              type="button"
+              variant="secondary"
+              className="w-full"
+              onClick={handleLogout}
+              disabled={loggingOut}
+            >
               <LogOut className="text-red-base" />
               Sair da conta
             </LabelButton>
