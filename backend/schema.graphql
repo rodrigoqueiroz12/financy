@@ -14,7 +14,7 @@ type AuthenticateOutput {
   user: UserModel!
 }
 
-input CreateUserDTO {
+input CreateUser {
   email: String!
   name: String!
   password: String!
@@ -27,10 +27,10 @@ scalar DateTimeISO
 
 type Mutation {
   authenticate(data: Authenticate!): AuthenticateOutput!
-  create(data: CreateUserDTO!): UserModel!
+  create(data: CreateUser!): UserModel!
   delete(id: String!): Boolean!
   register(data: Register!): RegisterOutput!
-  update(data: UpdateUserDTO!, id: String!): UserModel!
+  update(data: UpdateUser!, id: String!): UserModel!
 }
 
 type Query {
@@ -62,7 +62,7 @@ type TransactionModel {
   userId: ID!
 }
 
-input UpdateUserDTO {
+input UpdateUser {
   name: String!
 }
 

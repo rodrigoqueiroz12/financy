@@ -1,5 +1,5 @@
-import type { CreateUserDTO } from '@/dtos/create-user.dto'
-import type { UpdateUserDTO } from '@/dtos/update-user.dto'
+import type { CreateUser } from '@/dtos/create-user.dto'
+import type { UpdateUser } from '@/dtos/update-user.dto'
 import { prisma } from '@/lib/prisma'
 import { hash } from '@/utils/hash'
 
@@ -18,7 +18,7 @@ export class UserService {
 		return user
 	}
 
-	async create(data: CreateUserDTO) {
+	async create(data: CreateUser) {
 		const user = await prisma.user.findUnique({
 			where: {
 				email: data.email
@@ -38,7 +38,7 @@ export class UserService {
 		})
 	}
 
-	async update(id: string, data: UpdateUserDTO) {
+	async update(id: string, data: UpdateUser) {
 		const user = await prisma.user.findUnique({
 			where: {
 				id

@@ -1,6 +1,6 @@
 import { Arg, Mutation, Query, Resolver, UseMiddleware } from 'type-graphql'
-import { CreateUserDTO } from '@/dtos/create-user.dto'
-import { UpdateUserDTO } from '@/dtos/update-user.dto'
+import { CreateUser } from '@/dtos/create-user.dto'
+import { UpdateUser } from '@/dtos/update-user.dto'
 import { auth } from '@/middlewares/auth.middleware'
 import { UserModel } from '@/models/user.model'
 import { UserService } from '@/services/user.service'
@@ -12,7 +12,7 @@ export class UserResolver {
 
 	@Mutation(() => UserModel)
 	async create(
-		@Arg('data', () => CreateUserDTO) data: CreateUserDTO
+		@Arg('data', () => CreateUser) data: CreateUser
 	): Promise<UserModel> {
 		return this.userService.create(data)
 	}
@@ -20,7 +20,7 @@ export class UserResolver {
 	@Mutation(() => UserModel)
 	async update(
 		@Arg('id', () => String) id: string,
-		@Arg('data', () => UpdateUserDTO) data: UpdateUserDTO
+		@Arg('data', () => UpdateUser) data: UpdateUser
 	): Promise<UserModel> {
 		return this.userService.update(id, data)
 	}

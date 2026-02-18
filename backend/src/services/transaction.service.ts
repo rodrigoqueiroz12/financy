@@ -1,5 +1,5 @@
-import type { CreateTransactionDTO } from '@/dtos/create-transaction.dto'
-import type { UpdateTransactionDTO } from '@/dtos/update-transaction.dto'
+import type { CreateTransaction } from '@/dtos/create-transaction.dto'
+import type { UpdateTransaction } from '@/dtos/update-transaction.dto'
 import { prisma } from '@/lib/prisma'
 
 export class TransactionService {
@@ -26,7 +26,7 @@ export class TransactionService {
 		return transaction
 	}
 
-	async create(userId: string, categoryId: string, data: CreateTransactionDTO) {
+	async create(userId: string, categoryId: string, data: CreateTransaction) {
 		return await prisma.transaction.create({
 			data: {
 				userId,
@@ -39,7 +39,7 @@ export class TransactionService {
 		})
 	}
 
-	async update(userId: string, id: string, data: UpdateTransactionDTO) {
+	async update(userId: string, id: string, data: UpdateTransaction) {
 		const transaction = await prisma.transaction.findUnique({
 			where: {
 				id,

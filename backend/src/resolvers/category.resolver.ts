@@ -8,8 +8,8 @@ import {
 	Root,
 	UseMiddleware
 } from 'type-graphql'
-import { CreateCategoryDTO } from '@/dtos/create-category.dto'
-import { UpdateCategoryDTO } from '@/dtos/update-category.dto'
+import { CreateCategory } from '@/dtos/create-category.dto'
+import { UpdateCategory } from '@/dtos/update-category.dto'
 import { GraphqlUser } from '@/graphql/decorators/user.decorator'
 import { auth } from '@/middlewares/auth.middleware'
 import { CategoryModel } from '@/models/category.model'
@@ -25,7 +25,7 @@ export class CategoryResolver {
 	@Mutation(() => CategoryModel)
 	async create(
 		@GraphqlUser() user: UserModel,
-		@Arg('data', () => CreateCategoryDTO) data: CreateCategoryDTO
+		@Arg('data', () => CreateCategory) data: CreateCategory
 	): Promise<CategoryModel> {
 		return await this.categoryService.create(user.id, data)
 	}
@@ -34,7 +34,7 @@ export class CategoryResolver {
 	async update(
 		@GraphqlUser() user: UserModel,
 		@Arg('id', () => String) id: string,
-		@Arg('data', () => UpdateCategoryDTO) data: UpdateCategoryDTO
+		@Arg('data', () => UpdateCategory) data: UpdateCategory
 	): Promise<CategoryModel> {
 		return await this.categoryService.update(user.id, id, data)
 	}

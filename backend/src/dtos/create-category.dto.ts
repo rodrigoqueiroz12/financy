@@ -1,7 +1,7 @@
 import { Field, InputType } from 'type-graphql'
 
 @InputType()
-export class CreateCategoryDTO {
+export class CreateCategory {
 	@Field(() => String)
 	title!: string
 

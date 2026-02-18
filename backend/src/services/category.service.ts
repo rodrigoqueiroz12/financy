@@ -1,5 +1,5 @@
-import type { CreateCategoryDTO } from '@/dtos/create-category.dto'
-import type { UpdateCategoryDTO } from '@/dtos/update-category.dto'
+import type { CreateCategory } from '@/dtos/create-category.dto'
+import type { UpdateCategory } from '@/dtos/update-category.dto'
 import { prisma } from '@/lib/prisma'
 
 export class CategoryService {
@@ -26,7 +26,7 @@ export class CategoryService {
 		return category
 	}
 
-	async create(userId: string, data: CreateCategoryDTO) {
+	async create(userId: string, data: CreateCategory) {
 		return await prisma.category.create({
 			data: {
 				userId,
@@ -38,7 +38,7 @@ export class CategoryService {
 		})
 	}
 
-	async update(userId: string, id: string, data: UpdateCategoryDTO) {
+	async update(userId: string, id: string, data: UpdateCategory) {
 		const category = await prisma.category.findUnique({
 			where: {
 				id,

@@ -1,7 +1,7 @@
 import { Field, InputType } from 'type-graphql'
 
 @InputType()
-export class UpdateTransactionDTO {
+export class UpdateTransaction {
 	@Field(() => String)
 	type!: string
 

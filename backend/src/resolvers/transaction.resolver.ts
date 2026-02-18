@@ -1,7 +1,7 @@
 import type { UserModel } from 'generated/prisma/models'
 import { Arg, Mutation, Query, Resolver, UseMiddleware } from 'type-graphql'
-import { CreateTransactionDTO } from '@/dtos/create-transaction.dto'
-import { UpdateTransactionDTO } from '@/dtos/update-transaction.dto'
+import { CreateTransaction } from '@/dtos/create-transaction.dto'
+import { UpdateTransaction } from '@/dtos/update-transaction.dto'
 import { GraphqlUser } from '@/graphql/decorators/user.decorator'
 import { auth } from '@/middlewares/auth.middleware'
 import { TransactionModel } from '@/models/transaction.model'
@@ -16,7 +16,7 @@ export class TransactionResolver {
 	async create(
 		@GraphqlUser() user: UserModel,
 		@Arg('categoryId', () => String) categoryId: string,
-		@Arg('data', () => CreateTransactionDTO) data: CreateTransactionDTO
+		@Arg('data', () => CreateTransaction) data: CreateTransaction
 	): Promise<TransactionModel> {
 		return await this.transactionService.create(user.id, categoryId, data)
 	}
@@ -25,7 +25,7 @@ export class TransactionResolver {
 	async update(
 		@GraphqlUser() user: UserModel,
 		@Arg('id', () => String) id: string,
-		@Arg('data', () => UpdateTransactionDTO) data: UpdateTransactionDTO
+		@Arg('data', () => UpdateTransaction) data: UpdateTransaction
 	): Promise<TransactionModel> {
 		return await this.transactionService.update(user.id, id, data)
 	}
