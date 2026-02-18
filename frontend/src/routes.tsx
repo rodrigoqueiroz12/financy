@@ -1,4 +1,4 @@
-import { createBrowserRouter } from 'react-router'
+import { createBrowserRouter, Navigate } from 'react-router'
 import { AuthLayout } from './layouts/auth'
 import { DashboardLayout } from './layouts/dashboard'
 import { Categories } from './pages/categories'
@@ -7,19 +7,49 @@ import { Profile } from './pages/profile'
 import { SignIn } from './pages/sign-in'
 import { SignUp } from './pages/sign-up'
 import { Transactions } from './pages/transactions'
+import { useAuthStore } from './stores/auth.store'
+
+function Root() {
+  const { isAuthenticated } = useAuthStore()
+
+  return isAuthenticated ? (
+    <DashboardLayout>
+      <Dashboard />
+    </DashboardLayout>
+  ) : (
+    <AuthLayout>
+      <SignIn />
+    </AuthLayout>
+  )
+}
+
+function ProtectedRoute({ children }: { children: React.ReactNode }) {
+  const { isAuthenticated } = useAuthStore()
+
+  return isAuthenticated ? children : <Navigate to="/" replace />
+}
+
+function PublicRoute({ children }: { children: React.ReactNode }) {
+  const { isAuthenticated } = useAuthStore()
+
+  return !isAuthenticated ? children : <Navigate to="/" replace />
+}
 
 export const router = createBrowserRouter([
   {
     path: '/',
+    element: <Root />
+  },
+  {
     element: <AuthLayout />,
     children: [
       {
-        index: true,
-        element: <SignIn />
-      },
-      {
-        path: 'sign-up',
-        element: <SignUp />
+        path: '/sign-up',
+        element: (
+          <PublicRoute>
+            <SignUp />
+          </PublicRoute>
+        )
       }
     ]
   },
@@ -27,20 +57,28 @@ export const router = createBrowserRouter([
     element: <DashboardLayout />,
     children: [
       {
-        path: 'dashboard',
-        element: <Dashboard />
+        path: '/transactions',
+        element: (
+          <ProtectedRoute>
+            <Transactions />
+          </ProtectedRoute>
+        )
       },
       {
-        path: 'transactions',
-        element: <Transactions />
+        path: '/categories',
+        element: (
+          <ProtectedRoute>
+            <Categories />
+          </ProtectedRoute>
+        )
       },
       {
-        path: 'categories',
-        element: <Categories />
-      },
-      {
-        path: 'profile',
-        element: <Profile />
+        path: '/profile',
+        element: (
+          <ProtectedRoute>
+            <Profile />
+          </ProtectedRoute>
+        )
       }
     ]
   }

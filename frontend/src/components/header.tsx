@@ -6,14 +6,14 @@ export function Header() {
   return (
     <header className="py-4 border-b border-gray-200">
       <div className="grid grid-cols-3 items-center max-w-296 mx-auto">
-        <Link to="/dashboard">
+        <Link to="/">
           <Logo className="w-auto h-6" />
         </Link>
 
         <nav className="justify-self-center">
           <ul className="flex items-center gap-5">
             <li>
-              <HeaderLink to="/dashboard">Dashboard</HeaderLink>
+              <HeaderLink to="/">Dashboard</HeaderLink>
             </li>
 
             <li>
