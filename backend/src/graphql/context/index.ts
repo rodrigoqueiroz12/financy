@@ -8,13 +8,10 @@ export type GraphqlContext = {
 	res: FastifyReply
 }
 
-export const context = async ({
-	req,
-	res
-}: {
-	req: FastifyRequest
+export const context = async (
+	req: FastifyRequest,
 	res: FastifyReply
-}): Promise<GraphqlContext> => {
+): Promise<GraphqlContext> => {
 	const authHeader = req.headers.authorization
 	let user: string | undefined
 	let token: string | undefined
