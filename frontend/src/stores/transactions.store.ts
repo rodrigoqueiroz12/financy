@@ -36,11 +36,18 @@ type DeleteTransactionMutationData = {
 
 interface TransactionsState {
   transactions: Transaction[]
+  recentTransactions: Transaction[]
   isLoading: boolean
   totalBalance: number
   monthIncoming: number
   monthOutgoing: number
-  fetchTransactions: () => Promise<void>
+  fetchTransactions: (options?: {
+    limit?: number
+    offset?: number
+    orderBy?: string
+    orderDirection?: string
+  }) => Promise<void>
+  fetchRecentTransactions: () => Promise<void>
   fetchDashboardStats: () => Promise<void>
   createTransaction: (
     categoryId: string,
@@ -55,6 +62,7 @@ interface TransactionsState {
 
 export const useTransactionsStore = create<TransactionsState>()((set, get) => ({
   transactions: [],
+  recentTransactions: [],
   isLoading: false,
   totalBalance: 0,
   monthIncoming: 0,
@@ -77,27 +85,41 @@ export const useTransactionsStore = create<TransactionsState>()((set, get) => ({
       console.log('Erro ao buscar as estatísticas do dashboard', error)
     }
   },
-  fetchTransactions: async () => {
+  fetchTransactions: async options => {
     set({ isLoading: true })
     try {
       const { data } = await apolloClient.query<ListTransactionsQueryData>({
         query: listTransactions,
+        variables: options,
         fetchPolicy: 'network-only'
       })
 
       if (data?.listTransactions) {
-        // Ordena por transactedAt decrescente (mais recentes primeiro)
-        const sorted = [...data.listTransactions].sort(
-          (a, b) =>
-            new Date(b.transactedAt).getTime() -
-            new Date(a.transactedAt).getTime()
-        )
-        set({ transactions: sorted })
+        set({ transactions: data.listTransactions })
       }
     } catch (error) {
       console.log('Erro ao buscar as transações', error)
     } finally {
       set({ isLoading: false })
+    }
+  },
+  fetchRecentTransactions: async () => {
+    try {
+      const { data } = await apolloClient.query<ListTransactionsQueryData>({
+        query: listTransactions,
+        variables: {
+          limit: 5,
+          orderBy: 'createdAt',
+          orderDirection: 'desc'
+        },
+        fetchPolicy: 'network-only'
+      })
+
+      if (data?.listTransactions) {
+        set({ recentTransactions: data.listTransactions })
+      }
+    } catch (error) {
+      console.log('Erro ao buscar as transações recentes', error)
     }
   },
   createTransaction: async (
@@ -131,6 +153,7 @@ export const useTransactionsStore = create<TransactionsState>()((set, get) => ({
         // para atualizar a contagem de `countTransactions`
         useCategoriesStore.getState().fetchCategories()
         get().fetchDashboardStats()
+        get().fetchRecentTransactions()
 
         return true
       }
@@ -169,6 +192,7 @@ export const useTransactionsStore = create<TransactionsState>()((set, get) => ({
 
         useCategoriesStore.getState().fetchCategories()
         get().fetchDashboardStats()
+        get().fetchRecentTransactions()
 
         return true
       }
@@ -194,6 +218,7 @@ export const useTransactionsStore = create<TransactionsState>()((set, get) => ({
 
         useCategoriesStore.getState().fetchCategories()
         get().fetchDashboardStats()
+        get().fetchRecentTransactions()
 
         return true
       }

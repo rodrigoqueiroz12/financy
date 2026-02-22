@@ -19,6 +19,8 @@ export function Dashboard() {
   const {
     transactions,
     fetchTransactions,
+    recentTransactions,
+    fetchRecentTransactions,
     totalBalance,
     monthIncoming,
     monthOutgoing,
@@ -27,17 +29,16 @@ export function Dashboard() {
   const { categories, fetchCategories } = useCategoriesStore()
 
   useEffect(() => {
-    fetchTransactions()
     fetchCategories()
     fetchDashboardStats()
-  }, [fetchTransactions, fetchCategories, fetchDashboardStats])
-
-  const recentTransactions = [...transactions]
-    .sort(
-      (a, b) =>
-        new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
-    )
-    .slice(0, 5)
+    fetchRecentTransactions()
+    fetchTransactions()
+  }, [
+    fetchTransactions,
+    fetchCategories,
+    fetchDashboardStats,
+    fetchRecentTransactions
+  ])
 
   const categoriesWithAmount = categories
     .map(category => {
@@ -127,7 +128,7 @@ export function Dashboard() {
             <tbody>
               {recentTransactions.map(transaction => {
                 const Icon =
-                  CATEGORY_ICONS[transaction.category.icon] || Utensils
+                  CATEGORY_ICONS[transaction.category?.icon] || Utensils
 
                 return (
                   <tr key={transaction.id}>

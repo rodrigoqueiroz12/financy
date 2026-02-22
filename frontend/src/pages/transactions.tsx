@@ -28,7 +28,11 @@ export function Transactions() {
   const { fetchCategories } = useCategoriesStore()
 
   useEffect(() => {
-    fetchTransactions()
+    fetchTransactions({
+      limit: 10,
+      orderBy: 'transactedAt',
+      orderDirection: 'desc'
+    })
     fetchCategories()
   }, [fetchTransactions, fetchCategories])
 
