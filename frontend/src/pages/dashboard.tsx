@@ -1,17 +1,73 @@
 import {
-  BriefcaseBusiness,
   ChevronRight,
   CircleArrowDown,
   CircleArrowUp,
   Plus,
+  Utensils,
   Wallet
 } from 'lucide-react'
+import { useEffect } from 'react'
 import { Link } from 'react-router'
 import { CategoryIcon } from '@/components/category-icon'
 import { Tag } from '@/components/tag'
+import { useCategoriesStore } from '@/stores/categories.store'
+import { useTransactionsStore } from '@/stores/transactions.store'
+import { CATEGORY_ICONS } from '@/utils/categories'
 import { NewTransactionModal } from '../components/new-transaction-modal'
 
 export function Dashboard() {
+  const { transactions, fetchTransactions } = useTransactionsStore()
+  const { categories, fetchCategories } = useCategoriesStore()
+
+  useEffect(() => {
+    fetchTransactions()
+    fetchCategories()
+  }, [fetchTransactions, fetchCategories])
+
+  const currentMonth = new Date().getMonth()
+  const currentYear = new Date().getFullYear()
+
+  const currentMonthTransactions = transactions.filter(t => {
+    const d = new Date(t.transactedAt)
+    return d.getMonth() === currentMonth && d.getFullYear() === currentYear
+  })
+
+  const totalBalance = transactions.reduce((acc, t) => {
+    if (t.type === 'income') return acc + t.amount
+    return acc - t.amount
+  }, 0)
+
+  const monthIncoming = currentMonthTransactions.reduce((acc, t) => {
+    return t.type === 'income' ? acc + t.amount : acc
+  }, 0)
+
+  const monthOutgoing = currentMonthTransactions.reduce((acc, t) => {
+    return t.type === 'outcome' ? acc + t.amount : acc
+  }, 0)
+
+  const recentTransactions = transactions.slice(0, 5)
+
+  const categoriesWithAmount = categories
+    .map(category => {
+      const catTransactions = transactions.filter(
+        t => t.categoryId === category.id
+      )
+      const amount = catTransactions.reduce((acc, t) => acc + t.amount, 0)
+      return {
+        ...category,
+        amount
+      }
+    })
+    .sort((a, b) => b.countTransactions - a.countTransactions)
+    .slice(0, 4)
+
+  const formatCurrency = (value: number) => {
+    return new Intl.NumberFormat('pt-BR', {
+      style: 'currency',
+      currency: 'BRL'
+    }).format(value / 100)
+  }
+
   return (
     <div className="space-y-6">
       <section className="grid grid-cols-3 gap-6">
@@ -24,7 +80,7 @@ export function Dashboard() {
           </div>
 
           <strong className="text-[1.75rem] leading-8 font-bold text-gray-800">
-            R$ 12.000,00
+            {formatCurrency(totalBalance)}
           </strong>
         </div>
         <div className="bg-white border border-gray-200 rounded-xl p-6 flex flex-col gap-4">
@@ -36,7 +92,7 @@ export function Dashboard() {
           </div>
 
           <strong className="text-[1.75rem] leading-8 font-bold text-gray-800">
-            R$ 12.000,00
+            {formatCurrency(monthIncoming)}
           </strong>
         </div>
         <div className="bg-white border border-gray-200 rounded-xl p-6 flex flex-col gap-4">
@@ -48,7 +104,7 @@ export function Dashboard() {
           </div>
 
           <strong className="text-[1.75rem] leading-8 font-bold text-gray-800">
-            R$ 12.000,00
+            {formatCurrency(monthOutgoing)}
           </strong>
         </div>
       </section>
@@ -77,35 +133,56 @@ export function Dashboard() {
             </thead>
 
             <tbody>
-              <tr>
-                <td className="px-6 py-5">
-                  <div className="flex items-center gap-4">
-                    <CategoryIcon icon={BriefcaseBusiness} variant="green" />
+              {recentTransactions.map(transaction => {
+                const Icon =
+                  CATEGORY_ICONS[transaction.category.icon] || Utensils
 
-                    <div className="flex flex-col gap-0.5">
-                      <span className="font-medium text-gray-800">
-                        Pagamento de salário
-                      </span>
+                return (
+                  <tr key={transaction.id}>
+                    <td className="px-6 py-5 border-b border-gray-100 last:border-0">
+                      <div className="flex items-center gap-4">
+                        <CategoryIcon
+                          icon={Icon}
+                          variant={transaction.category.color as any}
+                        />
 
-                      <span className="text-sm text-gray-600">01/12/26</span>
-                    </div>
-                  </div>
-                </td>
+                        <div className="flex flex-col gap-0.5">
+                          <span className="font-medium text-gray-800">
+                            {transaction.description}
+                          </span>
 
-                <td className="px-6 py-5 text-center">
-                  <Tag variant="green">Receita</Tag>
-                </td>
+                          <span className="text-sm text-gray-600">
+                            {new Intl.DateTimeFormat('pt-BR').format(
+                              new Date(transaction.transactedAt)
+                            )}
+                          </span>
+                        </div>
+                      </div>
+                    </td>
 
-                <td className="px-6 py-5">
-                  <div className="flex items-center justify-end gap-2">
-                    <span className="text-sm font-semibold text-gray-800">
-                      + R$ 12.000,00
-                    </span>
+                    <td className="px-6 py-5 text-center border-b border-gray-100 last:border-0">
+                      <Tag variant={transaction.category.color as any}>
+                        {transaction.category.title}
+                      </Tag>
+                    </td>
 
-                    <CircleArrowUp className="size-4 text-brand-base" />
-                  </div>
-                </td>
-              </tr>
+                    <td className="px-6 py-5 border-b border-gray-100 last:border-0">
+                      <div className="flex items-center justify-end gap-2">
+                        <span className="text-sm font-semibold text-gray-800">
+                          {transaction.type === 'income' ? '+' : '-'}{' '}
+                          {formatCurrency(transaction.amount)}
+                        </span>
+
+                        {transaction.type === 'income' ? (
+                          <CircleArrowUp className="size-4 text-brand-base" />
+                        ) : (
+                          <CircleArrowDown className="size-4 text-red-base" />
+                        )}
+                      </div>
+                    </td>
+                  </tr>
+                )
+              })}
             </tbody>
 
             <tfoot>
@@ -155,19 +232,22 @@ export function Dashboard() {
             </thead>
 
             <tbody>
-              <tr>
-                <td className="pl-6 py-5">
-                  <Tag variant="blue">Alimentação</Tag>
-                </td>
+              {categoriesWithAmount.map(category => (
+                <tr key={category.id}>
+                  <td className="pl-6 py-5 border-b border-gray-100 last:border-0">
+                    <Tag variant={category.color as any}>{category.title}</Tag>
+                  </td>
 
-                <td className="px-1 py-5 text-right text-gray-600 text-sm">
-                  12 itens
-                </td>
+                  <td className="px-1 py-5 text-right text-gray-600 text-sm border-b border-gray-100 last:border-0">
+                    {category.countTransactions}{' '}
+                    {category.countTransactions === 1 ? 'item' : 'itens'}
+                  </td>
 
-                <td className="pr-6 py-5 text-right font-bold text-gray-800 text-sm">
-                  R$ 542,30
-                </td>
-              </tr>
+                  <td className="pr-6 py-5 text-right font-bold text-gray-800 text-sm border-b border-gray-100 last:border-0">
+                    {formatCurrency(category.amount)}
+                  </td>
+                </tr>
+              ))}
             </tbody>
           </table>
         </div>

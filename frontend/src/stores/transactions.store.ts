@@ -9,6 +9,7 @@ import type {
   Transaction,
   UpdateTransactionInput
 } from '@/types'
+import { useCategoriesStore } from './categories.store'
 
 type ListTransactionsQueryData = {
   listTransactions: Transaction[]
@@ -93,6 +94,11 @@ export const useTransactionsStore = create<TransactionsState>()((set, get) => ({
             new Date(a.transactedAt).getTime()
         )
         set({ transactions: newTransactions })
+
+        // Atuando em conformidade com o backend, busco novamente as categorias
+        // para atualizar a contagem de `countTransactions`
+        useCategoriesStore.getState().fetchCategories()
+
         return true
       }
 
@@ -127,6 +133,9 @@ export const useTransactionsStore = create<TransactionsState>()((set, get) => ({
               new Date(a.transactedAt).getTime()
           )
         set({ transactions: newTransactions })
+
+        useCategoriesStore.getState().fetchCategories()
+
         return true
       }
 
@@ -148,6 +157,9 @@ export const useTransactionsStore = create<TransactionsState>()((set, get) => ({
 
       if (data?.deleteTransaction) {
         set({ transactions: get().transactions.filter(t => t.id !== id) })
+
+        useCategoriesStore.getState().fetchCategories()
+
         return true
       }
 
