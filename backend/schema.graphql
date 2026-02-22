@@ -69,7 +69,7 @@ type Query {
   getTransaction(id: String!): TransactionModel!
   getUser(id: String!): UserModel!
   listCategories: [CategoryModel!]!
-  listTransactions: [TransactionModel!]!
+  listTransactions(limit: Int, offset: Int, orderBy: String, orderDirection: String): [TransactionModel!]!
   monthIncoming: Int!
   monthOutgoing: Int!
   totalBalance: Int!

@@ -3,12 +3,31 @@ import type { UpdateTransaction } from '@/dtos/update-transaction.dto'
 import { prisma } from '@/lib/prisma'
 
 export class TransactionService {
-	async findManyByUserId(userId: string) {
-		return await prisma.transaction.findMany({
-			where: {
-				userId
+	async findManyByUserId(
+		userId: string,
+		limit?: number,
+		offset?: number,
+		orderBy?: string,
+		orderDirection?: string
+	) {
+		const query: any = {
+			where: { userId }
+		}
+
+		if (limit !== undefined && limit !== null) query.take = limit
+		if (offset !== undefined && offset !== null) query.skip = offset
+
+		if (orderBy) {
+			query.orderBy = {
+				[orderBy]: orderDirection || 'desc'
 			}
-		})
+		} else {
+			query.orderBy = {
+				createdAt: 'desc'
+			}
+		}
+
+		return await prisma.transaction.findMany(query)
 	}
 
 	async findById(userId: string, id: string) {

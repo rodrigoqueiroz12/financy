@@ -60,8 +60,21 @@ export class TransactionResolver {
 	}
 
 	@Query(() => [TransactionModel], { name: 'listTransactions' })
-	async list(@GraphqlUser() user: UserModel): Promise<TransactionModel[]> {
-		return await this.transactionService.findManyByUserId(user.id)
+	async list(
+		@GraphqlUser() user: UserModel,
+		@Arg('limit', () => Int, { nullable: true }) limit?: number,
+		@Arg('offset', () => Int, { nullable: true }) offset?: number,
+		@Arg('orderBy', () => String, { nullable: true }) orderBy?: string,
+		@Arg('orderDirection', () => String, { nullable: true })
+		orderDirection?: string
+	): Promise<TransactionModel[]> {
+		return await this.transactionService.findManyByUserId(
+			user.id,
+			limit,
+			offset,
+			orderBy,
+			orderDirection
+		)
 	}
 
 	@Query(() => TransactionModel, { name: 'getTransaction' })
