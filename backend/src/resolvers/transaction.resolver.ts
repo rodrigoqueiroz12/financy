@@ -2,6 +2,7 @@ import type { UserModel } from 'generated/prisma/models'
 import {
 	Arg,
 	FieldResolver,
+	Int,
 	Mutation,
 	Query,
 	Resolver,
@@ -69,5 +70,20 @@ export class TransactionResolver {
 		@Arg('id', () => String) id: string
 	): Promise<TransactionModel> {
 		return await this.transactionService.findById(user.id, id)
+	}
+
+	@Query(() => Int, { name: 'totalBalance' })
+	async totalBalance(@GraphqlUser() user: UserModel): Promise<number> {
+		return await this.transactionService.totalBalance(user.id)
+	}
+
+	@Query(() => Int, { name: 'monthIncoming' })
+	async monthIncoming(@GraphqlUser() user: UserModel): Promise<number> {
+		return await this.transactionService.monthIncoming(user.id)
+	}
+
+	@Query(() => Int, { name: 'monthOutgoing' })
+	async monthOutgoing(@GraphqlUser() user: UserModel): Promise<number> {
+		return await this.transactionService.monthOutgoing(user.id)
 	}
 }

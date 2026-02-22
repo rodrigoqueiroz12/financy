@@ -88,4 +88,76 @@ export class TransactionService {
 			}
 		})
 	}
+
+	async totalBalance(userId: string) {
+		const aggregations = await prisma.transaction.groupBy({
+			by: ['type'],
+			where: { userId },
+			_sum: { amount: true }
+		})
+
+		let total = 0
+		for (const agg of aggregations) {
+			if (agg.type === 'income') total += agg._sum?.amount || 0
+			if (agg.type === 'outcome') total -= agg._sum?.amount || 0
+		}
+
+		return total
+	}
+
+	async monthIncoming(userId: string) {
+		const now = new Date()
+		const startOfMonth = new Date(now.getFullYear(), now.getMonth(), 1)
+		const endOfMonth = new Date(
+			now.getFullYear(),
+			now.getMonth() + 1,
+			0,
+			23,
+			59,
+			59,
+			999
+		)
+
+		const agg = await prisma.transaction.aggregate({
+			where: {
+				userId,
+				type: 'income',
+				transactedAt: {
+					gte: startOfMonth,
+					lte: endOfMonth
+				}
+			},
+			_sum: { amount: true }
+		})
+
+		return agg._sum?.amount || 0
+	}
+
+	async monthOutgoing(userId: string) {
+		const now = new Date()
+		const startOfMonth = new Date(now.getFullYear(), now.getMonth(), 1)
+		const endOfMonth = new Date(
+			now.getFullYear(),
+			now.getMonth() + 1,
+			0,
+			23,
+			59,
+			59,
+			999
+		)
+
+		const agg = await prisma.transaction.aggregate({
+			where: {
+				userId,
+				type: 'outcome',
+				transactedAt: {
+					gte: startOfMonth,
+					lte: endOfMonth
+				}
+			},
+			_sum: { amount: true }
+		})
+
+		return agg._sum?.amount || 0
+	}
 }

@@ -70,6 +70,9 @@ type Query {
   getUser(id: String!): UserModel!
   listCategories: [CategoryModel!]!
   listTransactions: [TransactionModel!]!
+  monthIncoming: Int!
+  monthOutgoing: Int!
+  totalBalance: Int!
 }
 
 input Register {
