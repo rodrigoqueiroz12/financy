@@ -14,6 +14,32 @@ type AuthenticateOutput {
   user: UserModel!
 }
 
+type CategoryModel {
+  color: String!
+  countTransactions: Float!
+  createdAt: DateTimeISO!
+  description: String
+  icon: String!
+  id: ID!
+  title: String!
+  updatedAt: DateTimeISO!
+  userId: ID!
+}
+
+input CreateCategory {
+  color: String!
+  description: String
+  icon: String!
+  title: String!
+}
+
+input CreateTransaction {
+  amount: Float!
+  description: String!
+  transactedAt: String!
+  type: String!
+}
+
 input CreateUser {
   email: String!
   name: String!
@@ -27,15 +53,23 @@ scalar DateTimeISO
 
 type Mutation {
   authenticate(data: Authenticate!): AuthenticateOutput!
-  create(data: CreateUser!): UserModel!
-  delete(id: String!): Boolean!
+  createCategory(data: CreateCategory!): CategoryModel!
+  createTransaction(categoryId: String!, data: CreateTransaction!): TransactionModel!
+  createUser(data: CreateUser!): UserModel!
+  deleteCategory(id: String!): Boolean!
+  deleteTransaction(id: String!): Boolean!
   register(data: Register!): RegisterOutput!
-  update(data: UpdateUser!, id: String!): UserModel!
+  updateCategory(data: UpdateCategory!, id: String!): CategoryModel!
+  updateTransaction(data: UpdateTransaction!, id: String!): TransactionModel!
+  updateUser(data: UpdateUser!, id: String!): UserModel!
 }
 
 type Query {
-  get(id: String!): UserModel!
-  list: [TransactionModel!]!
+  getCategory(id: String!): CategoryModel!
+  getTransaction(id: String!): TransactionModel!
+  getUser(id: String!): UserModel!
+  listCategories: [CategoryModel!]!
+  listTransactions: [TransactionModel!]!
 }
 
 input Register {
@@ -60,6 +94,20 @@ type TransactionModel {
   type: String!
   updatedAt: DateTimeISO!
   userId: ID!
+}
+
+input UpdateCategory {
+  color: String!
+  description: String
+  icon: String!
+  title: String!
+}
+
+input UpdateTransaction {
+  amount: Float!
+  description: String!
+  transactedAt: String!
+  type: String!
 }
 
 input UpdateUser {

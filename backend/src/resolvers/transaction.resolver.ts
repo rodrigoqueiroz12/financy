@@ -12,7 +12,7 @@ import { TransactionService } from '@/services/transaction.service'
 export class TransactionResolver {
 	private transactionService = new TransactionService()
 
-	@Mutation(() => TransactionModel)
+	@Mutation(() => TransactionModel, { name: 'createTransaction' })
 	async create(
 		@GraphqlUser() user: UserModel,
 		@Arg('categoryId', () => String) categoryId: string,
@@ -21,7 +21,7 @@ export class TransactionResolver {
 		return await this.transactionService.create(user.id, categoryId, data)
 	}
 
-	@Mutation(() => TransactionModel)
+	@Mutation(() => TransactionModel, { name: 'updateTransaction' })
 	async update(
 		@GraphqlUser() user: UserModel,
 		@Arg('id', () => String) id: string,
@@ -30,7 +30,7 @@ export class TransactionResolver {
 		return await this.transactionService.update(user.id, id, data)
 	}
 
-	@Mutation(() => Boolean)
+	@Mutation(() => Boolean, { name: 'deleteTransaction' })
 	async delete(
 		@GraphqlUser() user: UserModel,
 		@Arg('id', () => String) id: string
@@ -39,12 +39,12 @@ export class TransactionResolver {
 		return true
 	}
 
-	@Query(() => [TransactionModel])
+	@Query(() => [TransactionModel], { name: 'listTransactions' })
 	async list(@GraphqlUser() user: UserModel): Promise<TransactionModel[]> {
 		return await this.transactionService.findManyByUserId(user.id)
 	}
 
-	@Query(() => TransactionModel)
+	@Query(() => TransactionModel, { name: 'getTransaction' })
 	async get(
 		@GraphqlUser() user: UserModel,
 		@Arg('id', () => String) id: string

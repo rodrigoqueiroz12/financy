@@ -10,14 +10,14 @@ import { UserService } from '@/services/user.service'
 export class UserResolver {
 	private readonly userService = new UserService()
 
-	@Mutation(() => UserModel)
+	@Mutation(() => UserModel, { name: 'createUser' })
 	async create(
 		@Arg('data', () => CreateUser) data: CreateUser
 	): Promise<UserModel> {
 		return this.userService.create(data)
 	}
 
-	@Mutation(() => UserModel)
+	@Mutation(() => UserModel, { name: 'updateUser' })
 	async update(
 		@Arg('id', () => String) id: string,
 		@Arg('data', () => UpdateUser) data: UpdateUser
@@ -25,7 +25,7 @@ export class UserResolver {
 		return this.userService.update(id, data)
 	}
 
-	@Query(() => UserModel)
+	@Query(() => UserModel, { name: 'getUser' })
 	async get(@Arg('id', () => String) id: string): Promise<UserModel> {
 		return this.userService.findById(id)
 	}

@@ -22,7 +22,7 @@ export class CategoryResolver {
 	private categoryService = new CategoryService()
 	private transactionService = new TransactionService()
 
-	@Mutation(() => CategoryModel)
+	@Mutation(() => CategoryModel, { name: 'createCategory' })
 	async create(
 		@GraphqlUser() user: UserModel,
 		@Arg('data', () => CreateCategory) data: CreateCategory
@@ -30,7 +30,7 @@ export class CategoryResolver {
 		return await this.categoryService.create(user.id, data)
 	}
 
-	@Mutation(() => CategoryModel)
+	@Mutation(() => CategoryModel, { name: 'updateCategory' })
 	async update(
 		@GraphqlUser() user: UserModel,
 		@Arg('id', () => String) id: string,
@@ -39,7 +39,7 @@ export class CategoryResolver {
 		return await this.categoryService.update(user.id, id, data)
 	}
 
-	@Mutation(() => Boolean)
+	@Mutation(() => Boolean, { name: 'deleteCategory' })
 	async delete(
 		@GraphqlUser() user: UserModel,
 		@Arg('id', () => String) id: string
@@ -48,12 +48,12 @@ export class CategoryResolver {
 		return true
 	}
 
-	@Query(() => [CategoryModel])
+	@Query(() => [CategoryModel], { name: 'listCategories' })
 	async list(@GraphqlUser() user: UserModel): Promise<CategoryModel[]> {
 		return await this.categoryService.findManyByUserId(user.id)
 	}
 
-	@Query(() => CategoryModel)
+	@Query(() => CategoryModel, { name: 'getCategory' })
 	async get(
 		@GraphqlUser() user: UserModel,
 		@Arg('id', () => String) id: string
