@@ -45,7 +45,12 @@ export function Dashboard() {
     return t.type === 'outcome' ? acc + t.amount : acc
   }, 0)
 
-  const recentTransactions = transactions.slice(0, 5)
+  const recentTransactions = [...transactions]
+    .sort(
+      (a, b) =>
+        new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
+    )
+    .slice(0, 5)
 
   const categoriesWithAmount = categories
     .map(category => {
