@@ -1,25 +1,9 @@
 import * as Dialog from '@radix-ui/react-dialog'
 import * as RadioGroup from '@radix-ui/react-radio-group'
-import {
-  BaggageClaim,
-  BookOpen,
-  BriefcaseBusiness,
-  CarFront,
-  Dumbbell,
-  Gift,
-  HeartPulse,
-  House,
-  Mailbox,
-  PawPrint,
-  PiggyBank,
-  ReceiptText,
-  ShoppingCart,
-  Ticket,
-  ToolCase,
-  Utensils,
-  X
-} from 'lucide-react'
-import type { ReactNode } from 'react'
+import { X } from 'lucide-react'
+import { type FormEvent, type ReactNode, useState } from 'react'
+import { useCategoriesStore } from '@/stores/categories.store'
+import { CATEGORY_ICONS } from '@/utils/categories'
 import { IconButton } from './icon-button'
 import { Input } from './input'
 import { LabelButton } from './label-button'
@@ -29,8 +13,37 @@ interface NewCategoryModalProps {
 }
 
 export function NewCategoryModal({ children }: NewCategoryModalProps) {
+  const [open, setOpen] = useState(false)
+  const [title, setTitle] = useState('')
+  const [description, setDescription] = useState('')
+  const [icon, setIcon] = useState('utensils')
+  const [color, setColor] = useState('green')
+
+  const createCategory = useCategoriesStore(state => state.createCategory)
+
+  async function handleCreateCategory(event: FormEvent) {
+    event.preventDefault()
+
+    try {
+      await createCategory({
+        title,
+        description: description || undefined,
+        icon,
+        color
+      })
+
+      setTitle('')
+      setDescription('')
+      setIcon('utensils')
+      setColor('green')
+      setOpen(false)
+    } catch (error) {
+      console.log('Erro ao criar categoria')
+    }
+  }
+
   return (
-    <Dialog.Root>
+    <Dialog.Root open={open} onOpenChange={setOpen}>
       <Dialog.Trigger asChild>{children}</Dialog.Trigger>
 
       <Dialog.Portal>
@@ -55,7 +68,7 @@ export function NewCategoryModal({ children }: NewCategoryModalProps) {
             </Dialog.Close>
           </div>
 
-          <form className="flex flex-col gap-4">
+          <form onSubmit={handleCreateCategory} className="flex flex-col gap-4">
             <Input.Root>
               <Input.Label htmlFor="title">Título</Input.Label>
               <Input.Control>
@@ -64,6 +77,8 @@ export function NewCategoryModal({ children }: NewCategoryModalProps) {
                   id="title"
                   type="text"
                   placeholder="Ex. Alimentação"
+                  value={title}
+                  onChange={e => setTitle(e.target.value)}
                   required
                 />
               </Input.Control>
@@ -77,6 +92,8 @@ export function NewCategoryModal({ children }: NewCategoryModalProps) {
                   id="description"
                   type="text"
                   placeholder="Descrição da categoria"
+                  value={description}
+                  onChange={e => setDescription(e.target.value)}
                 />
               </Input.Control>
               <Input.Helper>Opcional</Input.Helper>
@@ -88,27 +105,11 @@ export function NewCategoryModal({ children }: NewCategoryModalProps) {
               </span>
 
               <RadioGroup.Root
-                defaultValue="utensils"
+                value={icon}
+                onValueChange={setIcon}
                 className="grid grid-cols-8 gap-2"
               >
-                {[
-                  { value: 'briefcase', icon: BriefcaseBusiness },
-                  { value: 'car', icon: CarFront },
-                  { value: 'heart', icon: HeartPulse },
-                  { value: 'piggy-bank', icon: PiggyBank },
-                  { value: 'shopping-cart', icon: ShoppingCart },
-                  { value: 'ticket', icon: Ticket },
-                  { value: 'tool-case', icon: ToolCase },
-                  { value: 'utensils', icon: Utensils },
-                  { value: 'paw-print', icon: PawPrint },
-                  { value: 'house', icon: House },
-                  { value: 'gift', icon: Gift },
-                  { value: 'dumbbell', icon: Dumbbell },
-                  { value: 'book-open', icon: BookOpen },
-                  { value: 'baggage-claim', icon: BaggageClaim },
-                  { value: 'mailbox', icon: Mailbox },
-                  { value: 'receipt-text', icon: ReceiptText }
-                ].map(({ value, icon: Icon }) => (
+                {Object.entries(CATEGORY_ICONS).map(([value, Icon]) => (
                   <RadioGroup.Item
                     key={value}
                     value={value}
@@ -125,22 +126,26 @@ export function NewCategoryModal({ children }: NewCategoryModalProps) {
                 Cor
               </span>
 
-              <RadioGroup.Root defaultValue="green" className="flex gap-2">
+              <RadioGroup.Root
+                value={color}
+                onValueChange={setColor}
+                className="flex gap-2"
+              >
                 {[
-                  { value: 'green', color: 'bg-green-base' },
-                  { value: 'blue', color: 'bg-blue-base' },
-                  { value: 'purple', color: 'bg-purple-base' },
-                  { value: 'pink', color: 'bg-pink-base' },
-                  { value: 'red', color: 'bg-red-base' },
-                  { value: 'orange', color: 'bg-orange-base' },
-                  { value: 'yellow', color: 'bg-yellow-base' }
-                ].map(({ value, color }) => (
+                  { value: 'green', colorCode: 'bg-green-base' },
+                  { value: 'blue', colorCode: 'bg-blue-base' },
+                  { value: 'purple', colorCode: 'bg-purple-base' },
+                  { value: 'pink', colorCode: 'bg-pink-base' },
+                  { value: 'red', colorCode: 'bg-red-base' },
+                  { value: 'orange', colorCode: 'bg-orange-base' },
+                  { value: 'yellow', colorCode: 'bg-yellow-base' }
+                ].map(({ value: val, colorCode }) => (
                   <RadioGroup.Item
-                    key={value}
-                    value={value}
+                    key={val}
+                    value={val}
                     className="h-7.5 flex-1 rounded-lg p-1 focus:outline-none cursor-pointer bg-gray-100 border border-gray-300 data-[state=checked]:border-brand-base"
                   >
-                    <div className={`size-full rounded-sm ${color}`} />
+                    <div className={`size-full rounded-sm ${colorCode}`} />
                   </RadioGroup.Item>
                 ))}
               </RadioGroup.Root>

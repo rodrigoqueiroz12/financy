@@ -3,7 +3,7 @@ import type { ComponentProps } from 'react'
 import { tv, type VariantProps } from 'tailwind-variants/lite'
 
 const categoryIcon = tv({
-  base: 'flex size-10 items-center justify-center rounded-lg',
+  base: 'flex size-10 shrink-0 items-center justify-center rounded-lg',
   variants: {
     variant: {
       gray: 'bg-gray-100 text-gray-500',
