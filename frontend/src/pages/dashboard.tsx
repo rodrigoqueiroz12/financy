@@ -16,34 +16,21 @@ import { CATEGORY_ICONS } from '@/utils/categories'
 import { NewTransactionModal } from '../components/new-transaction-modal'
 
 export function Dashboard() {
-  const { transactions, fetchTransactions } = useTransactionsStore()
+  const {
+    transactions,
+    fetchTransactions,
+    totalBalance,
+    monthIncoming,
+    monthOutgoing,
+    fetchDashboardStats
+  } = useTransactionsStore()
   const { categories, fetchCategories } = useCategoriesStore()
 
   useEffect(() => {
     fetchTransactions()
     fetchCategories()
-  }, [fetchTransactions, fetchCategories])
-
-  const currentMonth = new Date().getMonth()
-  const currentYear = new Date().getFullYear()
-
-  const currentMonthTransactions = transactions.filter(t => {
-    const d = new Date(t.transactedAt)
-    return d.getMonth() === currentMonth && d.getFullYear() === currentYear
-  })
-
-  const totalBalance = transactions.reduce((acc, t) => {
-    if (t.type === 'income') return acc + t.amount
-    return acc - t.amount
-  }, 0)
-
-  const monthIncoming = currentMonthTransactions.reduce((acc, t) => {
-    return t.type === 'income' ? acc + t.amount : acc
-  }, 0)
-
-  const monthOutgoing = currentMonthTransactions.reduce((acc, t) => {
-    return t.type === 'outcome' ? acc + t.amount : acc
-  }, 0)
+    fetchDashboardStats()
+  }, [fetchTransactions, fetchCategories, fetchDashboardStats])
 
   const recentTransactions = [...transactions]
     .sort(

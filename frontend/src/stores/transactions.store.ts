@@ -3,6 +3,7 @@ import { apolloClient } from '@/lib/graphql/apollo'
 import { createTransaction } from '@/lib/graphql/mutations/create-transaction'
 import { deleteTransaction } from '@/lib/graphql/mutations/delete-transaction'
 import { updateTransaction } from '@/lib/graphql/mutations/update-transaction'
+import { getDashboardStats } from '@/lib/graphql/queries/dashboard-stats'
 import { listTransactions } from '@/lib/graphql/queries/list-transactions'
 import type {
   CreateTransactionInput,
@@ -13,6 +14,12 @@ import { useCategoriesStore } from './categories.store'
 
 type ListTransactionsQueryData = {
   listTransactions: Transaction[]
+}
+
+type DashboardStatsQueryData = {
+  totalBalance: number
+  monthIncoming: number
+  monthOutgoing: number
 }
 
 type CreateTransactionMutationData = {
@@ -30,7 +37,11 @@ type DeleteTransactionMutationData = {
 interface TransactionsState {
   transactions: Transaction[]
   isLoading: boolean
+  totalBalance: number
+  monthIncoming: number
+  monthOutgoing: number
   fetchTransactions: () => Promise<void>
+  fetchDashboardStats: () => Promise<void>
   createTransaction: (
     categoryId: string,
     data: Omit<CreateTransactionInput, 'categoryId'>
@@ -45,6 +56,27 @@ interface TransactionsState {
 export const useTransactionsStore = create<TransactionsState>()((set, get) => ({
   transactions: [],
   isLoading: false,
+  totalBalance: 0,
+  monthIncoming: 0,
+  monthOutgoing: 0,
+  fetchDashboardStats: async () => {
+    try {
+      const { data } = await apolloClient.query<DashboardStatsQueryData>({
+        query: getDashboardStats,
+        fetchPolicy: 'network-only'
+      })
+
+      if (data) {
+        set({
+          totalBalance: data.totalBalance,
+          monthIncoming: data.monthIncoming,
+          monthOutgoing: data.monthOutgoing
+        })
+      }
+    } catch (error) {
+      console.log('Erro ao buscar as estatísticas do dashboard', error)
+    }
+  },
   fetchTransactions: async () => {
     set({ isLoading: true })
     try {
@@ -98,6 +130,7 @@ export const useTransactionsStore = create<TransactionsState>()((set, get) => ({
         // Atuando em conformidade com o backend, busco novamente as categorias
         // para atualizar a contagem de `countTransactions`
         useCategoriesStore.getState().fetchCategories()
+        get().fetchDashboardStats()
 
         return true
       }
@@ -135,6 +168,7 @@ export const useTransactionsStore = create<TransactionsState>()((set, get) => ({
         set({ transactions: newTransactions })
 
         useCategoriesStore.getState().fetchCategories()
+        get().fetchDashboardStats()
 
         return true
       }
@@ -159,6 +193,7 @@ export const useTransactionsStore = create<TransactionsState>()((set, get) => ({
         set({ transactions: get().transactions.filter(t => t.id !== id) })
 
         useCategoriesStore.getState().fetchCategories()
+        get().fetchDashboardStats()
 
         return true
       }
