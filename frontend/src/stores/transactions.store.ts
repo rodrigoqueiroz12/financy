@@ -109,7 +109,7 @@ export const useTransactionsStore = create<TransactionsState>()((set, get) => ({
         query: listTransactions,
         variables: {
           limit: 5,
-          orderBy: 'createdAt',
+          orderBy: 'transactedAt',
           orderDirection: 'desc'
         },
         fetchPolicy: 'network-only'
