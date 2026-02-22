@@ -1,17 +1,19 @@
 import * as Dialog from '@radix-ui/react-dialog'
 import * as RadioGroup from '@radix-ui/react-radio-group'
 import { CircleArrowDown, CircleArrowUp, X } from 'lucide-react'
-import { type FormEvent, type ReactNode, useState } from 'react'
+import { type FormEvent, type ReactNode, useEffect, useState } from 'react'
 import { tv } from 'tailwind-variants/lite'
 import { useCategoriesStore } from '@/stores/categories.store'
 import { useTransactionsStore } from '@/stores/transactions.store'
+import type { Transaction } from '@/types'
 import { IconButton } from './icon-button'
 import { Input } from './input'
 import { LabelButton } from './label-button'
 import { Select } from './select'
 
-interface NewTransactionModalProps {
+interface EditTransactionModalProps {
   children: ReactNode
+  transaction: Transaction
 }
 
 const transactionTypeButton = tv({
@@ -24,20 +26,41 @@ const transactionTypeButton = tv({
   }
 })
 
-export function NewTransactionModal({ children }: NewTransactionModalProps) {
+export function EditTransactionModal({
+  children,
+  transaction
+}: EditTransactionModalProps) {
   const [open, setOpen] = useState(false)
-  const [type, setType] = useState<'income' | 'outcome'>('outcome')
-  const [description, setDescription] = useState('')
+  const [type, setType] = useState<'income' | 'outcome'>(transaction.type)
+  const [description, setDescription] = useState(transaction.description)
   const [date, setDate] = useState('')
   const [amount, setAmount] = useState('')
-  const [categoryId, setCategoryId] = useState('')
+  const [categoryId, setCategoryId] = useState(transaction.categoryId)
 
   const { categories } = useCategoriesStore()
-  const createTransaction = useTransactionsStore(
-    state => state.createTransaction
+  const updateTransaction = useTransactionsStore(
+    state => state.updateTransaction
   )
 
-  async function handleCreateTransaction(event: FormEvent) {
+  useEffect(() => {
+    if (open) {
+      setType(transaction.type)
+      setDescription(transaction.description)
+      setCategoryId(transaction.categoryId)
+
+      // Format date for date input "YYYY-MM-DD"
+      const d = new Date(transaction.transactedAt)
+      const year = d.getFullYear()
+      const month = String(d.getMonth() + 1).padStart(2, '0')
+      const day = String(d.getDate()).padStart(2, '0')
+      setDate(`${year}-${month}-${day}`)
+
+      // Convert amount back to formatted string input (e.g. from 1250 to "12.50")
+      setAmount((transaction.amount / 100).toString())
+    }
+  }, [open, transaction])
+
+  async function handleUpdateTransaction(event: FormEvent) {
     event.preventDefault()
 
     if (!categoryId) {
@@ -48,23 +71,20 @@ export function NewTransactionModal({ children }: NewTransactionModalProps) {
     try {
       // Formata data e transactedAt e amount
       const transactedAt = new Date(`${date}T12:00:00`).toISOString()
-      const amountInCents = Math.round(parseFloat(amount) * 100)
+      const parsedAmount = parseFloat(amount.replace(',', '.'))
+      const amountInCents = Math.round(parsedAmount * 100)
 
-      await createTransaction(categoryId, {
+      await updateTransaction(transaction.id, {
         description,
         type,
         amount: amountInCents,
-        transactedAt
+        transactedAt,
+        categoryId
       })
 
-      setDescription('')
-      setDate('')
-      setAmount('')
-      setCategoryId('')
-      setType('outcome')
       setOpen(false)
     } catch (error) {
-      console.log('Erro ao criar transação')
+      console.log('Erro ao atualizar transação')
     }
   }
 
@@ -79,11 +99,11 @@ export function NewTransactionModal({ children }: NewTransactionModalProps) {
           <div className="flex items-center justify-between mb-6">
             <div>
               <Dialog.Title className="font-semibold text-gray-800 mb-0.5">
-                Nova transação
+                Editar transação
               </Dialog.Title>
 
               <Dialog.Description className="text-sm text-gray-600">
-                Registre sua despesa ou receita
+                Altere os detalhes da transação
               </Dialog.Description>
             </div>
 
@@ -95,7 +115,7 @@ export function NewTransactionModal({ children }: NewTransactionModalProps) {
           </div>
 
           <form
-            onSubmit={handleCreateTransaction}
+            onSubmit={handleUpdateTransaction}
             className="flex flex-col gap-6"
           >
             <RadioGroup.Root
@@ -122,10 +142,12 @@ export function NewTransactionModal({ children }: NewTransactionModalProps) {
             </RadioGroup.Root>
 
             <Input.Root>
-              <Input.Label htmlFor="description">Descrição</Input.Label>
+              <Input.Label htmlFor={`description-${transaction.id}`}>
+                Descrição
+              </Input.Label>
               <Input.Control>
                 <Input.Field
-                  id="description"
+                  id={`description-${transaction.id}`}
                   autoComplete="off"
                   type="text"
                   placeholder="Ex. Almoço no restaurante"
@@ -138,10 +160,12 @@ export function NewTransactionModal({ children }: NewTransactionModalProps) {
 
             <div className="grid grid-cols-2 gap-4">
               <Input.Root>
-                <Input.Label htmlFor="date">Data</Input.Label>
+                <Input.Label htmlFor={`date-${transaction.id}`}>
+                  Data
+                </Input.Label>
                 <Input.Control>
                   <Input.Field
-                    id="date"
+                    id={`date-${transaction.id}`}
                     type="date"
                     value={date}
                     onChange={e => setDate(e.target.value)}
@@ -151,12 +175,14 @@ export function NewTransactionModal({ children }: NewTransactionModalProps) {
               </Input.Root>
 
               <Input.Root>
-                <Input.Label htmlFor="amount">Valor</Input.Label>
+                <Input.Label htmlFor={`amount-${transaction.id}`}>
+                  Valor
+                </Input.Label>
                 <Input.Control>
                   <span className="text-black text-sm">R$</span>
 
                   <Input.Field
-                    id="amount"
+                    id={`amount-${transaction.id}`}
                     type="number"
                     step="0.01"
                     placeholder="0,00"
@@ -176,7 +202,7 @@ export function NewTransactionModal({ children }: NewTransactionModalProps) {
               >
                 <Select.Label>Categoria</Select.Label>
 
-                <Select.Trigger id="category">
+                <Select.Trigger id={`category-${transaction.id}`}>
                   <Select.Value placeholder="Selecione" />
                 </Select.Trigger>
 
@@ -190,7 +216,7 @@ export function NewTransactionModal({ children }: NewTransactionModalProps) {
               </Select.Root>
             </div>
 
-            <LabelButton type="submit">Salvar</LabelButton>
+            <LabelButton type="submit">Salvar alteração</LabelButton>
           </form>
         </Dialog.Content>
       </Dialog.Portal>

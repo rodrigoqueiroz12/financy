@@ -1,18 +1,13 @@
 import {
-  BriefcaseBusiness,
-  Car,
   ChevronLeft,
   ChevronRight,
-  Clapperboard,
-  House,
-  Landmark,
   Pencil,
   Plus,
   Search,
-  ShoppingCart,
   Trash,
   Utensils
 } from 'lucide-react'
+import { useEffect } from 'react'
 import { CategoryIcon } from '@/components/category-icon'
 import { IconButton } from '@/components/icon-button'
 import { Input } from '@/components/input'
@@ -21,9 +16,22 @@ import { PaginationButton } from '@/components/pagination-button'
 import { Select } from '@/components/select'
 import { Tag } from '@/components/tag'
 import { Type } from '@/components/type'
+import { useCategoriesStore } from '@/stores/categories.store'
+import { useTransactionsStore } from '@/stores/transactions.store'
+import { CATEGORY_ICONS } from '@/utils/categories'
+import { EditTransactionModal } from '../components/edit-transaction-modal'
 import { NewTransactionModal } from '../components/new-transaction-modal'
 
 export function Transactions() {
+  const { transactions, fetchTransactions, deleteTransaction } =
+    useTransactionsStore()
+  const { fetchCategories } = useCategoriesStore()
+
+  useEffect(() => {
+    fetchTransactions()
+    fetchCategories()
+  }, [fetchTransactions, fetchCategories])
+
   return (
     <div className="space-y-8">
       <div className="flex items-center justify-between">
@@ -129,282 +137,67 @@ export function Transactions() {
           </thead>
 
           <tbody>
-            <tr className="hover:bg-gray-50/50 transition-colors">
-              <td className="px-6 py-4 border-b border-gray-200">
-                <div className="flex items-center gap-4">
-                  <CategoryIcon icon={Utensils} variant="blue" />
-                  <span className="font-medium text-gray-800">
-                    Jantar no Restaurante
-                  </span>
-                </div>
-              </td>
-              <td className="px-6 py-4 border-b border-gray-200 text-sm text-gray-600 text-center">
-                30/11/25
-              </td>
-              <td className="px-6 py-4 border-b border-gray-200 text-center">
-                <Tag variant="blue">Alimentação</Tag>
-              </td>
-              <td className="px-6 py-4 border-b border-gray-200">
-                <Type variant="outcome">Saída</Type>
-              </td>
-              <td className="px-6 py-4 border-b border-gray-200 text-right">
-                <span className="text-sm font-bold text-gray-800">
-                  - R$ 89,50
-                </span>
-              </td>
-              <td className="px-6 py-4 border-b border-gray-200">
-                <div className="flex items-center justify-end gap-2">
-                  <IconButton variant="danger">
-                    <Trash className="size-4" />
-                  </IconButton>
-                  <IconButton>
-                    <Pencil className="size-4" />
-                  </IconButton>
-                </div>
-              </td>
-            </tr>
+            {transactions.map(transaction => {
+              const Icon = CATEGORY_ICONS[transaction.category.icon] || Utensils
 
-            <tr className="hover:bg-gray-50/50 transition-colors">
-              <td className="px-6 py-4 border-b border-gray-200">
-                <div className="flex items-center gap-4">
-                  <CategoryIcon icon={Car} variant="purple" />
-                  <span className="font-medium text-gray-800">
-                    Posto de Gasolina
-                  </span>
-                </div>
-              </td>
-              <td className="px-6 py-4 border-b border-gray-200 text-sm text-gray-600 text-center">
-                29/11/25
-              </td>
-              <td className="px-6 py-4 border-b border-gray-200 text-center">
-                <Tag variant="purple">Transporte</Tag>
-              </td>
-              <td className="px-6 py-4 border-b border-gray-200">
-                <Type variant="outcome">Saída</Type>
-              </td>
-              <td className="px-6 py-4 border-b border-gray-200 text-right">
-                <span className="text-sm font-bold text-gray-800">
-                  - R$ 100,00
-                </span>
-              </td>
-              <td className="px-6 py-4 border-b border-gray-200">
-                <div className="flex items-center justify-end gap-2">
-                  <IconButton variant="danger">
-                    <Trash className="size-4" />
-                  </IconButton>
-                  <IconButton>
-                    <Pencil className="size-4" />
-                  </IconButton>
-                </div>
-              </td>
-            </tr>
-
-            <tr className="hover:bg-gray-50/50 transition-colors">
-              <td className="px-6 py-4 border-b border-gray-200">
-                <div className="flex items-center gap-4">
-                  <CategoryIcon icon={ShoppingCart} variant="orange" />
-                  <span className="font-medium text-gray-800">
-                    Compras no Mercado
-                  </span>
-                </div>
-              </td>
-              <td className="px-6 py-4 border-b border-gray-200 text-sm text-gray-600 text-center">
-                28/11/25
-              </td>
-              <td className="px-6 py-4 border-b border-gray-200 text-center">
-                <Tag variant="orange">Mercado</Tag>
-              </td>
-              <td className="px-6 py-4 border-b border-gray-200">
-                <Type variant="outcome">Saída</Type>
-              </td>
-              <td className="px-6 py-4 border-b border-gray-200 text-right">
-                <span className="text-sm font-bold text-gray-800">
-                  - R$ 156,80
-                </span>
-              </td>
-              <td className="px-6 py-4 border-b border-gray-200">
-                <div className="flex items-center justify-end gap-2">
-                  <IconButton variant="danger">
-                    <Trash className="size-4" />
-                  </IconButton>
-                  <IconButton>
-                    <Pencil className="size-4" />
-                  </IconButton>
-                </div>
-              </td>
-            </tr>
-
-            <tr className="hover:bg-gray-50/50 transition-colors">
-              <td className="px-6 py-4 border-b border-gray-200">
-                <div className="flex items-center gap-4">
-                  <CategoryIcon icon={Landmark} variant="green" />
-                  <span className="font-medium text-gray-800">
-                    Retorno de Investimento
-                  </span>
-                </div>
-              </td>
-              <td className="px-6 py-4 border-b border-gray-200 text-sm text-gray-600 text-center">
-                26/11/25
-              </td>
-              <td className="px-6 py-4 border-b border-gray-200 text-center">
-                <Tag variant="green">Investimento</Tag>
-              </td>
-              <td className="px-6 py-4 border-b border-gray-200">
-                <Type variant="income">Entrada</Type>
-              </td>
-              <td className="px-6 py-4 border-b border-gray-200 text-right">
-                <span className="text-sm font-bold text-gray-800">
-                  + R$ 340,25
-                </span>
-              </td>
-              <td className="px-6 py-4 border-b border-gray-200">
-                <div className="flex items-center justify-end gap-2">
-                  <IconButton variant="danger">
-                    <Trash className="size-4" />
-                  </IconButton>
-                  <IconButton>
-                    <Pencil className="size-4" />
-                  </IconButton>
-                </div>
-              </td>
-            </tr>
-
-            <tr className="hover:bg-gray-50/50 transition-colors">
-              <td className="px-6 py-4 border-b border-gray-200">
-                <div className="flex items-center gap-4">
-                  <CategoryIcon icon={House} variant="yellow" />
-                  <span className="font-medium text-gray-800">Aluguel</span>
-                </div>
-              </td>
-              <td className="px-6 py-4 border-b border-gray-200 text-sm text-gray-600 text-center">
-                26/11/25
-              </td>
-              <td className="px-6 py-4 border-b border-gray-200 text-center">
-                <Tag variant="yellow">Utilidades</Tag>
-              </td>
-              <td className="px-6 py-4 border-b border-gray-200">
-                <Type variant="outcome">Saída</Type>
-              </td>
-              <td className="px-6 py-4 border-b border-gray-200 text-right">
-                <span className="text-sm font-bold text-gray-800">
-                  - R$ 1.700,00
-                </span>
-              </td>
-              <td className="px-6 py-4 border-b border-gray-200">
-                <div className="flex items-center justify-end gap-2">
-                  <IconButton variant="danger">
-                    <Trash className="size-4" />
-                  </IconButton>
-                  <IconButton>
-                    <Pencil className="size-4" />
-                  </IconButton>
-                </div>
-              </td>
-            </tr>
-
-            <tr className="hover:bg-gray-50/50 transition-colors">
-              <td className="px-6 py-4 border-b border-gray-200">
-                <div className="flex items-center gap-4">
-                  <CategoryIcon icon={BriefcaseBusiness} variant="green" />
-                  <span className="font-medium text-gray-800">Freelance</span>
-                </div>
-              </td>
-              <td className="px-6 py-4 border-b border-gray-200 text-sm text-gray-600 text-center">
-                24/11/25
-              </td>
-              <td className="px-6 py-4 border-b border-gray-200 text-center">
-                <span className="px-3 py-1 rounded-full bg-green-light text-sm font-medium text-green-dark">
-                  Salário
-                </span>
-              </td>
-              <td className="px-6 py-4 border-b border-gray-200">
-                <Type variant="income">Entrada</Type>
-              </td>
-              <td className="px-6 py-4 border-b border-gray-200 text-right">
-                <span className="text-sm font-bold text-gray-800">
-                  + R$ 2.500,00
-                </span>
-              </td>
-              <td className="px-6 py-4 border-b border-gray-200">
-                <div className="flex items-center justify-end gap-2">
-                  <IconButton variant="danger">
-                    <Trash className="size-4" />
-                  </IconButton>
-                  <IconButton>
-                    <Pencil className="size-4" />
-                  </IconButton>
-                </div>
-              </td>
-            </tr>
-
-            <tr className="hover:bg-gray-50/50 transition-colors">
-              <td className="px-6 py-4 border-b border-gray-200">
-                <div className="flex items-center gap-4">
-                  <CategoryIcon icon={ShoppingCart} variant="orange" />
-                  <span className="font-medium text-gray-800">
-                    Compras Jantar
-                  </span>
-                </div>
-              </td>
-              <td className="px-6 py-4 border-b border-gray-200 text-sm text-gray-600 text-center">
-                22/11/25
-              </td>
-              <td className="px-6 py-4 border-b border-gray-200 text-center">
-                <Tag variant="orange">Mercado</Tag>
-              </td>
-              <td className="px-6 py-4 border-b border-gray-200">
-                <Type variant="outcome">Saída</Type>
-              </td>
-              <td className="px-6 py-4 border-b border-gray-200 text-right">
-                <span className="text-sm font-bold text-gray-800">
-                  - R$ 150,00
-                </span>
-              </td>
-              <td className="px-6 py-4 border-b border-gray-200">
-                <div className="flex items-center justify-end gap-2">
-                  <IconButton variant="danger">
-                    <Trash className="size-4" />
-                  </IconButton>
-                  <IconButton>
-                    <Pencil className="size-4" />
-                  </IconButton>
-                </div>
-              </td>
-            </tr>
-
-            <tr className="hover:bg-gray-50/50 transition-colors">
-              <td className="px-6 py-4 border-b border-gray-200">
-                <div className="flex items-center gap-4">
-                  <CategoryIcon icon={Clapperboard} variant="pink" />
-                  <span className="font-medium text-gray-800">Cinema</span>
-                </div>
-              </td>
-              <td className="px-6 py-4 border-b border-gray-200 text-sm text-gray-600 text-center">
-                18/12/25
-              </td>
-              <td className="px-6 py-4 border-b border-gray-200 text-center">
-                <Tag variant="pink">Entretenimento</Tag>
-              </td>
-              <td className="px-6 py-4 border-b border-gray-200">
-                <Type variant="outcome">Saída</Type>
-              </td>
-              <td className="px-6 py-4 border-b border-gray-200 text-right">
-                <span className="text-sm font-bold text-gray-800">
-                  - R$ 88,00
-                </span>
-              </td>
-              <td className="px-6 py-4 border-b border-gray-200">
-                <div className="flex items-center justify-end gap-2">
-                  <IconButton variant="danger">
-                    <Trash />
-                  </IconButton>
-
-                  <IconButton>
-                    <Pencil />
-                  </IconButton>
-                </div>
-              </td>
-            </tr>
+              return (
+                <tr
+                  key={transaction.id}
+                  className="hover:bg-gray-50/50 transition-colors"
+                >
+                  <td className="px-6 py-4 border-b border-gray-200">
+                    <div className="flex items-center gap-4">
+                      <CategoryIcon
+                        icon={Icon}
+                        variant={transaction.category.color as any}
+                      />
+                      <span className="font-medium text-gray-800">
+                        {transaction.description}
+                      </span>
+                    </div>
+                  </td>
+                  <td className="px-6 py-4 border-b border-gray-200 text-sm text-gray-600 text-center">
+                    {new Intl.DateTimeFormat('pt-BR').format(
+                      new Date(transaction.transactedAt)
+                    )}
+                  </td>
+                  <td className="px-6 py-4 border-b border-gray-200 text-center">
+                    <Tag variant={transaction.category.color as any}>
+                      {transaction.category.title}
+                    </Tag>
+                  </td>
+                  <td className="px-6 py-4 border-b border-gray-200">
+                    <Type variant={transaction.type as 'income' | 'outcome'}>
+                      {transaction.type === 'income' ? 'Entrada' : 'Saída'}
+                    </Type>
+                  </td>
+                  <td className="px-6 py-4 border-b border-gray-200 text-right">
+                    <span className="text-sm font-bold text-gray-800">
+                      {transaction.type === 'income' ? '+' : '-'} R${' '}
+                      {(transaction.amount / 100).toLocaleString('pt-BR', {
+                        minimumFractionDigits: 2,
+                        maximumFractionDigits: 2
+                      })}
+                    </span>
+                  </td>
+                  <td className="px-6 py-4 border-b border-gray-200">
+                    <div className="flex items-center justify-end gap-2">
+                      <IconButton
+                        variant="danger"
+                        onClick={() => deleteTransaction(transaction.id)}
+                      >
+                        <Trash className="size-4" />
+                      </IconButton>
+                      <EditTransactionModal transaction={transaction}>
+                        <IconButton>
+                          <Pencil className="size-4" />
+                        </IconButton>
+                      </EditTransactionModal>
+                    </div>
+                  </td>
+                </tr>
+              )
+            })}
           </tbody>
 
           <tfoot>

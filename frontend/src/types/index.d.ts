@@ -41,3 +41,31 @@ export interface UpdateCategoryInput {
   icon: string
   color: string
 }
+
+export interface Transaction {
+  id: string
+  categoryId: string
+  type: 'income' | 'outcome'
+  description: string
+  amount: number
+  transactedAt: string
+  createdAt: string
+  updatedAt: string
+  category: Category
+}
+
+export interface CreateTransactionInput {
+  categoryId: string
+  type: 'income' | 'outcome'
+  description: string
+  amount: number
+  transactedAt: string
+}
+
+export interface UpdateTransactionInput {
+  categoryId: string
+  type: 'income' | 'outcome'
+  description: string
+  amount: number
+  transactedAt: string
+}
