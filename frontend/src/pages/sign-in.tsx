@@ -1,14 +1,30 @@
 import { Check, EyeClosed, Lock, Mail, UserRoundPlus } from 'lucide-react'
+import { useState } from 'react'
 import { useNavigate } from 'react-router'
 import { Input } from '@/components/input'
 import { LabelButton } from '@/components/label-button'
+import { useAuthStore } from '@/stores/auth.store'
 import { Logo } from '../components/logo'
 
 export function SignIn() {
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+  const [loading, setLoading] = useState(false)
+  const login = useAuthStore(state => state.login)
   const navigate = useNavigate()
 
   function handleSignUp() {
     navigate('/sign-up')
+  }
+
+  async function handleSubmit(e: React.SubmitEvent) {
+    e.preventDefault()
+
+    setLoading(true)
+
+    await login({ email, password })
+
+    setLoading(false)
   }
 
   return (
@@ -26,7 +42,7 @@ export function SignIn() {
           </p>
         </div>
 
-        <form action="#" className="space-y-6">
+        <form onSubmit={handleSubmit} className="space-y-6">
           <div className="space-y-4">
             <Input.Root>
               <Input.Label htmlFor="email">E-mail</Input.Label>
@@ -38,6 +54,8 @@ export function SignIn() {
                   type="email"
                   id="email"
                   placeholder="mail@exemplo.com"
+                  value={email}
+                  onChange={e => setEmail(e.target.value)}
                 />
               </Input.Control>
             </Input.Root>
@@ -52,6 +70,8 @@ export function SignIn() {
                   type="password"
                   id="password"
                   placeholder="Digite sua senha"
+                  value={password}
+                  onChange={e => setPassword(e.target.value)}
                 />
 
                 <button type="button" className="enabled:hover:cursor-pointer">
@@ -93,7 +113,7 @@ export function SignIn() {
             </div>
           </div>
 
-          <LabelButton type="button" className="w-full">
+          <LabelButton type="submit" className="w-full" disabled={loading}>
             Entrar
           </LabelButton>
 

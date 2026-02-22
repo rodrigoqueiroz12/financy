@@ -14,7 +14,7 @@ type RegisterMutationData = {
 }
 
 type AuthenticateMutationData = {
-  login: {
+  authenticate: {
     token: string
     refreshToken: string
     user: User
@@ -52,8 +52,8 @@ export const useAuthStore = create<AuthState>()(
             }
           })
 
-          if (data?.login) {
-            const { user, token } = data.login
+          if (data?.authenticate) {
+            const { user, token } = data.authenticate
 
             set({
               user: {
