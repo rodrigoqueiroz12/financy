@@ -63,7 +63,7 @@ export function NewTransactionModal({ children }: NewTransactionModalProps) {
       setCategoryId('')
       setType('outcome')
       setOpen(false)
-    } catch (error) {
+    } catch (_error) {
       console.log('Erro ao criar transação')
     }
   }

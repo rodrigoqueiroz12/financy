@@ -47,7 +47,7 @@ export function EditCategoryModal({
       })
 
       setOpen(false)
-    } catch (error) {
+    } catch (_error) {
       console.log('Erro ao atualizar categoria')
     }
   }

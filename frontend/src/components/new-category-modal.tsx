@@ -37,7 +37,7 @@ export function NewCategoryModal({ children }: NewCategoryModalProps) {
       setIcon('utensils')
       setColor('green')
       setOpen(false)
-    } catch (error) {
+    } catch (_error) {
       console.log('Erro ao criar categoria')
     }
   }

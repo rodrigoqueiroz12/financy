@@ -83,7 +83,7 @@ export function EditTransactionModal({
       })
 
       setOpen(false)
-    } catch (error) {
+    } catch (_error) {
       console.log('Erro ao atualizar transação')
     }
   }
