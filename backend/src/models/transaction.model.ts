@@ -1,4 +1,5 @@
 import { Field, GraphQLISODateTime, ID, Int, ObjectType } from 'type-graphql'
+import { CategoryModel } from './category.model'
 
 @ObjectType()
 export class TransactionModel {
@@ -10,6 +11,9 @@ export class TransactionModel {
 
 	@Field(() => ID)
 	categoryId!: string
+
+	@Field(() => CategoryModel)
+	category?: CategoryModel
 
 	@Field(() => String)
 	type!: string
