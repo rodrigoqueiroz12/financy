@@ -6,6 +6,7 @@ import { LabelButton } from '@/components/label-button'
 import { Tag } from '@/components/tag'
 import { useCategoriesStore } from '@/stores/categories.store'
 import { CATEGORY_ICONS } from '@/utils/categories'
+import { EditCategoryModal } from '../components/edit-category-modal'
 import { NewCategoryModal } from '../components/new-category-modal'
 
 export function Categories() {
@@ -124,9 +125,11 @@ export function Categories() {
                   >
                     <Trash className="size-4" />
                   </IconButton>
-                  <IconButton>
-                    <Pencil className="size-4" />
-                  </IconButton>
+                  <EditCategoryModal category={category}>
+                    <IconButton>
+                      <Pencil className="size-4" />
+                    </IconButton>
+                  </EditCategoryModal>
                 </div>
               </div>
 

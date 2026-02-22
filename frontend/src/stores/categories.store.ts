@@ -93,7 +93,9 @@ export const useCategoriesStore = create<CategoriesState>()((set, get) => ({
 
       if (data?.updateCategory) {
         set({
-          categories: get().categories.map(c => (c.id === id ? data.updateCategory : c))
+          categories: get().categories.map(c =>
+            c.id === id ? data.updateCategory : c
+          )
         })
         return true
       }
