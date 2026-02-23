@@ -2,6 +2,7 @@ import type { UserModel } from 'generated/prisma/models'
 import {
 	Arg,
 	FieldResolver,
+	Int,
 	Mutation,
 	Query,
 	Resolver,
@@ -61,11 +62,27 @@ export class CategoryResolver {
 		return await this.categoryService.findById(user.id, id)
 	}
 
+	@Query(() => [CategoryModel], { name: 'listRankedCategories' })
+	async listRanked(
+		@GraphqlUser() user: UserModel,
+		@Arg('limit', () => Int, { nullable: true }) limit?: number
+	): Promise<CategoryModel[]> {
+		return await this.categoryService.findRankedCategories(user.id, limit)
+	}
+
 	@FieldResolver(() => Number)
 	async countTransactions(
 		@GraphqlUser() user: UserModel,
 		@Root() category: CategoryModel
 	): Promise<number> {
 		return this.transactionService.countByCategoryId(user.id, category.id)
+	}
+
+	@FieldResolver(() => Number)
+	async amount(
+		@GraphqlUser() user: UserModel,
+		@Root() category: CategoryModel
+	): Promise<number> {
+		return this.transactionService.sumByCategoryId(user.id, category.id)
 	}
 }

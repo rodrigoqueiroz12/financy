@@ -78,4 +78,33 @@ export class CategoryService {
 			}
 		})
 	}
+
+	async findRankedCategories(userId: string, limit?: number) {
+		const aggregations = await prisma.transaction.groupBy({
+			by: ['categoryId'],
+			where: { userId },
+			_sum: { amount: true },
+			orderBy: { _sum: { amount: 'desc' } },
+			take: limit
+		})
+
+		const categoryIds = aggregations.map(agg => agg.categoryId)
+
+		const categories = await prisma.category.findMany({
+			where: {
+				id: { in: categoryIds },
+				userId
+			}
+		})
+
+		const sortedCategories = []
+		for (const agg of aggregations) {
+			const category = categories.find(c => c.id === agg.categoryId)
+			if (category) {
+				sortedCategories.push(category)
+			}
+		}
+
+		return sortedCategories
+	}
 }

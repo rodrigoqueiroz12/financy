@@ -108,6 +108,17 @@ export class TransactionService {
 		})
 	}
 
+	async sumByCategoryId(userId: string, categoryId: string) {
+		const agg = await prisma.transaction.aggregate({
+			where: {
+				userId,
+				categoryId
+			},
+			_sum: { amount: true }
+		})
+		return agg._sum?.amount || 0
+	}
+
 	async totalBalance(userId: string) {
 		const aggregations = await prisma.transaction.groupBy({
 			by: ['type'],
