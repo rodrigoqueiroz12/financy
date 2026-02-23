@@ -1,8 +1,12 @@
 import { Link } from 'react-router'
 import { HeaderLink } from './header-link'
 import { Logo } from './logo'
+import { getInitials } from '@/utils/get-initials'
+import { useAuthStore } from '@/stores/auth.store'
 
 export function Header() {
+  const user = useAuthStore(state => state.user)
+
   return (
     <header className="py-4 border-b border-gray-200">
       <div className="grid grid-cols-3 items-center max-w-296 mx-auto">
@@ -30,7 +34,7 @@ export function Header() {
           to="/profile"
           className="justify-self-end size-9 rounded-full text-sm font-medium text-gray-800 uppercase flex items-center justify-center bg-gray-300"
         >
-          CT
+          {getInitials(user?.name)}
         </Link>
       </div>
     </header>

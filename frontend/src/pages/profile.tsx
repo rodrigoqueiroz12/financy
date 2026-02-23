@@ -6,6 +6,7 @@ import { Input } from '@/components/input'
 import { LabelButton } from '@/components/label-button'
 import { updateUser } from '@/lib/graphql/mutations/update-user'
 import { useAuthStore } from '@/stores/auth.store'
+import { getInitials } from '@/utils/get-initials'
 
 export function Profile() {
   const user = useAuthStore(state => state.user)
@@ -41,11 +42,13 @@ export function Profile() {
     })
   }
 
+  const initials = getInitials(user?.name)
+
   return (
     <div className="max-w-md mx-auto">
       <div className="bg-white border border-gray-200 rounded-xl p-8 flex flex-col items-center">
         <div className="size-16 rounded-full text-2xl leading-10 font-medium text-gray-800 uppercase flex items-center justify-center bg-gray-300 mb-6">
-          CT
+          {initials}
         </div>
 
         <h1 className="text-xl font-semibold text-gray-800 mb-0.5">
