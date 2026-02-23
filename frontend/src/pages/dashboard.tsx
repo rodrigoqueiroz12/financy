@@ -17,7 +17,6 @@ import { NewTransactionModal } from '../components/new-transaction-modal'
 
 export function Dashboard() {
   const {
-    transactions,
     fetchTransactions,
     recentTransactions,
     fetchRecentTransactions,
@@ -26,33 +25,22 @@ export function Dashboard() {
     monthOutgoing,
     fetchDashboardStats
   } = useTransactionsStore()
-  const { categories, fetchCategories } = useCategoriesStore()
+  const { rankedCategories, fetchCategories, fetchRankedCategories } =
+    useCategoriesStore()
 
   useEffect(() => {
     fetchCategories()
     fetchDashboardStats()
     fetchRecentTransactions()
+    fetchRankedCategories()
     fetchTransactions()
   }, [
     fetchTransactions,
     fetchCategories,
     fetchDashboardStats,
-    fetchRecentTransactions
+    fetchRecentTransactions,
+    fetchRankedCategories
   ])
-
-  const categoriesWithAmount = categories
-    .map(category => {
-      const catTransactions = transactions.filter(
-        t => t.categoryId === category.id
-      )
-      const amount = catTransactions.reduce((acc, t) => acc + t.amount, 0)
-      return {
-        ...category,
-        amount
-      }
-    })
-    .sort((a, b) => b.countTransactions - a.countTransactions)
-    .slice(0, 4)
 
   const formatCurrency = (value: number) => {
     return new Intl.NumberFormat('pt-BR', {
@@ -225,7 +213,7 @@ export function Dashboard() {
             </thead>
 
             <tbody>
-              {categoriesWithAmount.map(category => (
+              {rankedCategories.map(category => (
                 <tr key={category.id}>
                   <td className="pl-6 py-5 border-b border-gray-100 last:border-0">
                     <Tag variant={category.color as any}>{category.title}</Tag>
@@ -237,7 +225,7 @@ export function Dashboard() {
                   </td>
 
                   <td className="pr-6 py-5 text-right font-bold text-gray-800 text-sm border-b border-gray-100 last:border-0">
-                    {formatCurrency(category.amount)}
+                    {formatCurrency(category.amount || 0)}
                   </td>
                 </tr>
               ))}

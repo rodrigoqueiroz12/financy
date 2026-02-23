@@ -26,6 +26,7 @@ export interface Category {
   createdAt: string
   updatedAt: string
   countTransactions: number
+  amount?: number
 }
 
 export interface CreateCategoryInput {

@@ -4,6 +4,7 @@ import { createCategory } from '@/lib/graphql/mutations/create-category'
 import { deleteCategory } from '@/lib/graphql/mutations/delete-category'
 import { updateCategory } from '@/lib/graphql/mutations/update-category'
 import { listCategories } from '@/lib/graphql/queries/list-categories'
+import { listRankedCategories } from '@/lib/graphql/queries/list-ranked-categories'
 import type {
   Category,
   CreateCategoryInput,
@@ -12,6 +13,10 @@ import type {
 
 type ListCategoriesQueryData = {
   listCategories: Category[]
+}
+
+type ListRankedCategoriesQueryData = {
+  listRankedCategories: Category[]
 }
 
 type CreateCategoryMutationData = {
@@ -28,8 +33,10 @@ type DeleteCategoryMutationData = {
 
 interface CategoriesState {
   categories: Category[]
+  rankedCategories: Category[]
   isLoading: boolean
   fetchCategories: () => Promise<void>
+  fetchRankedCategories: () => Promise<void>
   createCategory: (data: CreateCategoryInput) => Promise<boolean>
   updateCategory: (id: string, data: UpdateCategoryInput) => Promise<boolean>
   deleteCategory: (id: string) => Promise<boolean>
@@ -37,6 +44,7 @@ interface CategoriesState {
 
 export const useCategoriesStore = create<CategoriesState>()((set, get) => ({
   categories: [],
+  rankedCategories: [],
   isLoading: false,
   fetchCategories: async () => {
     set({ isLoading: true })
@@ -53,6 +61,21 @@ export const useCategoriesStore = create<CategoriesState>()((set, get) => ({
       console.log('Erro ao buscar as categorias', error)
     } finally {
       set({ isLoading: false })
+    }
+  },
+  fetchRankedCategories: async () => {
+    try {
+      const { data } = await apolloClient.query<ListRankedCategoriesQueryData>({
+        query: listRankedCategories,
+        variables: { limit: 4 },
+        fetchPolicy: 'network-only'
+      })
+
+      if (data?.listRankedCategories) {
+        set({ rankedCategories: data.listRankedCategories })
+      }
+    } catch (error) {
+      console.log('Erro ao buscar as categorias ranqueadas', error)
     }
   },
   createCategory: async (categoryData: CreateCategoryInput) => {

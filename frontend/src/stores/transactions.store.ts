@@ -149,9 +149,8 @@ export const useTransactionsStore = create<TransactionsState>()((set, get) => ({
         )
         set({ transactions: newTransactions })
 
-        // Atuando em conformidade com o backend, busco novamente as categorias
-        // para atualizar a contagem de `countTransactions`
         useCategoriesStore.getState().fetchCategories()
+        useCategoriesStore.getState().fetchRankedCategories()
         get().fetchDashboardStats()
         get().fetchRecentTransactions()
 
@@ -191,6 +190,7 @@ export const useTransactionsStore = create<TransactionsState>()((set, get) => ({
         set({ transactions: newTransactions })
 
         useCategoriesStore.getState().fetchCategories()
+        useCategoriesStore.getState().fetchRankedCategories()
         get().fetchDashboardStats()
         get().fetchRecentTransactions()
 
@@ -217,6 +217,7 @@ export const useTransactionsStore = create<TransactionsState>()((set, get) => ({
         set({ transactions: get().transactions.filter(t => t.id !== id) })
 
         useCategoriesStore.getState().fetchCategories()
+        useCategoriesStore.getState().fetchRankedCategories()
         get().fetchDashboardStats()
         get().fetchRecentTransactions()
 
