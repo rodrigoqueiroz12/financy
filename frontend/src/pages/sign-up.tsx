@@ -42,7 +42,7 @@ export function SignUp() {
         }, 1500)
       }
     } catch (_error: any) {
-      toast.error('Erro ao realizar o cadastro')
+      toast.error('Ops! Algo deu errado ao realizar o cadastro. Tente novamente mais tarde.')
     } finally {
       setLoading(false)
     }

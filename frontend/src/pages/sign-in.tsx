@@ -5,6 +5,7 @@ import { Input } from '@/components/input'
 import { LabelButton } from '@/components/label-button'
 import { useAuthStore } from '@/stores/auth.store'
 import { Logo } from '../components/logo'
+import { toast } from 'sonner'
 
 export function SignIn() {
   const [email, setEmail] = useState('')
@@ -22,9 +23,13 @@ export function SignIn() {
 
     setLoading(true)
 
-    await login({ email, password })
+    try {
+      await login({ email, password })
+    } catch (_error) {
+      setLoading(false)
 
-    setLoading(false)
+      toast.error('E-mail ou senha inválidos')
+    }
   }
 
   return (
