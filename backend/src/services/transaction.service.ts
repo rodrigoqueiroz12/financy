@@ -8,10 +8,52 @@ export class TransactionService {
 		limit?: number,
 		offset?: number,
 		orderBy?: string,
-		orderDirection?: string
+		orderDirection?: string,
+		search?: string,
+		type?: string,
+		categoryId?: string,
+		period?: string
 	) {
+		const where: any = { userId }
+
+		if (search && search.trim() !== '') {
+			where.description = { contains: search }
+		}
+
+		if (type && type !== 'all') {
+			where.type = type
+		}
+
+		if (categoryId && categoryId !== 'all') {
+			where.categoryId = categoryId
+		}
+
+		if (period) {
+			const [month, year] = period.split('-')
+			if (month && year) {
+				const startOfMonth = new Date(
+					parseInt(year, 10),
+					parseInt(month, 10) - 1,
+					1
+				)
+				const endOfMonth = new Date(
+					parseInt(year, 10),
+					parseInt(month, 10),
+					0,
+					23,
+					59,
+					59,
+					999
+				)
+				where.transactedAt = {
+					gte: startOfMonth,
+					lte: endOfMonth
+				}
+			}
+		}
+
 		const query: any = {
-			where: { userId }
+			where
 		}
 
 		if (limit !== undefined && limit !== null) query.take = limit
@@ -27,7 +69,31 @@ export class TransactionService {
 			}
 		}
 
-		return await prisma.transaction.findMany(query)
+		const [transactions, totalCount] = await prisma.$transaction([
+			prisma.transaction.findMany(query),
+			prisma.transaction.count({ where: query.where })
+		])
+
+		return { transactions, totalCount }
+	}
+
+	async listTransactionPeriods(userId: string) {
+		const transactions = await prisma.transaction.findMany({
+			where: { userId },
+			select: { transactedAt: true },
+			orderBy: { transactedAt: 'desc' }
+		})
+
+		const periods = new Set<string>()
+
+		for (const t of transactions) {
+			const date = new Date(t.transactedAt)
+			const month = String(date.getMonth() + 1).padStart(2, '0')
+			const year = date.getFullYear()
+			periods.add(`${month}-${year}`)
+		}
+
+		return Array.from(periods)
 	}
 
 	async findById(userId: string, id: string) {

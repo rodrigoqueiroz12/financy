@@ -65,13 +65,19 @@ type Mutation {
   updateUser(data: UpdateUser!, id: String!): UserModel!
 }
 
+type PaginatedTransactionsModel {
+  totalCount: Int!
+  transactions: [TransactionModel!]!
+}
+
 type Query {
   getCategory(id: String!): CategoryModel!
   getTransaction(id: String!): TransactionModel!
   getUser(id: String!): UserModel!
   listCategories: [CategoryModel!]!
   listRankedCategories(limit: Int): [CategoryModel!]!
-  listTransactions(limit: Int, offset: Int, orderBy: String, orderDirection: String): [TransactionModel!]!
+  listTransactionPeriods: [String!]!
+  listTransactions(categoryId: String, limit: Int, offset: Int, orderBy: String, orderDirection: String, period: String, search: String, type: String): PaginatedTransactionsModel!
   monthIncoming: Int!
   monthOutgoing: Int!
   totalBalance: Int!

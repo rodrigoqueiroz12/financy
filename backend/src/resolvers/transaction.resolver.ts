@@ -14,6 +14,7 @@ import { UpdateTransaction } from '@/dtos/update-transaction.dto'
 import { GraphqlUser } from '@/graphql/decorators/user.decorator'
 import { auth } from '@/middlewares/auth.middleware'
 import { CategoryModel } from '@/models/category.model'
+import { PaginatedTransactionsModel } from '@/models/paginated-transactions.model'
 import { TransactionModel } from '@/models/transaction.model'
 import { CategoryService } from '@/services/category.service'
 import { TransactionService } from '@/services/transaction.service'
@@ -59,22 +60,35 @@ export class TransactionResolver {
 		return true
 	}
 
-	@Query(() => [TransactionModel], { name: 'listTransactions' })
+	@Query(() => PaginatedTransactionsModel, { name: 'listTransactions' })
 	async list(
 		@GraphqlUser() user: UserModel,
 		@Arg('limit', () => Int, { nullable: true }) limit?: number,
 		@Arg('offset', () => Int, { nullable: true }) offset?: number,
 		@Arg('orderBy', () => String, { nullable: true }) orderBy?: string,
 		@Arg('orderDirection', () => String, { nullable: true })
-		orderDirection?: string
-	): Promise<TransactionModel[]> {
+		orderDirection?: string,
+		@Arg('search', () => String, { nullable: true }) search?: string,
+		@Arg('type', () => String, { nullable: true }) type?: string,
+		@Arg('categoryId', () => String, { nullable: true }) categoryId?: string,
+		@Arg('period', () => String, { nullable: true }) period?: string
+	): Promise<PaginatedTransactionsModel> {
 		return await this.transactionService.findManyByUserId(
 			user.id,
 			limit,
 			offset,
 			orderBy,
-			orderDirection
+			orderDirection,
+			search,
+			type,
+			categoryId,
+			period
 		)
+	}
+
+	@Query(() => [String], { name: 'listTransactionPeriods' })
+	async listPeriods(@GraphqlUser() user: UserModel): Promise<string[]> {
+		return await this.transactionService.listTransactionPeriods(user.id)
 	}
 
 	@Query(() => TransactionModel, { name: 'getTransaction' })
