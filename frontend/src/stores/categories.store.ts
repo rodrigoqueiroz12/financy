@@ -51,7 +51,7 @@ export const useCategoriesStore = create<CategoriesState>()((set, get) => ({
     try {
       const { data } = await apolloClient.query<ListCategoriesQueryData>({
         query: listCategories,
-        fetchPolicy: 'network-only' // ensure fresh fetch
+        fetchPolicy: 'network-only'
       })
 
       if (data?.listCategories) {

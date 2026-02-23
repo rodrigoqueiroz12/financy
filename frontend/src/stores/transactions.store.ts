@@ -95,7 +95,7 @@ export const useTransactionsStore = create<TransactionsState>()((set, get) => ({
   setFilters: newFilters =>
     set(state => ({
       filters: { ...state.filters, ...newFilters },
-      currentPage: 1 // Reset to first page on filter change
+      currentPage: 1
     })),
   fetchDashboardStats: async () => {
     try {
