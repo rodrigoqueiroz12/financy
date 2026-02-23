@@ -1,8 +1,8 @@
 import { Link } from 'react-router'
+import { useAuthStore } from '@/stores/auth.store'
+import { getInitials } from '@/utils/get-initials'
 import { HeaderLink } from './header-link'
 import { Logo } from './logo'
-import { getInitials } from '@/utils/get-initials'
-import { useAuthStore } from '@/stores/auth.store'
 
 export function Header() {
   const user = useAuthStore(state => state.user)

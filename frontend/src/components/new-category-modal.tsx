@@ -1,7 +1,8 @@
 import * as Dialog from '@radix-ui/react-dialog'
 import * as RadioGroup from '@radix-ui/react-radio-group'
 import { X } from 'lucide-react'
-import { type FormEvent, type ReactNode, useState } from 'react'
+import { type ReactNode, useState } from 'react'
+import { toast } from 'sonner'
 import { useCategoriesStore } from '@/stores/categories.store'
 import { CATEGORY_ICONS } from '@/utils/categories'
 import { IconButton } from './icon-button'
@@ -21,7 +22,7 @@ export function NewCategoryModal({ children }: NewCategoryModalProps) {
 
   const createCategory = useCategoriesStore(state => state.createCategory)
 
-  async function handleCreateCategory(event: FormEvent) {
+  async function handleCreateCategory(event: React.SubmitEvent) {
     event.preventDefault()
 
     try {
@@ -37,7 +38,9 @@ export function NewCategoryModal({ children }: NewCategoryModalProps) {
       setIcon('utensils')
       setColor('green')
       setOpen(false)
+      toast.success('Categoria criada com sucesso')
     } catch (_error) {
+      toast.error('Erro ao criar categoria')
       console.log('Erro ao criar categoria')
     }
   }

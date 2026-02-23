@@ -2,6 +2,7 @@ import * as Dialog from '@radix-ui/react-dialog'
 import * as RadioGroup from '@radix-ui/react-radio-group'
 import { X } from 'lucide-react'
 import { type FormEvent, type ReactNode, useEffect, useState } from 'react'
+import { toast } from 'sonner'
 import { useCategoriesStore } from '@/stores/categories.store'
 import type { Category } from '@/types'
 import { CATEGORY_ICONS } from '@/utils/categories'
@@ -47,7 +48,9 @@ export function EditCategoryModal({
       })
 
       setOpen(false)
+      toast.success('Categoria atualizada com sucesso')
     } catch (_error) {
+      toast.error('Erro ao atualizar categoria')
       console.log('Erro ao atualizar categoria')
     }
   }

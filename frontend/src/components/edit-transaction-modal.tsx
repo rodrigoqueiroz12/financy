@@ -2,6 +2,7 @@ import * as Dialog from '@radix-ui/react-dialog'
 import * as RadioGroup from '@radix-ui/react-radio-group'
 import { CircleArrowDown, CircleArrowUp, X } from 'lucide-react'
 import { type FormEvent, type ReactNode, useEffect, useState } from 'react'
+import { toast } from 'sonner'
 import { tv } from 'tailwind-variants/lite'
 import { useCategoriesStore } from '@/stores/categories.store'
 import { useTransactionsStore } from '@/stores/transactions.store'
@@ -83,7 +84,9 @@ export function EditTransactionModal({
       })
 
       setOpen(false)
+      toast.success('Transação atualizada')
     } catch (_error) {
+      toast.error('Erro ao atualizar transação')
       console.log('Erro ao atualizar transação')
     }
   }
