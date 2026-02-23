@@ -19,22 +19,43 @@ import { Type } from '@/components/type'
 import { useCategoriesStore } from '@/stores/categories.store'
 import { useTransactionsStore } from '@/stores/transactions.store'
 import { CATEGORY_ICONS } from '@/utils/categories'
+import { formatPeriod } from '@/utils/format-period'
 import { EditTransactionModal } from '../components/edit-transaction-modal'
 import { NewTransactionModal } from '../components/new-transaction-modal'
 
 export function Transactions() {
-  const { transactions, fetchTransactions, deleteTransaction } =
-    useTransactionsStore()
-  const { fetchCategories } = useCategoriesStore()
+  const {
+    transactions,
+    fetchTransactions,
+    deleteTransaction,
+    filters,
+    setFilters,
+    periods,
+    fetchTransactionPeriods,
+    currentPage,
+    setPage,
+    totalCount
+  } = useTransactionsStore()
+  const { categories, fetchCategories } = useCategoriesStore()
 
   useEffect(() => {
-    fetchTransactions({
-      limit: 10,
-      orderBy: 'transactedAt',
-      orderDirection: 'desc'
-    })
+    fetchTransactionPeriods()
     fetchCategories()
-  }, [fetchTransactions, fetchCategories])
+  }, [fetchTransactionPeriods, fetchCategories])
+
+  // biome-ignore lint/correctness/useExhaustiveDependencies(filters): suppress dependency filters
+  // biome-ignore lint/correctness/useExhaustiveDependencies(currentPage): suppress dependency currentPage
+  useEffect(() => {
+    const handler = setTimeout(() => {
+      fetchTransactions()
+    }, 500)
+
+    return () => clearTimeout(handler)
+  }, [fetchTransactions, filters, currentPage])
+
+  const totalPages = Math.ceil(totalCount / 10)
+  const startIndex = (currentPage - 1) * 10 + 1
+  const endIndex = Math.min(currentPage * 10, totalCount)
 
   return (
     <div className="space-y-8">
@@ -66,13 +87,18 @@ export function Transactions() {
               type="text"
               placeholder="Buscar por descrição"
               autoComplete="off"
+              value={filters.search}
+              onChange={e => setFilters({ search: e.target.value })}
             />
             <Search className="size-4 text-gray-400" />
           </Input.Control>
         </Input.Root>
 
         <div className="space-y-2">
-          <Select.Root>
+          <Select.Root
+            value={filters.type}
+            onValueChange={value => setFilters({ type: value })}
+          >
             <Select.Label>Tipo</Select.Label>
             <Select.Trigger id="type">
               <Select.Value placeholder="Selecione" />
@@ -86,30 +112,43 @@ export function Transactions() {
         </div>
 
         <div className="space-y-2">
-          <Select.Root>
+          <Select.Root
+            value={filters.categoryId}
+            onValueChange={value => setFilters({ categoryId: value })}
+          >
             <Select.Label>Categoria</Select.Label>
             <Select.Trigger id="category">
               <Select.Value placeholder="Selecione" />
             </Select.Trigger>
             <Select.Content>
               <Select.Item value="all">Todas</Select.Item>
-              <Select.Item value="food">Alimentação</Select.Item>
-              <Select.Item value="transport">Transporte</Select.Item>
-              <Select.Item value="market">Mercado</Select.Item>
-              <Select.Item value="salary">Salário</Select.Item>
+              {categories.map(category => (
+                <Select.Item key={category.id} value={category.id}>
+                  {category.title}
+                </Select.Item>
+              ))}
             </Select.Content>
           </Select.Root>
         </div>
 
         <div className="space-y-2">
-          <Select.Root>
+          <Select.Root
+            value={filters.period}
+            onValueChange={value =>
+              setFilters({ period: value === 'all' ? '' : value })
+            }
+          >
             <Select.Label>Período</Select.Label>
             <Select.Trigger id="period">
               <Select.Value placeholder="Selecione" />
             </Select.Trigger>
             <Select.Content>
-              <Select.Item value="11-2025">Novembro / 2025</Select.Item>
-              <Select.Item value="12-2025">Dezembro / 2025</Select.Item>
+              <Select.Item value="all">Todos</Select.Item>
+              {periods.map(period => (
+                <Select.Item key={period} value={period}>
+                  {formatPeriod(period)}
+                </Select.Item>
+              ))}
             </Select.Content>
           </Select.Root>
         </div>
@@ -209,19 +248,36 @@ export function Transactions() {
               <td colSpan={6} className="px-6 py-4 border-b border-gray-200">
                 <div className="flex items-center justify-between">
                   <span className="text-sm text-gray-700">
-                    1 a 10 | 27 resultados
+                    {totalCount > 0
+                      ? `${startIndex} a ${endIndex} | ${totalCount} resultados`
+                      : 'Nenhum resultado'}
                   </span>
 
                   <div className="flex items-center gap-2">
-                    <PaginationButton disabled>
+                    <PaginationButton
+                      disabled={currentPage === 1}
+                      onClick={() => setPage(currentPage - 1)}
+                    >
                       <ChevronLeft className="size-4" />
                     </PaginationButton>
 
-                    <PaginationButton active>1</PaginationButton>
-                    <PaginationButton>2</PaginationButton>
-                    <PaginationButton>3</PaginationButton>
+                    {Array.from({ length: totalPages }).map((_, index) => {
+                      const page = index + 1
+                      return (
+                        <PaginationButton
+                          key={page}
+                          active={currentPage === page}
+                          onClick={() => setPage(page)}
+                        >
+                          {page}
+                        </PaginationButton>
+                      )
+                    })}
 
-                    <PaginationButton>
+                    <PaginationButton
+                      disabled={currentPage === totalPages || totalPages === 0}
+                      onClick={() => setPage(currentPage + 1)}
+                    >
                       <ChevronRight className="size-4" />
                     </PaginationButton>
                   </div>

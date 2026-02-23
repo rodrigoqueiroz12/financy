@@ -4,6 +4,7 @@ import { createTransaction } from '@/lib/graphql/mutations/create-transaction'
 import { deleteTransaction } from '@/lib/graphql/mutations/delete-transaction'
 import { updateTransaction } from '@/lib/graphql/mutations/update-transaction'
 import { getDashboardStats } from '@/lib/graphql/queries/dashboard-stats'
+import { listTransactionPeriods } from '@/lib/graphql/queries/list-transaction-periods'
 import { listTransactions } from '@/lib/graphql/queries/list-transactions'
 import type {
   CreateTransactionInput,
@@ -13,13 +14,20 @@ import type {
 import { useCategoriesStore } from './categories.store'
 
 type ListTransactionsQueryData = {
-  listTransactions: Transaction[]
+  listTransactions: {
+    transactions: Transaction[]
+    totalCount: number
+  }
+}
+
+type ListTransactionPeriodsQueryData = {
+  listTransactionPeriods: string[]
 }
 
 type DashboardStatsQueryData = {
-  totalBalance: number
-  monthIncoming: number
-  monthOutgoing: number
+  totalBalance?: number
+  monthIncoming?: number
+  monthOutgoing?: number
 }
 
 type CreateTransactionMutationData = {
@@ -41,13 +49,20 @@ interface TransactionsState {
   totalBalance: number
   monthIncoming: number
   monthOutgoing: number
-  fetchTransactions: (options?: {
-    limit?: number
-    offset?: number
-    orderBy?: string
-    orderDirection?: string
-  }) => Promise<void>
+  currentPage: number
+  totalCount: number
+  filters: {
+    search: string
+    type: string
+    categoryId: string
+    period: string
+  }
+  periods: string[]
+  setPage: (page: number) => void
+  setFilters: (filters: Partial<TransactionsState['filters']>) => void
+  fetchTransactions: () => Promise<void>
   fetchRecentTransactions: () => Promise<void>
+  fetchTransactionPeriods: () => Promise<void>
   fetchDashboardStats: () => Promise<void>
   createTransaction: (
     categoryId: string,
@@ -67,6 +82,21 @@ export const useTransactionsStore = create<TransactionsState>()((set, get) => ({
   totalBalance: 0,
   monthIncoming: 0,
   monthOutgoing: 0,
+  currentPage: 1,
+  totalCount: 0,
+  filters: {
+    search: '',
+    type: 'all',
+    categoryId: 'all',
+    period: ''
+  },
+  periods: [],
+  setPage: page => set({ currentPage: page }),
+  setFilters: newFilters =>
+    set(state => ({
+      filters: { ...state.filters, ...newFilters },
+      currentPage: 1 // Reset to first page on filter change
+    })),
   fetchDashboardStats: async () => {
     try {
       const { data } = await apolloClient.query<DashboardStatsQueryData>({
@@ -76,26 +106,43 @@ export const useTransactionsStore = create<TransactionsState>()((set, get) => ({
 
       if (data) {
         set({
-          totalBalance: data.totalBalance,
-          monthIncoming: data.monthIncoming,
-          monthOutgoing: data.monthOutgoing
+          totalBalance: data.totalBalance || 0,
+          monthIncoming: data.monthIncoming || 0,
+          monthOutgoing: data.monthOutgoing || 0
         })
       }
     } catch (error) {
       console.log('Erro ao buscar as estatísticas do dashboard', error)
     }
   },
-  fetchTransactions: async options => {
+  fetchTransactions: async () => {
     set({ isLoading: true })
+    const state = get()
+
+    const limit = 10
+    const offset = (state.currentPage - 1) * limit
+
     try {
       const { data } = await apolloClient.query<ListTransactionsQueryData>({
         query: listTransactions,
-        variables: options,
+        variables: {
+          limit,
+          offset,
+          orderBy: 'transactedAt',
+          orderDirection: 'desc',
+          search: state.filters.search,
+          type: state.filters.type,
+          categoryId: state.filters.categoryId,
+          period: state.filters.period
+        },
         fetchPolicy: 'network-only'
       })
 
       if (data?.listTransactions) {
-        set({ transactions: data.listTransactions })
+        set({
+          transactions: data.listTransactions.transactions,
+          totalCount: data.listTransactions.totalCount
+        })
       }
     } catch (error) {
       console.log('Erro ao buscar as transações', error)
@@ -116,10 +163,25 @@ export const useTransactionsStore = create<TransactionsState>()((set, get) => ({
       })
 
       if (data?.listTransactions) {
-        set({ recentTransactions: data.listTransactions })
+        set({ recentTransactions: data.listTransactions.transactions })
       }
     } catch (error) {
       console.log('Erro ao buscar as transações recentes', error)
+    }
+  },
+  fetchTransactionPeriods: async () => {
+    try {
+      const { data } =
+        await apolloClient.query<ListTransactionPeriodsQueryData>({
+          query: listTransactionPeriods,
+          fetchPolicy: 'network-only'
+        })
+
+      if (data?.listTransactionPeriods) {
+        set({ periods: data.listTransactionPeriods })
+      }
+    } catch (error) {
+      console.log('Erro ao buscar períodos', error)
     }
   },
   createTransaction: async (
@@ -153,6 +215,8 @@ export const useTransactionsStore = create<TransactionsState>()((set, get) => ({
         useCategoriesStore.getState().fetchRankedCategories()
         get().fetchDashboardStats()
         get().fetchRecentTransactions()
+        get().fetchTransactionPeriods()
+        get().fetchTransactions()
 
         return true
       }
@@ -193,6 +257,8 @@ export const useTransactionsStore = create<TransactionsState>()((set, get) => ({
         useCategoriesStore.getState().fetchRankedCategories()
         get().fetchDashboardStats()
         get().fetchRecentTransactions()
+        get().fetchTransactionPeriods()
+        get().fetchTransactions()
 
         return true
       }
@@ -220,6 +286,8 @@ export const useTransactionsStore = create<TransactionsState>()((set, get) => ({
         useCategoriesStore.getState().fetchRankedCategories()
         get().fetchDashboardStats()
         get().fetchRecentTransactions()
+        get().fetchTransactionPeriods()
+        get().fetchTransactions()
 
         return true
       }
